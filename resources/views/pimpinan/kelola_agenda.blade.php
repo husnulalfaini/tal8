@@ -1,8 +1,8 @@
-@extends('pimpinan.layout.master')
+@extends('layout.master')
 @section('header_kiri')
 Kelola Agenda
 @endsection
-@@section('content_pimpinan')
+@@section('content')
 <section class="content">
    <div class="container-fluid">
    <div class="row">

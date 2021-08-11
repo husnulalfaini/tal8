@@ -1,7 +1,7 @@
 
 
-@extends('pimpinan.layout.master')
-@section('content_pimpinan')
+@extends('layout.master')
+@section('content')
 <!-- Sidebar Menu -->
 <!-- konten utama -->
 <section class="content">

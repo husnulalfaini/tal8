@@ -1,5 +1,5 @@
-@extends('ketua.layout.master')
-@section('content_ketua')
+@extends('layout.master')
+@section('content')
 <section class="content">
    <div class="container-fluid">
       <div class="row">

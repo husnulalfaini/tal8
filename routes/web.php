@@ -1,6 +1,22 @@
 <?php
 
+use App\Http\Controllers\admin\DaftarUserController;
+use App\Http\Controllers\admin\TambahUserController;
 use Illuminate\Support\Facades\Route;
+use app\Http\Controllers\ketua\DaftarPetaniController;
+use App\Http\Controllers\ketua\DashboardController;
+use App\Http\Controllers\ketua\EditProfileController;
+use App\Http\Controllers\ketua\KonfirmasiController;
+use App\Http\Controllers\ketua\KonfirmasiPetaniController;
+use App\Http\Controllers\ketua\LihatAgendaController;
+use App\Http\Controllers\ketua\MonitoringLahanController;
+use App\Http\Controllers\ketua\MonitoringPetaniController;
+use App\Http\Controllers\pimpinan\DaftarKelompokController;
+use App\Http\Controllers\pimpinan\DashboardController as PimpinanDashboardController;
+use App\Http\Controllers\pimpinan\DetailKelompokController;
+use App\Http\Controllers\pimpinan\EditProfileController as PimpinanEditProfileController;
+use App\Http\Controllers\pimpinan\KelolaAgendaController;
+use App\Http\Controllers\pimpinan\TambahKelompokController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,54 +33,32 @@ Route::get('/', function () {
     return view('admin.daftar_user');
 });
 
+// halaman admin
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/daftar_user', [DaftarUserController::class, 'index']);
+    Route::get('/tambah_user', [TambahUserController::class, 'index']);
+  });
+
 // halaman ketua
-Route::get('/daftar_petani', function () {
-    return view('ketua.daftar_petani');
-});
-Route::get('/edit_profile', function () {
-    return view('ketua.edit_profile');
-});
-Route::get('/konfirmasi', function () {
-    return view('ketua.konfirmasi');
-});
-Route::get('/konfirmasi_petani', function () {
-    return view('ketua.konfirmasi_petani');
-});
-Route::get('/lihat_agenda', function () {
-    return view('ketua.lihat_agenda');
-});
-Route::get('/monitoring_lahan', function () {
-    return view('ketua.monitoring_lahan');
-});
-Route::get('/monitoring_petani', function () {
-    return view('ketua.monitoring_petani');
-});
-Route::get('/rekap_data', function () {
-    return view('ketua.rekap_data');
+Route::group(['middleware' => ['ketua']], function () {
+    Route::get('/dashboard_pimpinan', [PimpinanDashboardController::class, 'index']);
+    Route::get('/daftar_kelompok', [DaftarKelompokController::class, 'index']);
+    Route::get('/detail_kelompok', [DetailKelompokController::class, 'index']);
+    Route::get('/edit_profile', [PimpinanEditProfileController::class, 'index']);
+    Route::get('/kelola_agenda', [KelolaAgendaController::class, 'index']);
+    Route::get('/tambah_kelompok', [TambahKelompokController::class, 'index']);
+
 });
 
+// halaman ketua
+Route::group(['middleware' => ['ketua']], function () {
+    Route::get('/dashboard_ketua', [DashboardController::class, 'index']);
+    Route::get('/daftar_petani', [DaftarPetaniController::class, 'index']);
+    Route::post('/edit_profile', [EditProfileController::class, 'index']);
+    Route::get('/konfirmasi', [KonfirmasiController::class, 'index']);
+    Route::get('/konfirmasi_petani', [KonfirmasiPetaniController::class, 'index']);
+    Route::get('/lihat_agenda', [LihatAgendaController::class, 'index']);
+    Route::get('/monitoring_lahan', [MonitoringLahanController::class, 'index']);
+    Route::get('/monitoring_petani', [MonitoringPetaniController::class, 'index']);
+  });
 
-// halaman pimpinan
-Route::get('/daftar_kelompok', function () {
-    return view('pimpinan.daftar_kelompok');
-});
-Route::get('/detail_kelompok', function () {
-    return view('pimpinan.detail_kelompok');
-});
-Route::get('/edit_profile', function () {
-    return view('pimpinan.edit_profile');
-});
-Route::get('/tambah_kelompok', function () {
-    return view('pimpinan.tambah_kelompok');
-});
-Route::get('/rekap_data', function () {
-    return view('pimpinan.rekap_data');
-});
-
-// admin
-Route::get('/daftar_user', function () {
-    return view('admin.daftar_user');
-});
-Route::get('/tambah_user', function () {
-    return view('admin.tambah_user');
-});

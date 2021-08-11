@@ -5,7 +5,7 @@ namespace App\Http\Controllers\ketua;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class KonfirmasiPetaniController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('ketua.dashboard');
+        return view('ketua.konfirmasi_petani');
     }
 
     /**

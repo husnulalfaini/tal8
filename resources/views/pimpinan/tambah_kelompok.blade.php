@@ -1,5 +1,5 @@
-@extends('pimpinan.layout.master')
-@section('content_pimpinan')
+@extends('layout.master')
+@section('content')
 <section class="content">
    <div class="container-fluid">
       <div class="row">

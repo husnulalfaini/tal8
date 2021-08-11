@@ -1,10 +1,10 @@
 
 
-@extends('ketua.layout.master')
+@extends('layout.master')
 @section('header')
 Lihat Agenda
 @endsection
-@section('content_ketua')
+@section('content')
 <section class="content">
    <div class="container-fluid">
    <div class="row">

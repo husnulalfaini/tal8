@@ -1,5 +1,5 @@
-@extends('admin.layout.master')
-@section('content_admin')
+@extends('layout.master')
+@section('content')
 <section class="content">
    <div class="container-fluid">
       <div class="row">

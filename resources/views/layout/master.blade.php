@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      @include('master_layout.top')
+      @include('layout.top')
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
       <div class="wrapper">
          <!-- Navbar -->
-         @include('master_layout.header')
+         @include('layout.header')
          <!-- /.navbar -->
          <!-- Main Sidebar Container -->
-         @include('admin.layout.sidebar')
+         @include('layout.sidebar')
          <!-- Content Wrapper. Contains page content -->
          <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -32,7 +32,7 @@
             </div>
             <!-- /.content-header -->
             <!-- Main content -->
-            @yield('content_admin')
+            @yield('content')
             <!-- right col -->
             </div>
             <!-- /.row (main row) -->
@@ -40,10 +40,10 @@
          <!-- /.container-fluid -->
          <!-- </section> -->
          <!-- /.content -->
-        @include('master_layout.footer')
+        @include('layout.footer')
       </div>
       <!-- /.Bottom -->
-      @include('master_layout.bottom')
+      @include('layout.bottom')
       <!-- /.Bottom -->
       
    </body>

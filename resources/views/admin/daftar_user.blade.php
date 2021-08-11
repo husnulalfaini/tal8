@@ -1,4 +1,4 @@
-@extends('admin.layout.master')
+@extends('layout.master')
 
 @section('header_kiri')
    Daftar Kelompok
@@ -7,7 +7,7 @@
 <a class="btn btn-success btn-lg " href="#" role="button"><i class="fa fa-plus"></i></a>
 @endsection
 
-@section('content_admin')
+@section('content')
 <section class="content">
 <div class="container-fluid">
                         <div class="row">

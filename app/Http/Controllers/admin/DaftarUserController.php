@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\ketua;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class DaftarUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('ketua.dashboard');
+       return view('admin.daftar_user');
     }
 
     /**
