@@ -17,6 +17,7 @@ use App\Http\Controllers\pimpinan\DetailKelompokController;
 use App\Http\Controllers\pimpinan\EditProfileController as PimpinanEditProfileController;
 use App\Http\Controllers\pimpinan\KelolaAgendaController;
 use App\Http\Controllers\pimpinan\TambahKelompokController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,19 +30,24 @@ use App\Http\Controllers\pimpinan\TambahKelompokController;
 |
 */
 
+// halaman awal
+
 Route::get('/', function () {
-    return view('admin.daftar_user');
+    return view('welcome');
 });
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // halaman admin
-Route::group(['middleware' => ['admin']], function () {
+Route::group(['middleware' => ['auth','CekLevel:admin,pimpinan']], function () {
+  Route::get('/dashboard', [PimpinanDashboardController::class, 'index'])->name('dashboard');
     Route::get('/daftar_user', [DaftarUserController::class, 'index']);
     Route::get('/tambah_user', [TambahUserController::class, 'index']);
   });
 
 // halaman ketua
 Route::group(['middleware' => ['ketua']], function () {
-    Route::get('/dashboard_pimpinan', [PimpinanDashboardController::class, 'index']);
     Route::get('/daftar_kelompok', [DaftarKelompokController::class, 'index']);
     Route::get('/detail_kelompok', [DetailKelompokController::class, 'index']);
     Route::get('/edit_profile', [PimpinanEditProfileController::class, 'index']);
