@@ -28,70 +28,16 @@
                                           </tr>
                                        </thead>
                                        <tbody>
+                                          @foreach ($daftar_petani as $item)
                                           <tr>
-                                             <td>Bambang</td>
-                                             <td>Sukojati</td>
-                                             <td>Bambangsetyabudi75@gmail.com</td>
-                                             <td>085214432678</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
+                                             <td>{{$item->nama}}</td>
+                                             <td>{{$item->alamat}}</td>
+                                             <td>{{$item->email}}</td>
+                                             <td>{{$item->telepon}}</td>
+                                             <td><a href="{{route('ketua.monitoring_petani',[$item->id])}}" class="text-dark"><i class=" fas fa-eye"></i></a>
+                                                 <a href="#"  class="text-dark"><i class="far fa-edit"></i></a></td>
                                           </tr>
-                                          <tr>
-                                             <td>Bambang</td>
-                                             <td>Sukojati</td>
-                                             <td>Bambangsetyabudi75@gmail.com</td>
-                                             <td>085214432678</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>Bambang</td>
-                                             <td>Sukojati</td>
-                                             <td>Bambangsetyabudi75@gmail.com</td>
-                                             <td>085214432678</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>Bambang</td>
-                                             <td>Sukojati</td>
-                                             <td>Bambangsetyabudi75@gmail.com</td>
-                                             <td>085214432678</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>Bambang</td>
-                                             <td>Sukojati</td>
-                                             <td>Bambangsetyabudi75@gmail.com</td>
-                                             <td>085214432678</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>Bambang</td>
-                                             <td>Sukojati</td>
-                                             <td>Bambangsetyabudi75@gmail.com</td>
-                                             <td>085214432678</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>Bambang</td>
-                                             <td>Sukojati</td>
-                                             <td>Bambangsetyabudi75@gmail.com</td>
-                                             <td>085214432678</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>Bambang</td>
-                                             <td>Sukojati</td>
-                                             <td>Bambangsetyabudi75@gmail.com</td>
-                                             <td>085214432678</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
+                                          @endforeach
                                        </tbody>
                                        <tfoot>
                                           <tr>

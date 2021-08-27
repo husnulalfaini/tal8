@@ -41,7 +41,7 @@ Monitoring Petani
                      <div class="col-sm-2 border-right">
                         <div class="description-block">
                            <h5 class="description-header">Alamat</h5>
-                           <span class="description-text">Sukojati</span>
+                           <span class="description-text">{{$petani->alamat}}</span>
                         </div>
                         <!-- /.description-block -->
                      </div>
@@ -49,7 +49,7 @@ Monitoring Petani
                      <div class="col-sm-4">
                         <div class="description-block">
                            <h5 class="description-header">Nama</h5>
-                           <span class="description-text">Bambang Setya Budi</span>
+                           <span class="description-text">{{$petani->nama}}</span>
                         </div>
                         <!-- /.description-block -->
                      </div>
@@ -57,7 +57,7 @@ Monitoring Petani
                      <div class="col-sm-2 border-left">
                         <div class="description-block">
                            <h5 class="description-header">Email</h5>
-                           <span class="description-text">bambangsetyabudi75@gmail.com</span>
+                           <span class="description-text">{{$petani->nama}}</span>
                         </div>
                         <!-- /.description-block -->
                      </div>
@@ -65,7 +65,7 @@ Monitoring Petani
                      <div class="col-sm-2 border-left">
                         <div class="description-block">
                            <h5 class="description-header">Telepon</h5>
-                           <span class="description-text">085213345678</span>
+                           <span class="description-text">{{$petani->telepon}}</span>
                         </div>
                         <!-- /.description-block -->
                      </div>
@@ -90,27 +90,24 @@ Monitoring Petani
             <thead>
             <tr>
             <th>Tanggal</th>
-            <th>Jumlah Panen</th>
+            <th>Jumlah Panen Katak</th>
+            <th>Jumlah Panen Umbi</th>
             </tr>
             </thead>
             <tbody>
+            @foreach ($panen_petani as $item)
             <tr>
-            <td>14/11/2020</td>
-            <td>10 kintal</td>
+            <td>{{$item->tanggal}}</td>
+            <td>{{$item->panen_katak}}</td>
+            <td>{{$item->panen_umbi}}</td>
             </tr>
-            <tr>
-            <td>14/11/2020</td>
-            <td>10 kintal</td>
-            </tr>
-            <tr>
-            <td>14/11/2020</td>
-            <td>10 kintal</td>
-            </tr>
+            @endforeach
             </tbody>
             <tfoot>
             <tr>
             <th>Tanggal</th>
-            <th>Jumlah Panen</th>
+            <th>Jumlah Panen Katak</th>
+            <th>Jumlah Panen Umbi</th>
             </tr>
             </tfoot>
             </table>
@@ -130,7 +127,7 @@ Monitoring Petani
             <div class="col-sm-4 border-right">
             <div class="description-block">
             <h5 class="description-header">Luas Lahan</h5>
-            <span class="description-text">1 hektar</span>
+            <span class="description-text">{{$luas_lahan}}</span>
             </div>
             <!-- /.description-block -->
             </div>
@@ -138,7 +135,7 @@ Monitoring Petani
             <div class="col-sm-4 border-right">
             <div class="description-block">
             <h5 class="description-header">Jumlah Lahan</h5>
-            <span class="description-text">15 lahan</span>
+         <span class="description-text">{{$jumlah_lahan}}</span>
             </div>
             <!-- /.description-block -->
             </div>
@@ -146,7 +143,7 @@ Monitoring Petani
             <div class="col-sm-4 border-right">
             <div class="description-block">
             <h5 class="description-header">Total Panen</h5>
-            <span class="description-text">6 ton</span>
+            <span class="description-text">{{$total_panen}}</span>
             </div>
             <!-- /.description-block -->
             </div>

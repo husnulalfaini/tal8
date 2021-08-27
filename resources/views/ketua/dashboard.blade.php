@@ -12,7 +12,7 @@
          <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
-               <h3>50 Orang</h3>
+               <h3>{{$jumlah_petani}} Orang</h3>
                <p>Total Petani</p>
             </div>
             <div class="icon">
@@ -25,7 +25,7 @@
          <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
-               <h3>50 Hektar</h3>
+               <h3>{{$luas_lahan}} Hektar</h3>
                <p>Luas Lahan</p>
             </div>
             <div class="icon">
@@ -38,7 +38,7 @@
          <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
-               <h3>53 Kilo</h3>
+               <h3>{{$total_panen}} Kilo</h3>
                <p>Total Panen</p>
             </div>
             <div class="icon">
@@ -130,100 +130,29 @@
                            <tr>
                               <th>Petani</th>
                               <th>Alamat</th>
-                              <th>Tanggal Tanam</th>
                               <th>Tanggal Panen</th>
-                              <th>Jumlah Panen</th>
+                              <th>Jumlah Panen Katak</th>
+                              <th>Jumlah Panen Umbi</th>
                            </tr>
                         </thead>
                         <tbody>
+                           @foreach ($data_panen as $item)
                            <tr>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
+                           <td>{{$item->petani->nama}}</td>
+                           <td>{{$item->petani->alamat}}</td>
+                           <td>{{$item->tanggal}}</td>
+                           <td>{{$item->panen_katak}}</td>
+                           <td>{{$item->panen_umbi}}</td>
+                        </tr>
+                        @endforeach
                         </tbody>
                         <tfoot>
                            <tr>
                               <th>Petani</th>
                               <th>Alamat</th>
-                              <th>Tanggal Tanam</th>
                               <th>Tanggal Panen</th>
-                              <th>Jumlah Panen</th>
+                              <th>Jumlah Panen Katak</th>
+                              <th>Jumlah Panen Umbi</th>
                            </tr>
                         </tfoot>
                      </table>

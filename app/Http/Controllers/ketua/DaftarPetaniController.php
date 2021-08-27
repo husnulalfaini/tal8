@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\ketua;
 
+use App\Models\Petani;
+use App\Models\Panen;
+use App\Models\Lahan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,8 @@ class DaftarPetaniController extends Controller
      */
     public function index()
     {
-        return view('ketua.daftar_petani');
+        $daftar_petani= Petani::all();
+        return view('ketua.daftar_petani', compact('daftar_petani'));
     }
 
     /**
@@ -46,7 +50,19 @@ class DaftarPetaniController extends Controller
      */
     public function show($id)
     {
-        //
+       $petani = Petani::find($id);
+       $panen_petani = Panen::where('petani_id', $id)->get();
+
+       $luas_lahan = Lahan::where('petani_id', $id)->sum('luas_lahan');
+       $jumlah_lahan = Lahan::where('petani_id', $id)->count();
+        
+       $panen_katak = Panen::where('petani_id', $id)->sum('panen_katak');
+       $panen_umbi = Panen::where('petani_id', $id)->sum('panen_umbi');
+       $total_panen = $panen_katak + $panen_umbi;
+    //    dd($total_panen);
+
+        return view('ketua.monitoring_petani', compact('petani','panen_petani','total_panen','luas_lahan','jumlah_lahan'));
+
     }
 
     /**

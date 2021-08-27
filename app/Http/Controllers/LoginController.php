@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use pp\Models\User;
 
 class LoginController extends Controller
 {
@@ -14,10 +15,16 @@ class LoginController extends Controller
     
 
     public function postlogin(Request $request)
-    {
+    {   
         if(Auth::attempt($request->only('email','password')))
         {
-            return redirect('/dashboard');
+            if (auth()->user()->level=="admin") {
+                return redirect('/daftar_user');
+            } elseif (auth()->user()->level=="pimpinan") {
+                return redirect('/dashboard_pimpinan');
+            } else {
+                return redirect('/dashboard_ketua');
+            }  
         }
             return redirect('/login');
     }

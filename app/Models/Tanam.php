@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tanam extends Model
 {
-    use HasFactory;
+    protected $table = "tanams";
+    protected $primaryKey = "id";
+    protected $fillable = ['id','nama','petani_id','tanggal','jumlah_bibit',];
+
+    public function petani()
+    {
+        return $this->belongsTo(Petani::class);
+    }
 }

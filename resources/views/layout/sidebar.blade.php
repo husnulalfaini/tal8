@@ -12,15 +12,16 @@
                      <img src="{{asset('public/asset/dist/img/husnul.jpg')}}" class="img-circle elevation-2" alt="User Image">
                   </div>
                   <div class="info">
-                     <a href="{{url('/edit_profile')}}" class="d-block">husnul Alfaini</a>
+                     <a href="{{url('/edit_profile')}}" class="d-block">{{ Auth::user()->name }}</a>
                   </div>
                </div>
                <nav class="mt-2">
    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
    <!-- Add icons to the links using the .nav-icon class
       with font-awesome or any other icon font library -->
+   @if(auth()->user()->level=="admin")
    <li class="nav-item">
-      <a href="{{url('/')}}"  class="nav-link">
+      <a href="{{url('/daftar_user')}}"  class="nav-link">
          <i class="nav-icon fas fa-users"></i>
          <p>
             Data User
@@ -35,6 +36,63 @@
          </p>
       </a>
    </li>
+
+   @elseif (auth()->user()->level=="pimpinan")
+
+   <li class="nav-item">
+      <a href="{{url('/dashboard_pimpinan')}}"  class="nav-link">
+         <i class="nav-icon fas fa-user"></i>
+         <p>
+            Beranda
+         </p>
+      </a>
+   </li>
+   <li class="nav-item">
+   <a href="{{url('/daftar_kelompok')}}" class="nav-link">
+         <i class="nav-icon fas fa-table"></i>
+         <p>
+            Daftar Kelompok
+         </p>s
+      </a>
+   </li>
+   <li class="nav-item">
+      <a href="{{url('/daftar_petani')}}" class="nav-link">
+         <i class="nav-icon fas fa-list"></i>
+         <p>
+            Rekap Data
+         </p>
+      </a>
+   </li>
+
+   @else
+
+   <li class="nav-item">
+      <a href="{{url('/dashboard_ketua')}}"  class="nav-link">
+         <i class="nav-icon fas fa-user"></i>
+         <p>
+            Beranda
+         </p>
+      </a>
+   </li>
+   <li class="nav-item">
+   <a href="{{url('/konfirmasi')}}" class="nav-link">
+         <i class="nav-icon fas fa-bell"></i>
+         <p>
+            Konfirmasi
+         </p>
+      </a>
+   </li>
+   <li class="nav-item">
+      <a href="{{url('/daftar_petani')}}" class="nav-link">
+         <i class="nav-icon fas fa-table"></i>
+         <p>
+            Daftar Petani
+         </p>
+      </a>
+   </li>
+   
+   @endif
+</ul>
 </nav>
                <!-- /.sidebar-menu -->
             </div>

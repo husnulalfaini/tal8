@@ -7,5 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Petani extends Model
 {
-    use HasFactory;
+    protected $table = "petanis";
+    protected $primaryKey = "id";
+    protected $fillable = ['id','nama','email','kelompok_id','password','alamat','telepon','foto',];
+
+    public function tanam()
+    {
+        return $this->hasMany(Tanam::class);
+    }
+
+    public function panen()
+    {
+        return $this->hasMany(Panen::class);
+    }
 }

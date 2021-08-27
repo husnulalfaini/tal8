@@ -3,7 +3,7 @@
 use App\Http\Controllers\admin\DaftarUserController;
 use App\Http\Controllers\admin\TambahUserController;
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\ketua\DaftarPetaniController;
+use App\Http\Controllers\ketua\DaftarPetaniController;
 use App\Http\Controllers\ketua\DashboardController;
 use App\Http\Controllers\ketua\EditProfileController;
 use App\Http\Controllers\ketua\KonfirmasiController;
@@ -40,14 +40,14 @@ Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogi
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // halaman admin
-Route::group(['middleware' => ['auth','CekLevel:admin,pimpinan']], function () {
-  Route::get('/dashboard', [PimpinanDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/daftar_user', [DaftarUserController::class, 'index']);
-    Route::get('/tambah_user', [TambahUserController::class, 'index']);
-  });
+Route::group(['middleware' => ['auth','CekLevel:admin']], function () {
+  Route::get('/daftar_user', [DaftarUserController::class, 'index'])->name('daftar_user');
+  Route::get('/tambah_user', [TambahUserController::class, 'index']);
+});
 
-// halaman ketua
-Route::group(['middleware' => ['ketua']], function () {
+// halaman pimpinan
+Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
+  Route::get('/dashboard_pimpinan', [PimpinanDashboardController::class, 'index'])->name('dashboard_pimpinan');
     Route::get('/daftar_kelompok', [DaftarKelompokController::class, 'index']);
     Route::get('/detail_kelompok', [DetailKelompokController::class, 'index']);
     Route::get('/edit_profile', [PimpinanEditProfileController::class, 'index']);
@@ -57,14 +57,15 @@ Route::group(['middleware' => ['ketua']], function () {
 });
 
 // halaman ketua
-Route::group(['middleware' => ['ketua']], function () {
-    Route::get('/dashboard_ketua', [DashboardController::class, 'index']);
-    Route::get('/daftar_petani', [DaftarPetaniController::class, 'index']);
+Route::group(['middleware' => ['auth','CekLevel:ketua']], function () {
+    Route::get('/dashboard_ketua', [DashboardController::class, 'index'])->name('dashboard_ketua');
     Route::post('/edit_profile', [EditProfileController::class, 'index']);
     Route::get('/konfirmasi', [KonfirmasiController::class, 'index']);
     Route::get('/konfirmasi_petani', [KonfirmasiPetaniController::class, 'index']);
     Route::get('/lihat_agenda', [LihatAgendaController::class, 'index']);
+    Route::get('/daftar_petani', [DaftarPetaniController::class, 'index']);
+    Route::get('/monitoring_petani/{item}', [DaftarPetaniController::class, 'show'])->name('ketua.monitoring_petani');
+    // Route::get('/monitoring_petani', [MonitoringPetaniController::class, 'index']);
     Route::get('/monitoring_lahan', [MonitoringLahanController::class, 'index']);
-    Route::get('/monitoring_petani', [MonitoringPetaniController::class, 'index']);
   });
 
