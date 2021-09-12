@@ -15,8 +15,10 @@ class CreateTanamsTable extends Migration
     {
         Schema::create('tanams', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('petani_id');
-            $table->foreign('petani_id')->references('id')->on('petanis');
+            // $table->unsignedBigInteger('petani_id');
+            // $table->foreign('petani_id')->references('id')->on('petanis');
+            $table->unsignedBigInteger('lahan_id');
+            $table->foreign('lahan_id')->references('id')->on('lahans');
             $table->Date('tanggal');
             $table->Float('jumlah_bibit');
             $table->timestamps();

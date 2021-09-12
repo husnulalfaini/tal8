@@ -15,8 +15,10 @@ class CreatePanensTable extends Migration
     {
         Schema::create('panens', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('petani_id');
-            $table->foreign('petani_id')->references('id')->on('petanis');
+            // $table->unsignedBigInteger('petani_id');
+            // $table->foreign('petani_id')->references('id')->on('petanis');
+            $table->unsignedBigInteger('lahan_id');
+            $table->foreign('lahan_id')->references('id')->on('lahans');
             $table->Float('panen_katak');
             $table->Float('panen_umbi');
             $table->Date('tanggal');

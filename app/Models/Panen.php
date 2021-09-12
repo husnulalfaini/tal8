@@ -9,10 +9,10 @@ class Panen extends Model
 {
     protected $table = "panens";
     protected $primaryKey = "id";
-    protected $fillable = ['id','petani_id','tanggal','panen_katak','panen_umbi',];
+    protected $fillable = ['id','lahan_id','tanggal','panen_katak','panen_umbi',];
 
-    public function petani()
+    public function lahan()
     {
-        return $this->belongsTo(Petani::class);
+        return $this->belongsTo(Lahan::class);
     }
 }

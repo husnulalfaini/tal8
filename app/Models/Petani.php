@@ -11,13 +11,17 @@ class Petani extends Model
     protected $primaryKey = "id";
     protected $fillable = ['id','nama','email','kelompok_id','password','alamat','telepon','foto',];
 
-    public function tanam()
+    public function lahan()
     {
-        return $this->hasMany(Tanam::class);
+        return $this->hasMany(Lahan::class);
     }
+    // public function tanam()
+    // {
+    //     return $this->hasMany(Tanam::class);
+    // }
 
-    public function panen()
-    {
-        return $this->hasMany(Panen::class);
-    }
+    // public function panen()
+    // {
+    //     return $this->hasMany(Panen::class);
+    // }
 }

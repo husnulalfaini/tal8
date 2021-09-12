@@ -9,10 +9,10 @@ class Tanam extends Model
 {
     protected $table = "tanams";
     protected $primaryKey = "id";
-    protected $fillable = ['id','nama','petani_id','tanggal','jumlah_bibit',];
+    protected $fillable = ['id','nama','lahan_id','tanggal','jumlah_bibit',];
 
-    public function petani()
+    public function lahan()
     {
-        return $this->belongsTo(Petani::class);
+        return $this->belongsTo(Lahan::class);
     }
 }
