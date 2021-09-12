@@ -130,6 +130,7 @@
                            <tr>
                               <th>Petani</th>
                               <th>Alamat</th>
+                              <th>Lahan</th>
                               <th>Tanggal Panen</th>
                               <th>Jumlah Panen Katak</th>
                               <th>Jumlah Panen Umbi</th>
@@ -138,8 +139,9 @@
                         <tbody>
                            @foreach ($data_panen as $item)
                            <tr>
-                           <td>{{$item->petani->nama}}</td>
-                           <td>{{$item->petani->alamat}}</td>
+                           <td>{{$item->lahan->petani->nama}}</td>
+                           <td>{{$item->lahan->petani->alamat}}</td>
+                           <td>{{$item->lahan->nama}}</td>
                            <td>{{$item->tanggal}}</td>
                            <td>{{$item->panen_katak}}</td>
                            <td>{{$item->panen_umbi}}</td>
@@ -150,6 +152,7 @@
                            <tr>
                               <th>Petani</th>
                               <th>Alamat</th>
+                              <th>Lahan</th>
                               <th>Tanggal Panen</th>
                               <th>Jumlah Panen Katak</th>
                               <th>Jumlah Panen Umbi</th>

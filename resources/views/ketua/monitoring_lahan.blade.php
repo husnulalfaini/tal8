@@ -10,76 +10,50 @@
       <!-- Left col -->
       <!-- <section class="col-lg-12 connectedSortable"> -->
       <!-- Custom tabs (Charts with tabs)-->
-      <div class="col-md-6">
-         <!-- Info Boxes Style 2 -->
-         @section('header')
-         Detail Lahan
-         @endsection
-         <div class="info-box mb-3 bg-white">
-            <span class="info-box-icon"><i class="fa fa-users"></i></span>
-            <div class="info-box-content">
-               <span class="info-box-text">Kelompok</span>
-               <span class="info-box-number">Tani Jaya</span>
-            </div>
-            <!-- /.info-box-content -->
-         </div>
-         <!-- /.info-box -->
-         <div class="info-box mb-3 bg-white">
-            <span class="info-box-icon"><i class="fa fa-user"></i></span>
-            <div class="info-box-content">
-               <span class="info-box-text">Petani</span>
-               <span class="info-box-number">Bambang</span>
-            </div>
-            <!-- /.info-box-content -->
-         </div>
-         <!-- /.info-box -->
-         <div class="info-box mb-3 bg-white">
-            <span class="info-box-icon"><i class="fas fa-tree"></i></span>
-            <div class="info-box-content">
-               <span class="info-box-text">Luas Lahan</span>
-               <span class="info-box-number">15 Hektar</span>
-            </div>
-            <!-- /.info-box-content -->
-         </div>
-         <!-- /.info-box -->
-         <div class="info-box mb-3 bg-white">
-            <span class="info-box-icon"><i class="fas fa-tree"></i></span>
-            <div class="info-box-content">
-               <span class="info-box-text">Jumlah Lahan</span>
-               <span class="info-box-number">15 Lahan</span>
-            </div>
-            <!-- /.info-box-content -->
-         </div>
-         <!-- /.info-box -->
-         <div class="info-box mb-3 bg-white">
-            <span class="info-box-icon"><i class="fas fa-archive"></i></span>
-            <div class="info-box-content">
-               <span class="info-box-text">Hasil Panen</span>
-               <span class="info-box-number">16 Ton</span>
-            </div>
-            <!-- /.info-box-content -->
-         </div>
-      </div>
-      <div class="col-md-6">
-         <!-- PIE GRAFIK -->
-         <div class="card card-success">
-            <div class="card-header">
-               <h3 class="card-title">GRAFIK</h3>
-               <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
-                  </button>
+      <div class="col-md-12">
+               <div class="card">
+                  <div class="card-header">
+                     <h3 class="card-title">Monitoring Lahan</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                     <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                           <tr>
+                              <th>Tanggal</th>
+                              <th>Kelembapan</th>
+                              <th>Ph</th>
+                              <th>Keterangan</th>
+                              <th></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           @foreach ($monitoring_lahan as $item)
+                           <tr>
+                              <td>{{$item->created_at}}</td>
+                              <td>{{$item->kelembapan}}</td>
+                              <td>{{$item->ph}}</td>
+                              <td>kelembapan tinggi</td>
+                              <td>ph normal</td>
+                           </tr>
+                           @endforeach
+                        </tbody>
+                        <tfoot>
+                           <tr>
+                              <th>Tanggal</th>
+                              <th>Kelembapan</th>
+                              <th>Ph</th>
+                              <th>Keterangan</th>
+                              <th></th>
+                           </tr>
+                        </tfoot>
+                     </table>
+                  </div>
+                  <!-- /.card-body -->
                </div>
+               <!-- /.card -->
             </div>
-            <div class="card-body">
-               <div id="barChart"></div>
-            </div>
-            <!-- /.card-body -->
-         </div>
-      </div>
+            <!-- /.col -->
       <!-- </section> -->
    </div>
    <!-- /.Left col -->
@@ -88,43 +62,67 @@
 
    <!-- Tabel Aktifitas lahan -->
          <div class="row">
-            <div class="col-12">
+            <div class="col-md-6">
                <div class="card">
                   <div class="card-header">
-                     <h3 class="card-title">Aktivitas Terbaru</h3>
+                     <h3 class="card-title">Aktivitas Tanam</h3>
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body">
                      <table id="example2" class="table table-bordered table-hover">
                         <thead>
                            <tr>
-                              <th>No</th>
-                              <th>Aktivitas</th>
                               <th>Tanggal</th>
+                              <th>jumlah Bibit</th>
                            </tr>
                         </thead>
-                        <tbody>
-                           <tr>
-                              <td>1</td>
-                              <td>Menanam </td>
-                              <td>14/02/2018</td>
-                           </tr>
-                           <tr>
-                              <td>2</td>
-                              <td>Memberi Pupuk </td>
-                              <td>14/02/2018</td>
-                           </tr>
-                           <tr>
-                              <td>3</td>
-                              <td>Menyiram </td>
-                              <td>14/02/2018</td>
-                           </tr>
+                        <tbody>@foreach ($tanam_petani as $item)
+									<tr>
+										<td>{{$item->tanggal}}</td>
+										<td>{{$item->jumlah_bibit}}</td>
+									</tr>@endforeach
                         </tbody>
                         <tfoot>
                            <tr>
-                              <th>No</th>
-                              <th>Aktivitas</th>
                               <th>Tanggal</th>
+                              <th>jumlah Bibit</th>
+                           </tr>
+                        </tfoot>
+                     </table>
+                  </div>
+                  <!-- /.card-body -->
+               </div>
+               <!-- /.card -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-6">
+               <div class="card">
+                  <div class="card-header">
+                     <h3 class="card-title">Aktivitas Panen</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                     <table id="example3" class="table table-bordered table-hover">
+                        <thead>
+                           <tr>
+                              <th>Tanggal</th>
+                              <th>Panen Katak</th>
+                              <th>Panen Umbi</th>
+                           </tr>
+                        </thead>
+                        <tbody>@foreach ($panen_petani as $item)
+									<tr>
+										<td>{{$item->tanggal}}</td>
+										<td>{{$item->panen_katak}}</td>
+										<td>{{$item->panen_umbi}}</td>
+									</tr>@endforeach
+                        </tbody>
+                        <tfoot>
+                           <tr>
+                              <th>Tanggal</th>
+                              <th>Panen Katak</th>
+                              <th>Panen Umbi</th>
                            </tr>
                         </tfoot>
                      </table>
@@ -160,7 +158,31 @@
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <!-- js dari data table -->
 <script>
+   $('#example1').DataTable({
+     "paging": true,
+     "lengthChange": false,
+     "searching": true,
+     "ordering": true,
+     "info": true,
+     "autoWidth": false,
+     "responsive": true,
+   });
+</script>
+
+<script>
    $('#example2').DataTable({
+     "paging": true,
+     "lengthChange": false,
+     "searching": true,
+     "ordering": true,
+     "info": true,
+     "autoWidth": false,
+     "responsive": true,
+   });
+</script>
+
+<script>
+   $('#example3').DataTable({
      "paging": true,
      "lengthChange": false,
      "searching": true,

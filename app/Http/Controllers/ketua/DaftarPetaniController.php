@@ -4,7 +4,10 @@ namespace App\Http\Controllers\ketua;
 
 use App\Models\Petani;
 use App\Models\Panen;
+use App\Models\Tanam;
 use App\Models\Lahan;
+use DB;
+use App\Models\PengolahanSensor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -17,6 +20,7 @@ class DaftarPetaniController extends Controller
      */
     public function index()
     {
+        // menampilkan seluruh data petani
         $daftar_petani= Petani::all();
         return view('ketua.daftar_petani', compact('daftar_petani'));
     }
@@ -51,17 +55,49 @@ class DaftarPetaniController extends Controller
     public function show($id)
     {
        $petani = Petani::find($id);
-       $panen_petani = Panen::where('petani_id', $id)->get();
 
-       $luas_lahan = Lahan::where('petani_id', $id)->sum('luas_lahan');
+    //    menampilkan data panen petani
+       $panen_petani = Panen::select(DB::raw('*'))
+       ->join('lahans','lahans.id','=','panens.lahan_id')
+       ->join('petanis','petanis.id','=','lahans.petani_id')
+       ->where('lahans.petani_id', $id)
+       ->get();
+    
+    //    menjumlah luas lahan
+    $luas_lahan = Lahan::where('petani_id', $id)->sum('luas_lahan');
+
+       //    menjumlah lahan
        $jumlah_lahan = Lahan::where('petani_id', $id)->count();
-        
-       $panen_katak = Panen::where('petani_id', $id)->sum('panen_katak');
-       $panen_umbi = Panen::where('petani_id', $id)->sum('panen_umbi');
-       $total_panen = $panen_katak + $panen_umbi;
-    //    dd($total_panen);
 
-        return view('ketua.monitoring_petani', compact('petani','panen_petani','total_panen','luas_lahan','jumlah_lahan'));
+       //menampilkan data lahan sesuai yang dimiliki petani
+       $lahan = Lahan::where('petani_id', $id)->get();
+       
+       
+        // menghitung total panen petani
+       $total_panen = Panen::select(DB::raw('SUM(panen_katak)+SUM(panen_umbi)  as katak' ))
+        ->join('lahans','lahans.id','=','panens.lahan_id')
+        ->join('petanis','petanis.id','=','lahans.petani_id')
+        ->where('lahans.petani_id', $id)
+        ->get();
+
+        foreach ($total_panen as $val) {
+            $hasil = (float)$val->katak;
+        }
+
+
+        return view('ketua.monitoring_petani', compact('petani','lahan','luas_lahan','jumlah_lahan','hasil','panen_petani'));
+    
+    }
+
+
+    public function lahan($id)
+    {
+    //    $monitoring_lahan = PengolahanSensor::find($id);
+       $monitoring_lahan = PengolahanSensor::where('lahan_id', $id)->get();
+       $panen_petani = Panen::where('lahan_id', $id)->get();
+       $tanam_petani = Tanam::where('lahan_id', $id)->get();
+    //    dd($monitoring_lahan);
+        return view('ketua.monitoring_lahan', compact('monitoring_lahan','panen_petani','tanam_petani'));
 
     }
 

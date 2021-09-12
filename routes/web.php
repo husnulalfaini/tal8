@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth','CekLevel:ketua']], function () {
     Route::get('/daftar_petani', [DaftarPetaniController::class, 'index']);
     Route::get('/monitoring_petani/{item}', [DaftarPetaniController::class, 'show'])->name('ketua.monitoring_petani');
     // Route::get('/monitoring_petani', [MonitoringPetaniController::class, 'index']);
-    Route::get('/monitoring_lahan', [MonitoringLahanController::class, 'index']);
+    Route::get('/monitoring_lahan/{item}', [DaftarPetaniController::class, 'lahan'])->name('ketua.monitoring_lahan');
+    // Route::get('/monitoring_lahan', [MonitoringLahanController::class, 'index']);
   });
 
