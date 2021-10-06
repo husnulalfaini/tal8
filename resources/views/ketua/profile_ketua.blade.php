@@ -1,22 +1,59 @@
-@extends('layout.master')
-@section('content')
+@extends('layout.master') @section('content')
 <section class="content">
-   <div class="container-fluid">
-      <div class="row">
-         <div class="col-md">
-            <div class="card card-white">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-5">
+				<!-- Profile Image -->
+				<div class="card card-primary card-outline">
+					<div class="card-body box-profile">
+						<div class="text-center">
+							<img class="profile-user-img img-fluid img-circle" style="width: 110px;" src="{{ asset('public/storage/'.Auth::user()->foto)}}" alt="Belum ada foto">
+						</div>
+						
+
+					<!-- /.card-header -->
+					<div class="card-body"> 
+						<strong><i class="fas fa-user mr-1"></i> Nama</strong>
+						<p class="text-muted">{{ Auth::user()->name }}</p>
+						<hr> <strong><i class="fas fa-envelope mr-1"></i>Email</strong>
+						<p class="text-muted">{{ Auth::user()->email }}</p>
+						<hr> <strong><i class="fas fa-briefcase mr-1"></i>Jabatan</strong>
+						<p class="text-muted">{{ Auth::user()->level }}</p>
+						<hr> <strong><i class="fas fa-users mr-1"></i> Wilayah Kelompok</strong>
+						<p class="text-muted">Giri</p>
+						<hr> <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong>
+						<p class="text-muted">{{ Auth::user()->alamat }}</p>
+						<hr> <strong><i class="fas fa-phone-alt mr-1"></i> Telepon</strong>
+						<br>
+						<a class="text-muted">{{ Auth::user()->telepon }}</a>
+					</div>
+					<!-- /.card-body -->
+				
+				<!-- /.card -->
+						
+					</div>
+					<!-- /.card-body -->
+				</div>
+			</div>
+			<!-- /.card -->
+			<!-- About Me Box -->
+			
+			<div class="col-md-7">
+			<div class="card card-success">
                <div class="card-header ">
                   <h3 class="card-title">Perbaharui Info Anda</h3>
                </div>
                <div class="card-body">
-                  <!-- Nama -->
-                  <div class="form-group">
+			   <form action="{{route('update.profile', Auth::user()->id)}}" method="post" enctype="multipart/form-data">
+      				{{ csrf_field() }}
+				<!-- Nama -->
+				<div class="form-group">
                      <label>Nama:</label>
                      <div class="input-group">
                         <div class="input-group-prepend">
                            <span class="input-group-text "><i class="far fa-user"></i></span>
                         </div>
-                        <input type="Text" class="form-control" id="exampleInputPassword1" placeholder="Nama">
+                        <input type="Text" class="form-control" name="name" id="name" value="{{ Auth::user()->name }}">
                      </div>
                      <!-- /.input group -->
                   </div>
@@ -28,7 +65,7 @@
                         <div class="input-group-prepend">
                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                        <input type="email" class="form-control" name="email" id="email" value="{{ Auth::user()->email }}">
                      </div>
                      <!-- /.input group -->
                   </div>
@@ -40,31 +77,19 @@
                         <div class="input-group-prepend">
                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
                         </div>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" class="form-control" name="password" id="password" value="{{ Auth::user()->password }}">
                      </div>
                      <!-- /.input group -->
                   </div>
                   <!-- /.form group -->
                   <!-- Re Password -->
-                  <div class="form-group">
-                     <label>Re Password:</label>
-                     <div class="input-group">
-                        <div class="input-group-prepend">
-                           <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        </div>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder=" Re Password">
-                     </div>
-                     <!-- /.input group -->
-                  </div>
-                  <!-- /.form group -->
-                  <!-- phone mask -->
                   <div class="form-group ">
                      <label>Telepon:</label>
                      <div class="input-group">
                         <div class="input-group-prepend">
                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
                         </div>
-                        <input type="number" class="form-control" id="exampleInputPassword1" placeholder="088xxxxxxx">
+                        <input type="number" class="form-control" name="telepon" id="telepon" value="{{ Auth::user()->telepon }}">
                      </div>
                      <!-- /.input group -->
                   </div>
@@ -76,41 +101,35 @@
                         <div class="input-group-prepend">
                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                         </div>
-                        <input type="Text" class="form-control" id="exampleInputPassword1" placeholder="Alamat">
+                        <input type="Text" class="form-control" name="alamat" id="alamat" value="{{ Auth::user()->alamat }}">
                         <!-- /.input group -->
                      </div>
                      <!-- /.form group -->
-                     <div class="form-group col-md-4">
-                        <label for="exampleInputFile">File input</label>
+					 <br>
+                <div class="form-group col-md-4">
+                        <label for="exampleInputFile">Unggah Foto</label>
                         <div class="input-group">
                            <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="exampleInputFile">
-                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                           </div>
-                           <div class="input-group-append">
-                              <span class="input-group-text">Upload</span>
+                           <input id="foto" type="file" class="form-control-file" name="foto" onchange="readURL(this);" autocomplete="foto" >
                            </div>
                         </div>
                      </div>
                   </div>
                   <!-- /.form group -->
-                  <div class="col-md-2 offset-md-5 text-center">
+                  <div class="col-md-4 mx-auto text-center">
                      <!-- small box -->
-                     <a href="#" class="text-light">
-                        <div class="small-box bg-success">
-                           <div class="inner">
-                              Edit
-                           </div>
-                        </div>
-                     </a>
+					 <button type="submit" class="btn btn-success btn-block"> Update</button>
                   </div>
                </div>
                <!-- /.card-body -->
             </div>
             <!-- /.card -->
-         </div>
-      </div>
-   </div>
+				</form>
+
+				<!-- /.card -->
+			</div>
+		</div>
+	</div>
 </section>
 <!-- /.content -->
 <!-- jQuery -->
@@ -132,15 +151,13 @@
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <!-- js dari data table -->
 <script>
-   $('#example2').DataTable({
-     "paging": true,
-     "lengthChange": false,
-     "searching": true,
-     "ordering": true,
-     "info": true,
-     "autoWidth": false,
-     "responsive": true,
-   });
-</script>
-@endsection
-
+	$('#example2').DataTable({
+	     "paging": true,
+	     "lengthChange": false,
+	     "searching": true,
+	     "ordering": true,
+	     "info": true,
+	     "autoWidth": false,
+	     "responsive": true,
+	   });
+</script>@endsection

@@ -12,6 +12,14 @@
                         <div class="row">
                            <div class="col-12">
                               <div class="card">
+                                 
+
+                        @if (session()->get('sukses'))
+                            <div class="alert alert-success">
+                                {{session()->get('sukses')}}
+                            </div>
+                        @endif
+                        
                                  <div class="card-header">
                                     <h3 class="card-title">Petani Mendaftar</h3>
                                  </div>
@@ -24,34 +32,28 @@
                                              <th>Alamat</th>
                                              <th>Email</th>
                                              <th>Telepon</th>
+                                             <th>aksi</th>
                                           </tr>
                                        </thead>
-                                       <tbody>
+                                       <tbody> @foreach ($petani as $tani)
                                           <tr>
-                                             <td>Bambang</td>
-                                             <td>Sukojati</td>
-                                             <td>Bambangsetyabudi75@gmail.com</td>
-                                             <td>085214432678</td>
+                                             <td>{{$tani->nama}}</td>
+                                             <td>{{$tani->alamat}}</td>
+                                             <td>{{$tani->email}}</td>
+                                             <td>{{$tani->telepon}}</td>
+                                             <td> 
+                                                <span class="badge bg-success"><a href="{{route('ketua.konfirmasi_petani',[$tani->id])}}" class="text-dark"> Info Selengkapnya <i class="fas fa-arrow-circle-right"></i></a></span>
+                                                <span class="badge bg-danger" ><a href="{{route('ketua.hapus',[$tani->id])}}">Hapus</a></span>
+                                             </td>
                                           </tr>
-                                          <tr>
-                                             <td>Bambang</td>
-                                             <td>Sukojati</td>
-                                             <td>Bambangsetyabudi75@gmail.com</td>
-                                             <td>085214432678</td>
-                                          </tr>
-                                          <tr>
-                                             <td>Bambang</td>
-                                             <td>Sukojati</td>
-                                             <td>Bambangsetyabudi75@gmail.com</td>
-                                             <td>085214432678</td>
-                                          </tr>
-                                       </tbody>
-                                       <tfoot>
+                                       </tbody>@endforeach
+                                       <tfoot> 
                                           <tr>
                                              <th>Nama</th>
                                              <th>Alamat</th>
                                              <th>Email</th>
                                              <th>Telepon</th>
+                                             <th>aksi</th>
                                           </tr>
                                        </tfoot>
                                     </table>

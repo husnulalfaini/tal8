@@ -45,4 +45,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // public function getfoto(Type $var = null)
+    // {
+    //     if (!$this->foto) {
+    //         return asset('public/asset/dist/img/avatar.jpg');
+    //     }
+    //         return asset('public/storage/'.$this->foto);
+    // }
 }
+

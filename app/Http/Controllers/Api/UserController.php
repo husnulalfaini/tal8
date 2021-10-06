@@ -6,47 +6,98 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use App\Models\User;
+use App\Models\Petani;
 
 class UserController extends Controller
 {
     public $successStatus = 200;
 
-    public function login(){
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
-            $user = Auth::User();
-            $success =  $user->createToken('nApp')->accessToken;
-            return response()->json([
-                'success' => true,
-                'token' => $success,
-                'user' => Auth::User()
-            ], $this->successStatus);
+    public function login(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        if ($validator->fails()) {
+            $val = $validator->errors()->first();
+            return $this->error($val);
         }
-        else{
-            return response()->json(['error'=>'Unauthorised'], 401);
+
+        $petani = Petani::where('email', $request->email)->first();
+        if ($petani) {
+            if (password_verify($request->password, $petani->password)) {
+                if ($petani->status==0) {
+                    return $this->error('anda belum diverifikasi');
+                }
+                $tokenResult    = $petani->createToken('AccessToken');
+                $token          = $tokenResult->token;
+                $token->save();
+
+                return response()->json([
+                    'success'       => 1,
+                    'message'       => 'selamat datang ' . $petani->nama,
+                    'access_token'  => $tokenResult->accessToken,
+                    'token_id'      => $token->id,
+                    'petani'     => $petani
+                ]);
+            }
+            return $this->error('Password Salah');
         }
+        return $this->error('Anda Tidak Terdaftar');
     }
+    //     if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+    //         $petani = Auth::Petani();
+    //         $success =  $petani->createToken('nApp')->accessToken;
+    //         return response()->json([
+    //             'success' => true,
+    //             'token' => $success,
+    //             'petani' => Auth::Petani()
+    //         ], $this->successStatus);
+    //     }
+    //     else{
+    //         return response()->json(['error'=>'Unauthorised'], 401);
+    //     }
+    // }
 
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'nama' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'c_password' => 'required|same:password',
+            'kelompok_id' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);            
+            $val = $validateData->errors()->first();
+            return $this->error($val);
         }
 
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('nApp')->accessToken;
-        $success['name'] =  $user->name;
+        $petani = Petani::create([
+            'nama'              => $request->get('nama'),
+            'email'             => $request->get('email'),
+            'password'          => bcrypt($request->get('password')),
+            'kelompok_id'       => $request->get('kelompok_id'),
+            'alamat'            => $request->get('alamat'),
+            'telepon'           => $request->get('telepon'),
+            'foto'              => $request->get('foto'),
+        ]);
 
-        return response()->json(['success'=>$success], $this->successStatus);
+        $petani->save();
+
+        return response()->json([
+            'success'       => 1,
+            'message'       => 'selamat datang ' . $petani->nama,
+            'petani'     => $petani
+        ]);
+    }
+
+    public function error($pesan)
+    {
+        return response()->json([
+            'success' => 0,
+            'message' => $pesan
+        ]);
     }
 
 }

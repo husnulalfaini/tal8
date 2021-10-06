@@ -21,7 +21,7 @@ konfirmasi Petani
                <div class="row">
                   <div class="col-sm-6">
                      <div class="description-block">
-                        <a href="#" class="text-success">
+                        <a href="{{ route('konfirmasiterima', $petani->id) }}" class="text-success">
                            <h5 class="description-header">Terima</h5>
                         </a>
                      </div>
@@ -51,9 +51,9 @@ konfirmasi Petani
             <div class="card-footer">
                <div class="row">
                   <div class="col-sm-2 border-right">
-                     <div class="description-block">
+                     <div class="description-block"> 
                         <h5 class="description-header">Tanggal Daftar</h5>
-                        <span class="description-text">14/05/2018</span>
+                        <span class="description-text"> {{\Carbon\Carbon::parse($petani->created_at)->isoFormat('L')}}</span>
                      </div>
                      <!-- /.description-block -->
                   </div>
@@ -61,7 +61,7 @@ konfirmasi Petani
                   <div class="col-sm-2 border-right">
                      <div class="description-block">
                         <h5 class="description-header">Alamat</h5>
-                        <span class="description-text">Sukojati</span>
+                        <span class="description-text">{{$petani->alamat}}</span>
                      </div>
                      <!-- /.description-block -->
                   </div>
@@ -69,7 +69,7 @@ konfirmasi Petani
                   <div class="col-sm-4">
                      <div class="description-block">
                         <h5 class="description-header">Nama</h5>
-                        <span class="description-text">Bambang Setya Budi</span>
+                        <span class="description-text">{{$petani->nama}}</span>
                      </div>
                      <!-- /.description-block -->
                   </div>
@@ -77,7 +77,7 @@ konfirmasi Petani
                   <div class="col-sm-2 border-left">
                      <div class="description-block">
                         <h5 class="description-header">Email</h5>
-                        <span class="description-text">bambangsetyabudi75@gmail.com</span>
+                        <span class="description-text">{{$petani->email}}</span>
                      </div>
                      <!-- /.description-block -->
                   </div>
@@ -85,7 +85,7 @@ konfirmasi Petani
                   <div class="col-sm-2 border-left">
                      <div class="description-block">
                         <h5 class="description-header">Telepon</h5>
-                        <span class="description-text">085213345678</span>
+                        <span class="description-text">{{$petani->telepon}}</span>
                      </div>
                      <!-- /.description-block -->
                   </div>

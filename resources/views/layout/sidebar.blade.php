@@ -9,10 +9,10 @@
                <!-- Sidebar user panel (optional) -->
                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                   <div class="image">
-                     <img src="{{asset('public/asset/dist/img/husnul.jpg')}}" class="img-circle elevation-2" alt="User Image">
+                     <img src="{{ asset('public/storage/'.Auth::user()->foto)}}" class="img-circle elevation-2" alt="User Image">
                   </div>
                   <div class="info">
-                     <a href="{{url('/edit_profile')}}" class="d-block">{{ Auth::user()->name }}</a>
+                     <a href="{{url('/profile_ketua')}}" class="d-block">{{ Auth::user()->name }}</a>
                   </div>
                </div>
                <nav class="mt-2">

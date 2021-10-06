@@ -5,7 +5,7 @@ use App\Http\Controllers\admin\TambahUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ketua\DaftarPetaniController;
 use App\Http\Controllers\ketua\DashboardController;
-use App\Http\Controllers\ketua\EditProfileController;
+use App\Http\Controllers\ketua\ProfileKetuaController;
 use App\Http\Controllers\ketua\KonfirmasiController;
 use App\Http\Controllers\ketua\KonfirmasiPetaniController;
 use App\Http\Controllers\ketua\LihatAgendaController;
@@ -59,9 +59,12 @@ Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
 // halaman ketua
 Route::group(['middleware' => ['auth','CekLevel:ketua']], function () {
     Route::get('/dashboard_ketua', [DashboardController::class, 'index'])->name('dashboard_ketua');
-    Route::post('/edit_profile', [EditProfileController::class, 'index']);
-    Route::get('/konfirmasi', [KonfirmasiController::class, 'index']);
-    Route::get('/konfirmasi_petani', [KonfirmasiPetaniController::class, 'index']);
+    Route::get('/profile_ketua', [ProfileKetuaController::class, 'show']);
+    Route::post('/profile_ketua/{item}', [ProfileKetuaController::class, 'update'])->name('update.profile');
+    Route::get('/konfirmasi', [KonfirmasiController::class, 'index'])->name('petani.daftar');
+    Route::get('/konfirmasi/{id}', [KonfirmasiController::class, 'terima'])->name('konfirmasiterima');
+    Route::get('/hapus/{item}', [KonfirmasiController::class, 'destroy'])->name('ketua.hapus');
+    Route::get('/konfirmasi_petani/{tani}', [KonfirmasiController::class, 'show'])->name('ketua.konfirmasi_petani');
     Route::get('/lihat_agenda', [LihatAgendaController::class, 'index']);
     Route::get('/daftar_petani', [DaftarPetaniController::class, 'index']);
     Route::get('/monitoring_petani/{item}', [DaftarPetaniController::class, 'show'])->name('ketua.monitoring_petani');

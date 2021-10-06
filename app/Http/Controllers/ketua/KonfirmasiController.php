@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\ketua;
 
 use App\Http\Controllers\Controller;
+use App\Models\Petani;
+use App\Models\Konfirmasi;
 use Illuminate\Http\Request;
 
 class KonfirmasiController extends Controller
@@ -14,7 +16,8 @@ class KonfirmasiController extends Controller
      */
     public function index()
     {
-        return view('ketua.konfirmasi');
+        $petani= Petani::where('status', 0)->get();
+        return view('ketua.konfirmasi', compact ('petani'));
     }
 
     /**
@@ -46,7 +49,8 @@ class KonfirmasiController extends Controller
      */
     public function show($id)
     {
-        //
+        $petani = Petani::find($id);
+        return view('ketua.konfirmasi_petani', compact ('petani'));
     }
 
     /**
@@ -80,6 +84,16 @@ class KonfirmasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hapus =Konfirmasi::find($id);
+        $hapus->delete();
+        return redirect ('konfirmasi')->with('sukses','tugas berhasil dihapus');
+    }
+
+    public function terima($id)
+    {
+    $terima= Petani::findOrFail($id);
+    $terima->status= 1;
+    $terima->update();
+    return redirect(route('petani.daftar'));
     }
 }

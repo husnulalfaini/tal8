@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'petani' => [
+            'driver' => 'passport',
+            'provider' => 'petanis',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -71,10 +76,14 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+            'driver' => 'database',
+            'table' => 'users',
+        ],
+        'petanis' => [
+            'driver' => 'database',
+            'table' => 'petanis',
+        ],
     ],
 
     /*
