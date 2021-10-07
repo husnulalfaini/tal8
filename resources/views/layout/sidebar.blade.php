@@ -12,7 +12,13 @@
                      <img src="{{ asset('public/storage/'.Auth::user()->foto)}}" class="img-circle elevation-2" alt="User Image">
                   </div>
                   <div class="info">
+                  @if(auth()->user()->level=="admin")
+                     <a href="{{url('/profile_admin')}}" class="d-block">{{ Auth::user()->name }}</a>
+                  @elseif (auth()->user()->level=="pimpinan")
+                     <a href="{{url('/profile_pimpinan')}}" class="d-block">{{ Auth::user()->name }}</a>
+                  @else
                      <a href="{{url('/profile_ketua')}}" class="d-block">{{ Auth::user()->name }}</a>
+                  @endif
                   </div>
                </div>
                <nav class="mt-2">
@@ -52,7 +58,7 @@
          <i class="nav-icon fas fa-table"></i>
          <p>
             Daftar Kelompok
-         </p>s
+         </p>
       </a>
    </li>
    <li class="nav-item">

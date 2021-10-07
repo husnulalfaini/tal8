@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Konfirmasi extends Model
 {
     use HasFactory;
+    
+
 }
+
+

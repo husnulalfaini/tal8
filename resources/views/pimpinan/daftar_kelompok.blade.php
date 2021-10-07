@@ -29,46 +29,16 @@
                                           </tr>
                                        </thead>
                                        <tbody>
+                                          @foreach ($kelompok as $item)
                                           <tr>
-                                             <td>1</td>
-                                             <td>Tani Jaya</td>
-                                             <td>Wongsorejo</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
+                                             <td>{{$item->id}}</td>
+                                             <td>{{$item->nama}}</td>
+                                             <td>{{$item->alamat}}</td>
+                                             <td><a href="{{route('detail.kelompok',[$item->id])}}" class="text-dark"><i class="far fa-eye"></i></a>
                                                  <a href="#" class="text-dark"><i class="far fa-edit"></i></a>
                                                  <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
                                           </tr>
-                                          <tr>
-                                             <td>2</td>
-                                             <td>Tani Jaya</td>
-                                             <td>Wongsorejo</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
-                                                 <a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>3</td>
-                                             <td>Tani Jaya</td>
-                                             <td>Wongsorejo</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
-                                                 <a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>4</td>
-                                             <td>Tani Jaya</td>
-                                             <td>Wongsorejo</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
-                                                 <a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>5</td>
-                                             <td>Tani Jaya</td>
-                                             <td>Wongsorejo</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
-                                                 <a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
+                                          @endforeach
                                        </tbody>
                                        <tfoot>
                                           <tr>

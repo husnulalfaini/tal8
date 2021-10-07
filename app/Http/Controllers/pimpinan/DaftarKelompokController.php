@@ -4,6 +4,7 @@ namespace App\Http\Controllers\pimpinan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Kelompok;
 
 class DaftarKelompokController extends Controller
 {
@@ -14,7 +15,8 @@ class DaftarKelompokController extends Controller
      */
     public function index()
     {
-        return view('pimpinan.daftar_kelompok');
+        $kelompok = Kelompok::all();
+        return view('pimpinan.daftar_kelompok', compact('kelompok'));
     }
 
     /**
@@ -46,7 +48,38 @@ class DaftarKelompokController extends Controller
      */
     public function show($id)
     {
-        //
+        
+    //    $petani = Petani::find($id);
+
+    //    //    menampilkan data panen petani
+    //       $panen_petani = Panen::select(DB::raw('*'))
+    //       ->join('lahans','lahans.id','=','panens.lahan_id')
+    //       ->join('petanis','petanis.id','=','lahans.petani_id')
+    //       ->where('lahans.petani_id', $id)
+    //       ->get();
+       
+    //    //    menjumlah luas lahan
+    //    $luas_lahan = Lahan::where('petani_id', $id)->sum('luas_lahan');
+   
+    //       //    menjumlah lahan
+    //       $jumlah_lahan = Lahan::where('petani_id', $id)->count();
+   
+    //       //menampilkan data lahan sesuai yang dimiliki petani
+    //       $lahan = Lahan::where('petani_id', $id)->get();
+          
+          
+    //        // menghitung total panen petani
+    //       $total_panen = Panen::select(DB::raw('SUM(panen_katak)+SUM(panen_umbi)  as katak' ))
+    //        ->join('lahans','lahans.id','=','panens.lahan_id')
+    //        ->join('petanis','petanis.id','=','lahans.petani_id')
+    //        ->where('lahans.petani_id', $id)
+    //        ->get();
+   
+    //        foreach ($total_panen as $val) {
+    //            $hasil = (float)$val->katak;
+    //        }
+           return view('pimpinan.detail_kelompok');
+   
     }
 
     /**

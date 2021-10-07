@@ -4,6 +4,10 @@ namespace App\Http\Controllers\pimpinan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Petani;
+use App\Models\Lahan;
+use App\Models\Panen;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -14,7 +18,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('pimpinan.dashboard');
+        $total_kelompok = User::where('level', 'ketua')->count();
+        $jumlah_petani = Petani::count();
+        $luas_lahan = Lahan::sum('luas_lahan');
+        $panen_katak = Panen::sum('panen_katak');
+        $panen_umbi = Panen::sum('panen_umbi');
+        $total_panen = $panen_katak + $panen_umbi;
+        $jumlah_lahan = Petani::count();
+        
+        $panen_kelompok= Panen::all();
+        return view('pimpinan.dashboard', compact('jumlah_petani','panen_kelompok','total_kelompok','luas_lahan','jumlah_lahan','total_panen'));
+    
+        // return view('pimpinan.dashboard');
     }
 
     /**

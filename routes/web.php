@@ -14,7 +14,7 @@ use App\Http\Controllers\ketua\MonitoringPetaniController;
 use App\Http\Controllers\pimpinan\DaftarKelompokController;
 use App\Http\Controllers\pimpinan\DashboardController as PimpinanDashboardController;
 use App\Http\Controllers\pimpinan\DetailKelompokController;
-use App\Http\Controllers\pimpinan\EditProfileController as PimpinanEditProfileController;
+use App\Http\Controllers\pimpinan\ProfilePimpinanController;
 use App\Http\Controllers\pimpinan\KelolaAgendaController;
 use App\Http\Controllers\pimpinan\TambahKelompokController;
 use App\Http\Controllers\LoginController;
@@ -48,9 +48,10 @@ Route::group(['middleware' => ['auth','CekLevel:admin']], function () {
 // halaman pimpinan
 Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
   Route::get('/dashboard_pimpinan', [PimpinanDashboardController::class, 'index'])->name('dashboard_pimpinan');
-    Route::get('/daftar_kelompok', [DaftarKelompokController::class, 'index']);
-    Route::get('/detail_kelompok', [DetailKelompokController::class, 'index']);
-    Route::get('/edit_profile', [PimpinanEditProfileController::class, 'index']);
+    Route::get('/daftar_kelompok', [DaftarKelompokController::class, 'show']);
+    Route::get('/detail_kelompok/{item}', [DaftarKelompokController::class, 'show'])->name('detail.kelompok');
+    Route::get('/profile_pimpinan', [ProfilePimpinanController::class, 'index']);
+    Route::post('/profile_pimpinan/{item}', [ProfilepimpinanController::class, 'update'])->name('update.profile_pimpinan');
     Route::get('/kelola_agenda', [KelolaAgendaController::class, 'index']);
     Route::get('/tambah_kelompok', [TambahKelompokController::class, 'index']);
 

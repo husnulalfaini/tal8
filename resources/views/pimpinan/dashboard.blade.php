@@ -11,7 +11,7 @@
          <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
-               <h3>50</h3>
+               <h3>{{$total_kelompok}} Kelompok</h3>
                <p>Total Kelompok</p>
             </div>
          </div>
@@ -21,7 +21,7 @@
          <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
-               <h3>50 Orang</h3>
+               <h3>{{$jumlah_petani}} Orang</h3>
                <p>Total Petani</p>
             </div>
          </div>
@@ -31,7 +31,7 @@
          <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
-               <h3>50 Hektar</h3>
+               <h3>{{$luas_lahan}} Hektar</h3>
                <p>Luas Lahan</p>
             </div>
          </div>
@@ -41,8 +41,8 @@
          <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
-               <h3>53 Kilo</h3>
-               <p>Total Panen</p>
+            <h3>{{$total_panen}} Kilo</h3>
+            <p>Total Panen</p>
             </div>
          </div>
       </div>
@@ -124,96 +124,7 @@
                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                              <td>Jaya Tani Banget</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Jaya Tani</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Aja</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Gapati jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Jaya Banget</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Tidak Jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
+                        
                         </tbody>
                         <tfoot>
                            <tr>

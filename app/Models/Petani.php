@@ -9,6 +9,7 @@ use Laravel\Passport\HasApiTokens;
 
 class Petani extends Model
 {
+    use HasFactory;
     use Notifiable;
     use HasApiTokens;
 
@@ -20,13 +21,10 @@ class Petani extends Model
     {
         return $this->hasMany(Lahan::class);
     }
-    // public function tanam()
-    // {
-    //     return $this->hasMany(Tanam::class);
-    // }
 
-    // public function panen()
-    // {
-    //     return $this->hasMany(Panen::class);
-    // }
+    public function kelompok()
+    {
+        return $this->belongsTo(Kelompok::class);
+    }
+
 }

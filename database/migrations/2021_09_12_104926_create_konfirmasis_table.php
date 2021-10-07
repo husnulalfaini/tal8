@@ -37,3 +37,4 @@ class CreateKonfirmasisTable extends Migration
         Schema::dropIfExists('konfirmasis');
     }
 }
+
