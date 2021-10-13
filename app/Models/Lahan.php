@@ -10,7 +10,7 @@ class Lahan extends Model
     use HasFactory;
     protected $table = "lahans";
     protected $primaryKey = "id";
-    protected $fillable = ['id','nama','alamat','petani_id','luas_lahan','alamat','foto',];
+    protected $fillable = ['id','nama','alamat','kelompok_id','petani_id','luas_lahan','alamat','foto',];
 
     public function tanam()
     {
@@ -22,13 +22,19 @@ class Lahan extends Model
         return $this->hasMany(Panen::class);
     }
 
+    public function hasilolah()
+    {
+        return $this->hasMany(Lahan::class);
+    }
+
     public function petani()
     {
         return $this->belongsTo(Petani::class);
     }
 
-    public function hasilolah()
+    public function kelompok()
     {
-        return $this->hasMany(Lahan::class);
+        return $this->belongsTo(Kelompok::class);
     }
+
 }

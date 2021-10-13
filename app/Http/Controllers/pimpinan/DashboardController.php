@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Petani;
 use App\Models\Lahan;
+use DB;
 use App\Models\Panen;
 use App\Models\User;
+use App\Models\Kelompok;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -18,7 +21,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $total_kelompok = User::where('level', 'ketua')->count();
+        $total_kelompok = Kelompok::count();
         $jumlah_petani = Petani::count();
         $luas_lahan = Lahan::sum('luas_lahan');
         $panen_katak = Panen::sum('panen_katak');
@@ -26,8 +29,28 @@ class DashboardController extends Controller
         $total_panen = $panen_katak + $panen_umbi;
         $jumlah_lahan = Petani::count();
         
-        $panen_kelompok= Panen::all();
-        return view('pimpinan.dashboard', compact('jumlah_petani','panen_kelompok','total_kelompok','luas_lahan','jumlah_lahan','total_panen'));
+        // ->join('lahans','lahans.id','=','panens.lahan_id')
+        // ->join('petanis','petanis.id','=','lahans.petani_id')
+        // ->where('lahans.petani_id', $id)
+        // ->get();
+
+        $panens= Panen::all();
+        //  $id = Auth::user()->id;
+        //  $panens = Panen::select('lahans.kelompok_id', 'kelompoks.nama as nama', 'kelompoks.alamat as alamat', 'panens.tanggal as tanggal')
+        // ->join('lahans','lahans.id','=','panens.lahan_id')
+        // ->join('kelompoks','kelompoks.id','=','lahans.kelompok_id')
+        // ->where('kelompoks.user_id', $id)
+        // ->get();
+                    
+        //  $panens = Panen::select('lahans.kelompok_id', 'kelompoks.nama as nama', 'kelompoks.alamat as alamat', DB::raw('SUM(panen_katak) as total'), 'panens.tanggal as tanggal')
+        // ->join('lahans','lahans.id','=','panens.lahan_id')
+        // ->join('kelompoks','kelompoks.id','=','lahans.kelompok_id')
+        // ->where('kelompoks.user_id', $id)
+        // ->groupBy('lahans.kelompok_id')
+        // ->paginate(10);             
+
+        // $panens->setCollection($panens->sortByDesc('total'));
+        return view('pimpinan.dashboard', compact('jumlah_petani','panens','total_kelompok','luas_lahan','jumlah_lahan','total_panen'));
     
         // return view('pimpinan.dashboard');
     }

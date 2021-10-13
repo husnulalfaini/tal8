@@ -8,6 +8,8 @@
                <div class="card-header ">
                   <h3 class="card-title-center">Tambah Kelompok</h3>
                </div>
+               <form action="{{route('upload.tambah_kelompok')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+              {{ csrf_field() }}
                <div class="card-body">
                   <!-- Nama -->
                   <div class="form-group">
@@ -15,7 +17,7 @@
                         <div class="input-group-prepend">
                            <span class="input-group-text "><i class="far fa-user"></i></span>
                         </div>
-                        <input type="Text" class="form-control" id="exampleInputPassword1" placeholder="Nama Kelompok">
+                        <input type="Text" class="form-control" id="text-input" name="nama" placeholder="Nama Kelompok">
                      </div>
                      <!-- /.input group -->
                   </div>
@@ -26,25 +28,31 @@
                         <div class="input-group-prepend">
                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                         </div>
-                        <input type="Text" class="form-control" id="exampleInputPassword1" placeholder="Alamat">
+                        <input type="Text" class="form-control" id="text-input" name="alamat" placeholder="Alamat">
                         <!-- /.input group -->
                      </div>
                   </div>
                   <!-- /.form group -->
-                  <div class=" text-center">
-                     <!-- small box -->
-                     <a href="#" class="text-light">
-                        <div class="small-box bg-success">
-                           <div class="inner">
-                             Tambah
-                           </div>
+                  <!-- form group -->
+                  <div class="form-group">
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                         </div>
-                     </a>
+                        <input type="Text" class="form-control" id="text-input" name="user_id" placeholder="user_id">
+                        <!-- /.input group -->
+                     </div>
+                  </div>
+                  <!-- /.form group -->
+                  <div class="col-md-4 mx-auto text-center">
+                     <!-- small box -->
+					 <button type="submit" class="btn btn-success btn-block"> Tambah</button>
                   </div>
                </div>
                <!-- /.card-body -->
             </div>
             <!-- /.card -->
+            </form>
          </div>
       </div>
    </div>

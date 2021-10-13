@@ -116,24 +116,36 @@
                         <thead>
                            <tr>
                               <th>Kelompok</th>
-                              <th>Ketua</th>
                               <th>Alamat</th>
-                              <th>Tanggal Tanam</th>
                               <th>Tanggal Panen</th>
                               <th>Jumlah Panen</th>
                            </tr>
                         </thead>
                         <tbody>
-                        
+                @foreach($panens as $data)
+                  <tr>
+                    <td> 
+                      {{$data->lahan->kelompok->nama}}
+                    </td>
+                    <td> 
+                      {{$data->lahan->kelompok->alamat}}
+                    </td>
+                    <td> 
+                      {{$data->tanggal}}
+                    </td>
+                    <td> 
+                      {{$data->panen_katak}}
+                    </td>
+                    
+                  </tr>
+                @endforeach
                         </tbody>
                         <tfoot>
                            <tr>
-                           <th>Kelompok</th>
-                           <th>Ketua</th>
-                           <th>Alamat</th>
-                           <th>Tanggal Tanam</th>
-                           <th>Tanggal Panen</th>
-                           <th>Jumlah Panen</th>
+                              <th>Kelompok</th>
+                              <th>Alamat</th>
+                              <th>Tanggal Panen</th>
+                              <th>Jumlah Panen</th>
                            </tr>
                         </tfoot>
                      </table>

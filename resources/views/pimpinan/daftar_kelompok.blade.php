@@ -1,10 +1,12 @@
 @extends('layout.master')
 
 @section('header_kiri')
-   Daftar Kelompok
+Daftar Kelompok
 @endsection
+
 @section('header_kanan')
-<a class="btn btn-success btn-lg " href="#" role="button"><i class="fa fa-plus"></i></a>
+<a class="btn btn-success btn-lg " href="{{url('/tambah_kelompok')}}" role="button"><i class="fa fa-plus"></i></a>
+<a class="btn btn-success btn-lg " href="{{url('/tambah_ketua')}}" role="button"><i class="fa fa-plus"></i></a>
 @endsection
 
 @section('content')

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\pimpinan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kelompok;
+use App\Models\Panen;
+use App\Models\Petani;
+use App\Models\Lahan;
+use DB;
 
 class DaftarKelompokController extends Controller
 {
@@ -49,36 +53,34 @@ class DaftarKelompokController extends Controller
     public function show($id)
     {
         
-    //    $petani = Petani::find($id);
+       $kelompok = Kelompok::find($id);
+        // $panen = Panen::where('kelompok_id',$id)->get();
 
-    //    //    menampilkan data panen petani
-    //       $panen_petani = Panen::select(DB::raw('*'))
-    //       ->join('lahans','lahans.id','=','panens.lahan_id')
-    //       ->join('petanis','petanis.id','=','lahans.petani_id')
-    //       ->where('lahans.petani_id', $id)
-    //       ->get();
-       
-    //    //    menjumlah luas lahan
-    //    $luas_lahan = Lahan::where('petani_id', $id)->sum('luas_lahan');
-   
-    //       //    menjumlah lahan
-    //       $jumlah_lahan = Lahan::where('petani_id', $id)->count();
-   
-    //       //menampilkan data lahan sesuai yang dimiliki petani
-    //       $lahan = Lahan::where('petani_id', $id)->get();
-          
-          
-    //        // menghitung total panen petani
-    //       $total_panen = Panen::select(DB::raw('SUM(panen_katak)+SUM(panen_umbi)  as katak' ))
-    //        ->join('lahans','lahans.id','=','panens.lahan_id')
-    //        ->join('petanis','petanis.id','=','lahans.petani_id')
-    //        ->where('lahans.petani_id', $id)
-    //        ->get();
-   
-    //        foreach ($total_panen as $val) {
-    //            $hasil = (float)$val->katak;
-    //        }
-           return view('pimpinan.detail_kelompok');
+        // anggota tani
+        $anggota=Petani::where('kelompok_id', $id)->count();
+
+        //    menjumlah lahan
+        $jumlah_lahan = Lahan::where('kelompok_id', $id)->count();
+
+         // menampilkan total panen
+        $total_panen = Panen::select(DB::raw('SUM(panen_katak)+SUM(panen_umbi)  as katak' ))
+        ->join('lahans','lahans.id','=','panens.lahan_id')
+        ->join('kelompoks','kelompoks.id','=','lahans.petani_id')
+        ->where('lahans.kelompok_id', $id)
+        ->get();
+
+        foreach ($total_panen as $val) {
+            $hasil = (float)$val->katak;
+        }
+
+        //    menampilkan data panen petani
+        $panen = Panen::select('petanis.nama as nama','lahans.nama as lahan','panens.panen_umbi as panen_umbi','panens.panen_katak as panen_katak','panens.tanggal as tanggal')
+        ->join('lahans','lahans.id','=','panens.lahan_id')
+        ->join('petanis','petanis.id','=','lahans.petani_id')
+        ->join('kelompoks','kelompoks.id','=','petanis.kelompok_id')
+        ->where('petanis.kelompok_id', $id)
+        ->get();
+           return view('pimpinan.detail_kelompok', compact('panen','kelompok','anggota','jumlah_lahan','hasil',));
    
     }
 

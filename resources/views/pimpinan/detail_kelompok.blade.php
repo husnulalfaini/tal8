@@ -33,7 +33,7 @@
             <span class="info-box-icon"><i class="fa fa-users"></i></span>
             <div class="info-box-content">
                <span class="info-box-text">Kelompok</span>
-               <span class="info-box-number">Tani Jaya</span>
+               <span class="info-box-number">{{$kelompok->nama}}</span>
             </div>
             <!-- /.info-box-content -->
          </div>
@@ -41,8 +41,8 @@
          <div class="info-box mb-3 bg-white">
             <span class="info-box-icon"><i class="fa fa-user"></i></span>
             <div class="info-box-content">
-               <span class="info-box-text">Petani</span>
-               <span class="info-box-number">Bambang</span>
+               <span class="info-box-text">Ketua</span>
+               <span class="info-box-number"></span>
             </div>
             <!-- /.info-box-content -->
          </div>
@@ -50,8 +50,8 @@
          <div class="info-box mb-3 bg-white">
             <span class="info-box-icon"><i class="fas fa-tree"></i></span>
             <div class="info-box-content">
-               <span class="info-box-text">Luas Lahan</span>
-               <span class="info-box-number">15 Hektar</span>
+               <span class="info-box-text">Anggota Tani</span>
+               <span class="info-box-number">{{$anggota}} orang</span>
             </div>
             <!-- /.info-box-content -->
          </div>
@@ -60,7 +60,7 @@
             <span class="info-box-icon"><i class="fas fa-tree"></i></span>
             <div class="info-box-content">
                <span class="info-box-text">Jumlah Lahan</span>
-               <span class="info-box-number">15 Lahan</span>
+               <span class="info-box-number">{{$jumlah_lahan}}</span>
             </div>
             <!-- /.info-box-content -->
          </div>
@@ -69,7 +69,7 @@
             <span class="info-box-icon"><i class="fas fa-archive"></i></span>
             <div class="info-box-content">
                <span class="info-box-text">Hasil Panen</span>
-               <span class="info-box-number">16 Ton</span>
+               <span class="info-box-number">{{$hasil}} Ton</span>
             </div>
             <!-- /.info-box-content -->
          </div>
@@ -155,114 +155,37 @@
                      <table id="example2" class="table table-bordered table-hover">
                         <thead>
                            <tr>
-                              <th>Kelompok</th>
-                              <th>Ketua</th>
-                              <th>Alamat</th>
-                              <th>Tanggal Tanam</th>
+                              <th>No</th>
+                              <th>Petani</th>
+                              <th>Lahan</th>
+                              <th>Jumlah Panen Umbi</th>
+                              <th>Jumlah Panen Katak</th>
                               <th>Tanggal Panen</th>
-                              <th>Jumlah Panen</th>
                            </tr>
                         </thead>
                         <tbody>
+                        @php
+                        $no = 1
+                        @endphp
+                        @foreach($panen as $item)
                            <tr>
-                              <td>Jaya Tani Banget</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
+                              <td>{{$no++}}</td>
+                              <td>{{$item->nama}}</td>
+                              <td>{{$item->lahan}}</td>
+                              <td>{{$item->panen_umbi}}</td>
+                              <td>{{$item->panen_katak}}</td>
+                              <td>{{$item->tanggal}}</td>
                            </tr>
-                           <tr>
-                              <td>Jaya Tani</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Aja</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Gapati jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Jaya Banget</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Tidak Jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
-                           <tr>
-                              <td>Tani Jaya</td>
-                              <td>Midun</td>
-                              <td>Wongsorejo
-                              </td>
-                              <td>14/02/2018</td>
-                              <td>14/11/2020</td>
-                              <td>10 kintal</td>
-                           </tr>
+                           @endforeach
                         </tbody>
                         <tfoot>
                            <tr>
-                           <th>Kelompok</th>
-                           <th>Ketua</th>
-                           <th>Alamat</th>
-                           <th>Tanggal Tanam</th>
-                           <th>Tanggal Panen</th>
-                           <th>Jumlah Panen</th>
+                              <th>No</th>
+                              <th>Petani</th>
+                              <th>Lahan</th>
+                              <th>Jumlah Panen Umbi</th>
+                              <th>Jumlah Panen Katak</th>
+                              <th>Tanggal Panen</th>
                            </tr>
                         </tfoot>
                      </table>

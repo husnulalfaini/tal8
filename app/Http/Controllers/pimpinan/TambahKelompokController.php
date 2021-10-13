@@ -4,6 +4,8 @@ namespace App\Http\Controllers\pimpinan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Kelompok;
+use App\Models\User;
 
 class TambahKelompokController extends Controller
 {
@@ -14,7 +16,9 @@ class TambahKelompokController extends Controller
      */
     public function index()
     {
-        return view('pimpinan.tambah_kelompok');
+        $ketua= User::where('level','ketua');
+        // dd($ketua);
+        return view('pimpinan.tambah_kelompok', compact('ketua'));
     }
 
     /**
@@ -35,7 +39,26 @@ class TambahKelompokController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $pagename='Berhasil Menambah Data';
+        // melalukan validasi
+   
+        $request->validate([
+            'nama'=>'required',
+            'alamat'=> 'required',
+            'user_id'=> 'required',
+        ]);
+
+        //mengisi data baru 
+        $tambah_kelompok= new Kelompok([
+            'nama'=> $request->get('nama'),
+            'alamat'=> $request->get('alamat'),
+            'user_id'=> $request->get('user_id'),
+        ]);
+        
+        // menyimpan data isian
+        $tambah_kelompok->save();
+        return view ('pimpinan.tambah_kelompok');
     }
 
     /**

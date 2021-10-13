@@ -26,21 +26,7 @@ class DashboardController extends Controller
         $jumlah_lahan = Petani::count();
         
         $data_panen= Panen::all();
-        $datas = Panen::select('lahan.kelompok_id as kelompok', 'kelompok.nama as nama', 'kelompok.alamat as alamat', DB::raw('SUM(berat_panen) as total'), 'panen.created_at as created_at')
-        ->join('kandang','kandang.id','=','panen.kandang_id')
-        ->join('kelompok','kelompok.id','=','kandang.kelompok_id')
-        ->where('kelompok.user_id', $id)
-        ->groupBy('kelompok')
-        ->paginate(10);       
-        
-        $datas = Panen::select('kandang.kelompok_id as kelompok', 'kelompok.nama as nama', 'kelompok.alamat as alamat', DB::raw('SUM(berat_panen) as total'), 'panen.created_at as created_at')
-        ->join('kandang','kandang.id','=','panen.kandang_id')
-        ->join('kelompok','kelompok.id','=','kandang.kelompok_id')
-        ->where('kelompok.user_id', $id)
-        ->groupBy('kelompok')
-        ->paginate(10);       
 
-        $datas->setCollection($datas->sortByDesc('total'));
         return view('ketua.dashboard', compact('jumlah_petani','data_panen','luas_lahan','jumlah_lahan','total_panen'));
     }
 

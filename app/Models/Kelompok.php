@@ -17,6 +17,10 @@ class Kelompok extends Model
     {
         return $this->hasMany(Petani::class);
     }
+    public function lahan()
+    {
+        return $this->hasMany(Lahan::class);
+    }
 
     public function ketua()
     {

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Petani;
 use App\Models\Konfirmasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KonfirmasiController extends Controller
 {
@@ -16,7 +17,8 @@ class KonfirmasiController extends Controller
      */
     public function index()
     {
-        $petani= Petani::where('status', 0)->get();
+        $id = Auth::user()->id;
+        $petani= Petani::where('status', 0)->where('user_id', $id)->get();
         return view('ketua.konfirmasi', compact ('petani'));
     }
 

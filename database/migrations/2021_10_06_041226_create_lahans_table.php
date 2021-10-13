@@ -17,6 +17,8 @@ class CreateLahansTable extends Migration
             $table->id();
             $table->unsignedBigInteger('petani_id');
             $table->foreign('petani_id')->references('id')->on('petanis');
+            $table->unsignedBigInteger('kelompok_id');
+            $table->foreign('kelompok_id')->references('id')->on('kelompoks');
             $table->String('nama');
             $table->String('alamat');
             $table->String('luas_lahan');
