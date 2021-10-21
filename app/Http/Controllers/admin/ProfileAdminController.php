@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\ketua;
+namespace App\Http\Controllers\admin;
 
-use App\Models\Petani;
-use App\Models\Tanam;
-use App\Models\Panen;
-use App\Models\Lahan;
-use App\Models\Kelompok;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
-class DashboardController extends Controller
+class ProfileAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,20 +17,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id; 
-        $kelompok = Kelompok::where('user_id', $id)->has('petani')->get();
-
-        $petani = Petani::has('kelompok')->where('user_id', $id)->get();
-        dd($petani);
-        $luas_lahan = Lahan::sum('luas_lahan');
-        $panen_katak = Panen::sum('panen_katak');
-        $panen_umbi = Panen::sum('panen_umbi');
-        $total_panen = $panen_katak + $panen_umbi;
-        $jumlah_lahan = Petani::count();
-        
-        $data_panen= Panen::all();
-
-        return view('ketua.dashboard', compact('jumlah_petani','data_panen','luas_lahan','jumlah_lahan','total_panen'));
+        return view('admin.profile_admin');
     }
 
     /**
@@ -89,7 +72,32 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'email'=> 'required',
+            'telepon'=> 'required',
+            'alamat'=> 'required',
+        ]);
+        $admin=User::find(Auth()->user()->id);
+            
+            $admin->name= $request->name;
+            $admin->email= $request->email;
+            $admin->password= bcrypt($request->password);
+            $admin->telepon= $request->telepon;
+            $admin->remember_token = Str::random(60);
+            $admin->alamat= $request->alamat;
+
+            $image = $request->file('foto')->getClientOriginalName();
+            $request->file('foto')->move('public/storage', $image);
+            $admin->foto        = $image;
+            if($image){
+                        Storage::delete('public/storage'. $admin->foto);
+                        }
+            
+            $admin->save();
+        return view ('admin.profile_admin')->with('sukses','Data Admin Berhasil di Update');
+        
+    
     }
 
     /**

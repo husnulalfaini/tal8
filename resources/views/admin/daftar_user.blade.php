@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('header_kiri')
-   Daftar Kelompok
+   Data User
 @endsection
 @section('header_kanan')
 <a class="btn btn-success btn-lg " href="#" role="button"><i class="fa fa-plus"></i></a>
@@ -13,74 +13,143 @@
                         <div class="row">
                            <div class="col-12">
                               <div class="card">
-                                 <div class="card-header">
-                                    <h3 class="card-title">Daftar Seluruh Kelompok</h3>
+                                 <div class="card-header card-tools">
+                                    <ul class="nav nav-pills mr-auto">
+                                    <li class="nav-item">
+                                       <a class="nav-link active" href="#user" data-toggle="tab">User</a>
+                                    </li>
+                                    <li class="nav-item">
+                                       <a class="nav-link" href="#petani" data-toggle="tab">Petani</a>
+                                    </li>
+                                    <li class="nav-item">
+                                       <a class="nav-link" href="#kelompok" data-toggle="tab">Kelompok</a>
+                                    </li>
+                                    </ul>
+                              </div>
+                              <!-- /.card-header -->
+                              <div class="card-body">
+                                 <div class="tab-content p-0">
+                                    <!-- Morris chart - Sales -->
+
+                                    <!-- Seluruh User -->
+                                    <div class="chart tab-pane active" id="user"
+                                       style="position: relative; height: 300px;">
+                                       <table id="example1" class="table table-bordered table-hover">
+                                          <thead>
+                                             <tr>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Alamat</th>
+                                                <th>jabatan</th>
+                                                <th></th>
+                                             </tr>
+                                          </thead>
+                                          @php
+                                          $no=1;
+                                          @endphp
+                                          <tbody>
+                                             @foreach ($user as $item)
+                                             <tr>
+                                                <td>{{$no++}}</td>
+                                                <td>{{$item->name}}</td>
+                                                <td>{{$item->alamat}}</td>
+                                                <td>{{$item->level}}</td>
+                                                <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
+                                             </tr>
+                                             @endforeach
+                                          </tbody>
+                                          <tfoot>
+                                             <tr>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Alamat</th>
+                                                <th>jabatan</th>
+                                                <th></th>
+                                             </tr>
+                                          </tfoot>
+                                       </table>
+                                    </div>
+                                     <!-- END Seluruh User -->
+                                     
+                                     <!-- Seluruh Petani -->
+                                     <div class="chart tab-pane" id="petani" style="position: relative; height: 300px;">
+                                     <table id="example2" class="table table-bordered table-hover">
+                                          <thead>
+                                          @php
+                                          $num=1;
+                                          @endphp
+                                             <tr>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Alamat</th>
+                                                <th>Kelompok</th>
+                                                <th></th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                          @foreach ($petani as $item)
+                                             <tr>
+                                                <td>{{$num++}}</td>
+                                                <td>{{$item->nama}}</td>
+                                                <td>{{$item->alamat}}</td>
+                                                <td>{{$item->kelompok->nama}}</td>
+                                                <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
+                                             </tr>
+                                          @endforeach
+                                          </tbody>
+                                          <tfoot>
+                                             <tr>
+                                                <th>No</th>
+                                                <th>Nama Kelompok</th>
+                                                <th>Alamat</th>
+                                                <th>Kelompok</th>
+                                                <th></th>
+                                             </tr>
+                                          </tfoot>
+                                       </table>
+                                    </div>
+                                    <!-- END Seluruh Petani -->
+                                  
+                                    <!-- Seluruh Kelompok -->
+                                    <div class="chart tab-pane" id="kelompok" style="position: relative; height: 300px;">
+                                    <table id="example3" class="table table-bordered table-hover">
+                                          <thead>
+                                             <tr>
+                                                <th>No</th>
+                                                <th>Kelompok</th>
+                                                <th>Alamat</th>
+                                                <th></th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                          @php
+                                          $ang=1;
+                                          @endphp
+                                          @foreach ($kelompok as $item)
+                                             <tr>
+                                                <td>{{$ang++}}</td>
+                                                <td>{{$item->nama}}</td>
+                                                <td>{{$item->alamat}}</td>
+                                                <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
+                                             </tr>
+                                          @endforeach
+                                          </tbody>
+                                          <tfoot>
+                                             <tr>
+                                                <th>No</th>
+                                                <th>Kelompok</th>
+                                                <th>Alamat</th>
+                                                <th></th>
+                                             </tr>
+                                          </tfoot>
+                                       </table>
+                                    </div>
+                                    <!-- END Seluruh Kelompok -->
                                  </div>
-                                 <!-- /.card-header -->
-                                 <div class="card-body">
-                                    <!-- ./col -->
-                                    <table id="example2" class="table table-bordered table-hover">
-                                       <thead>
-                                          <tr>
-                                             <th>No</th>
-                                             <th>Nama</th>
-                                             <th>Alamat</th>
-                                             <th></th>
-                                          </tr>
-                                       </thead>
-                                       <tbody>
-                                          <tr>
-                                             <td>1</td>
-                                             <td>Tani Jaya</td>
-                                             <td>Wongsorejo</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
-                                                 <a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>2</td>
-                                             <td>Tani Jaya</td>
-                                             <td>Wongsorejo</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
-                                                 <a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>3</td>
-                                             <td>Tani Jaya</td>
-                                             <td>Wongsorejo</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
-                                                 <a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>4</td>
-                                             <td>Tani Jaya</td>
-                                             <td>Wongsorejo</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
-                                                 <a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                          <tr>
-                                             <td>5</td>
-                                             <td>Tani Jaya</td>
-                                             <td>Wongsorejo</td>
-                                             <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
-                                                 <a href="#" class="text-dark"><i class="far fa-edit"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="fas fa-trash-alt"></i></a></td>
-                                          </tr>
-                                       </tbody>
-                                       <tfoot>
-                                          <tr>
-                                             <th>No</th>
-                                             <th>Nama</th>
-                                             <th>Alamat</th>
-                                             <th></th>
-                                          </tr>
-                                       </tfoot>
-                                    </table>
-                                 </div>
-                                 <!-- /.card-body -->
+                              </div>
+                              <!-- /.card-body -->
+                              </div>
+                              <!-- /.card -->
                               </div>
                               <!-- /.card -->
                            </div>
@@ -111,15 +180,39 @@
 
       <!-- js dari data table -->
       <script>
-         $('#example2').DataTable({
-           "paging": true,
-           "lengthChange": false,
-           "searching": true,
-           "ordering": true,
-           "info": true,
-           "autoWidth": false,
-           "responsive": true,
-         });
-      </script>
+    $('#example1').DataTable({
+     "paging": true,
+     "lengthChange": false,
+     "searching": true,
+     "ordering": true,
+     "info": true,
+     "autoWidth": false,
+     "responsive": true,
+     "buttons": ["csv", "excel", "pdf", "print"]
+   }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+    $('#example2').DataTable({
+     "paging": true,
+     "lengthChange": false,
+     "searching": true,
+     "ordering": true,
+     "info": true,
+     "autoWidth": false,
+     "responsive": true,
+     "buttons": ["csv", "excel", "pdf", "print"]
+   }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+
+    $('#example3').DataTable({
+     "paging": true,
+     "lengthChange": false,
+     "searching": true,
+     "ordering": true,
+     "info": true,
+     "autoWidth": false,
+     "responsive": true,
+     "buttons": ["csv", "excel", "pdf", "print"]
+   }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
+ 
+</script>
 
 @endsection

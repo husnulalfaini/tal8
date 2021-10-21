@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProfilePimpinanController extends Controller
 {
@@ -93,6 +94,7 @@ class ProfilePimpinanController extends Controller
             $pimpinan->email= $request->email;
             $pimpinan->password= bcrypt($request->password);
             $pimpinan->telepon= $request->telepon;
+            $pimpinan->remember_token = Str::random(60);
             $pimpinan->alamat= $request->alamat;
 
             $image = $request->file('foto')->getClientOriginalName();

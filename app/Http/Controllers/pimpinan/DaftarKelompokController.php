@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kelompok;
 use App\Models\Panen;
+use App\Models\User;
 use App\Models\Petani;
 use App\Models\Lahan;
 use DB;
@@ -20,7 +21,8 @@ class DaftarKelompokController extends Controller
     public function index()
     {
         $kelompok = Kelompok::all();
-        return view('pimpinan.daftar_kelompok', compact('kelompok'));
+        $ketua= User::where('level','ketua')->get();
+        return view('pimpinan.daftar_kelompok', compact('kelompok','ketua'));
     }
 
     /**

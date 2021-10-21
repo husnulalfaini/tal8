@@ -3,15 +3,21 @@
       <div class="input-group-prepend">
          <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
       </div>
-      <select name="user_id" id="select" class="form-control">
-                                              @foreach ($ketua as $item)
-                                              <option value={{$item->id}}-> {{$item->nama}} </option>
-                                              @endforeach
+      <select id="user_id" class="form-control text-darker" name="user_id" required autocomplete="user_id" autofocus>
+         @foreach ($ketua as $item)
+             <option class="text-darker" value="{{ $item->id }}">{{ $item->nama }}</option>
+         @endforeach
       </select>
       <!-- /.input group -->
    </div>
 </div>
 
+
+<select name="user_id" id="select" class="form-control">
+   @foreach ($ketua as $item)
+   <option value={{$item->id}}-> {{$item->nama}} </option>
+   @endforeach
+</select>
 
 
 
@@ -471,3 +477,12 @@ Anything you want
 
 important!!!
 8. crud ketua kelompok salah semua. masih crud secara umum belum per ketua atau perkelompok-->
+
+
+<!-- tanggal 14 oktober
+1. edit data dengan jquery ajax
+2. cetak data panen kelompok
+
+Jika memungkinkan!!!!
+3. read seluruh user (admin)
+4. tambah user(admin) -->

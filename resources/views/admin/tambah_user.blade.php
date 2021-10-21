@@ -3,11 +3,13 @@
 <section class="content">
    <div class="container-fluid">
       <div class="row">
-         <div class="col-md-4 offset-md-4">
+         <div class="col-md-6 offset-md-4">
             <div class="card card-white">
                <div class="card-header ">
-                  <h3 class="card-title-center">Tambah Kelompok</h3>
+                  <h3 class="card-title-center">Tambah User</h3>
                </div>
+               <form action="{{route('upload.tambah_user')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+              {{ csrf_field() }}
                <div class="card-body">
                   <!-- Nama -->
                   <div class="form-group">
@@ -15,36 +17,89 @@
                         <div class="input-group-prepend">
                            <span class="input-group-text "><i class="far fa-user"></i></span>
                         </div>
-                        <input type="Text" class="form-control" id="exampleInputPassword1" placeholder="Nama Kelompok">
+                        <input type="text" class="form-control" id="text-input" name="name" placeholder="Nama" required autocomplete="isi nama">
                      </div>
                      <!-- /.input group -->
                   </div>
                   <!-- /.form group -->
-                  <!-- IP mask -->
+                  <!-- email -->
+                  <div class="form-group">
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" id="text-input" name="email" placeholder="Email" require required autocomplete="isi email">
+                        <!-- /.input group -->
+                     </div>
+                  </div>
+                  <!-- /.form group -->
+                  <!-- password -->
+                  <div class="form-group">
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="password" required autocomplete="jangan kosongkan password">
+                        <!-- /.input group -->
+                     </div>
+                  </div>
+                  <!-- /.form group -->
+
+                  <!-- password -->
+                  <div class="form-group">
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="telepon" name="telepon" placeholder="telepon" >
+                        <!-- /.input group -->
+                     </div>
+                  </div>
+                  <!-- /.form group -->
+                  <!-- password -->
                   <div class="form-group">
                      <div class="input-group">
                         <div class="input-group-prepend">
                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                         </div>
-                        <input type="Text" class="form-control" id="exampleInputPassword1" placeholder="Alamat">
+                        <input type="text" class="form-control" id="alamat" name="alamat" placeholder="alamat" >
                         <!-- /.input group -->
                      </div>
                   </div>
-                  <!-- /.form group -->
-                  <div class=" text-center">
-                     <!-- small box -->
-                     <a href="#" class="text-light">
-                        <div class="small-box bg-success">
-                           <div class="inner">
-                             Tambah
+
+                  <!-- pilih level -->
+                  <div class="form-group">
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
+                        </div>
+                        <select id="level" class="form-control text-darker" name="level" required autocomplete="level" autofocus required>
+                              <option class="text-darker" value="ketua">Ketua</option>
+                              <option class="text-darker" value="admin">Admin</option>
+                              <option class="text-darker" value="pimpinan">Pimpinan</option>
+                        </select>
+                        <!-- /.input group -->
+                     </div>
+                  </div>
+                  <!-- END pilih level -->
+                <div class="form-group col-md-4">
+                        <label for="exampleInputFile">Unggah Foto</label>
+                        <div class="input-group">
+                           <div class="custom-file">
+                           <input id="foto" type="file" class="form-control-file" name="foto" onchange="readURL(this);" autocomplete="foto" >
                            </div>
                         </div>
-                     </a>
+                     </div>
+                  <!-- /.form group -->
+                  <div class="col-md-4 mx-auto text-center">
+                     <!-- small box -->
+					 <button type="submit" class="btn btn-success btn-block"> Tambah</button>
                   </div>
                </div>
                <!-- /.card-body -->
             </div>
             <!-- /.card -->
+            </form>
          </div>
       </div>
    </div>

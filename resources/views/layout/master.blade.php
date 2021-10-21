@@ -16,12 +16,12 @@
             <div class="content-header">
                <div class="container-fluid">
                   <div class="row mb-2">
-                     <div class="col-sm-11">
+                     <div class="col-sm-8">
                         <h1 class="m-0">@yield('header_kiri')</h1>
                      </div>
                      <!-- /.col -->
-                     <div class="col-sm-1">
-                        <div class="center">@yield('header_kanan')
+                     <div class="col-sm-4 ">
+                        <div class="mr-auto text-center">@yield('header_kanan')
                         </div>
                      </div>
                      <!-- /.col -->

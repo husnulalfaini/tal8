@@ -16,7 +16,7 @@ class TambahKelompokController extends Controller
      */
     public function index()
     {
-        $ketua= User::where('level','ketua');
+        $ketua= User::where('level','ketua')->get();
         // dd($ketua);
         return view('pimpinan.tambah_kelompok', compact('ketua'));
     }
@@ -39,7 +39,8 @@ class TambahKelompokController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $kelompok = Kelompok::all();
+        $ketua= User::where('level','ketua')->get();
         $pagename='Berhasil Menambah Data';
         // melalukan validasi
    
@@ -58,7 +59,7 @@ class TambahKelompokController extends Controller
         
         // menyimpan data isian
         $tambah_kelompok->save();
-        return view ('pimpinan.tambah_kelompok');
+        return view ('pimpinan.daftar_kelompok', compact('kelompok','ketua'));
     }
 
     /**
@@ -80,7 +81,12 @@ class TambahKelompokController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ketua= User::where('level','ketua')->get();
+        $kelompok=Kelompok::find($id);
+
+        return view('pimpinan.edit_kelompok',compact('kelompok','ketua'));
+
+
     }
 
     /**
@@ -92,7 +98,16 @@ class TambahKelompokController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+        $kelompok=Kelompok::all();
+        $kelompok=Kelompok::find($id);
+          
+            $kelompok->nama= $request->nama;
+            $kelompok->user_id= $request->user_id;
+            $kelompok->save();
+        // return redirect ('pimpinan.daftar_kelompok');
+        return redirect()->route('daftar_kelompok');
+        
     }
 
     /**

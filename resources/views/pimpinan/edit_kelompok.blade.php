@@ -6,9 +6,9 @@
          <div class="col-md-4 offset-md-4">
             <div class="card card-white">
                <div class="card-header ">
-                  <h3 class="card-title-center">Tambah Kelompok</h3>
+                  <h3 class="card-title-center">Edit Kelompok</h3>
                </div>
-               <form action="{{route('upload.tambah_kelompok')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+               <form action="{{route('update.kelompok',$kelompok->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
               {{ csrf_field() }}
                <div class="card-body">
                   <!-- Nama -->
@@ -17,23 +17,11 @@
                         <div class="input-group-prepend">
                            <span class="input-group-text "><i class="far fa-user"></i></span>
                         </div>
-                        <input type="Text" class="form-control" id="text-input" name="nama" placeholder="Nama Kelompok">
+                        <input type="Text" class="form-control" id="text-input" name="nama" value="{{$kelompok->nama}}">
                      </div>
                      <!-- /.input group -->
                   </div>
                   <!-- /.form group -->
-                  <!-- IP mask -->
-                  <div class="form-group">
-                     <div class="input-group">
-                        <div class="input-group-prepend">
-                           <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                        </div>
-                        <input type="Text" class="form-control" id="text-input" name="alamat" placeholder="Alamat">
-                        <!-- /.input group -->
-                     </div>
-                  </div>
-                  <!-- /.form group -->
-                  
                   <div class="form-group">
                      <div class="input-group">
                         <div class="input-group-prepend">
@@ -47,10 +35,12 @@
                         <!-- /.input group -->
                      </div>
                   </div>
-                  <!-- /.form group -->
+                  <!-- /.form group --
+         
+                  
                   <div class="col-md-4 mx-auto text-center">
                      <!-- small box -->
-					 <button type="submit" class="btn btn-success btn-block"> Tambah</button>
+					 <button type="submit" class="btn btn-success btn-block"> Edit</button>
                   </div>
                </div>
                <!-- /.card-body -->

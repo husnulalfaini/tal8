@@ -42,7 +42,7 @@
                   <h3 class="card-title">Perbaharui Info Anda</h3>
                </div>
                <div class="card-body">
-			   <form action="{{route('update.profile_pimpinan', Auth::user()->id)}}" method="post" enctype="multipart/form-data">
+			   <form action="{{route('update.profile_admin', Auth::user()->id)}}" method="post" enctype="multipart/form-data">
       				{{ csrf_field() }}
 				<!-- Nama -->
 				<div class="form-group">
@@ -129,33 +129,4 @@
 		</div>
 	</div>
 </section>
-<!-- /.content -->
-<!-- jQuery -->
-<script src="{{asset('public/asset/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('public/asset/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- DataTables  & Plugins -->
-<script src="{{asset('public/asset/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('public/asset/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('public/asset/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('public/asset/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-<script src="{{asset('public/asset/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{asset('public/asset/plugins/jszip/jszip.min.js')}}"></script>
-<script src="{{asset('public/asset/plugins/pdfmake/pdfmake.min.js')}}"></script>
-<script src="{{asset('public/asset/plugins/pdfmake/vfs_fonts.js')}}"></script>
-<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-<!-- js dari data table -->
-<script>
-	$('#example2').DataTable({
-	     "paging": true,
-	     "lengthChange": false,
-	     "searching": true,
-	     "ordering": true,
-	     "info": true,
-	     "autoWidth": false,
-	     "responsive": true,
-	   });
-</script>@endsection
+@endsection

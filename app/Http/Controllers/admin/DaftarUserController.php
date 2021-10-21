@@ -4,6 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Petani;
+use App\Models\Kelompok;
 
 class DaftarUserController extends Controller
 {
@@ -14,7 +17,10 @@ class DaftarUserController extends Controller
      */
     public function index()
     {
-       return view('admin.daftar_user');
+       $user=User::where('level', !'ketua')->get();
+       $petani=Petani::all();
+       $kelompok=Kelompok::all();
+       return view('admin.daftar_user', compact('user','petani','kelompok'));
     }
 
     /**

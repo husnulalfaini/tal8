@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\DaftarUserController;
 use App\Http\Controllers\admin\TambahUserController;
+use App\Http\Controllers\admin\ProfileAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ketua\DaftarPetaniController;
 use App\Http\Controllers\ketua\DashboardController;
@@ -43,13 +44,18 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // halaman admin
 Route::group(['middleware' => ['auth','CekLevel:admin']], function () {
   Route::get('/daftar_user', [DaftarUserController::class, 'index'])->name('daftar_user');
-  Route::get('/tambah_user', [TambahUserController::class, 'index']);
+  Route::get('/tambah_user', [TambahUserController::class, 'index'])->name('tambah_user');
+  Route::post('/tambah_user/upload', [TambahUserController::class, 'store'])->name('upload.tambah_user');
+  Route::get('/profile_admin', [ProfileAdminController::class, 'index']);
+  Route::post('/profile_admin/{item}', [ProfileAdminController::class, 'update'])->name('update.profile_admin');
 });
 
 // halaman pimpinan
 Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
   Route::get('/dashboard_pimpinan', [PimpinanDashboardController::class, 'index'])->name('dashboard_pimpinan');
-    Route::get('/daftar_kelompok', [DaftarKelompokController::class, 'index']);
+    Route::get('/daftar_kelompok', [DaftarKelompokController::class, 'index'])->name('daftar_kelompok');
+    Route::get('/daftar_kelompok/edit/{id}', [TambahKelompokController::class, 'edit'])->name('edit.kelompok');
+    Route::post('/daftar_kelompok/update/{id}', [TambahKelompokController::class, 'update'])->name('update.kelompok');
     Route::get('/detail_kelompok/{item}', [DaftarKelompokController::class, 'show'])->name('detail.kelompok');
     Route::get('/profile_pimpinan', [ProfilePimpinanController::class, 'index']);
     Route::post('/profile_pimpinan/{item}', [ProfilepimpinanController::class, 'update'])->name('update.profile_pimpinan');
@@ -58,6 +64,8 @@ Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
     Route::post('/tambah_kelompok/upload', [TambahKelompokController::class, 'store'])->name('upload.tambah_kelompok');
     Route::get('/tambah_ketua', [TambahKetuaController::class, 'index']);
     Route::post('/tambah_ketua/upload', [TambahKetuaController::class, 'store'])->name('upload.tambah_ketua');
+    
+    
 
 });
 

@@ -4,6 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class TambahUserController extends Controller
 {
@@ -35,7 +39,34 @@ class TambahUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        // melalukan validasi
+   
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+            'telepon'=> 'required',
+            'alamat'=> 'required',
+            'foto'=> 'required',
+        ]);
+
+        $input = new User();
+        $input['name'] = $request->name;
+        $input['email'] = $request->email;
+        $input['password'] = Hash::make($request->password);
+        $input['level'] = $request->level;
+        $input['remember_token'] = Str::random(60);
+        $input['alamat'] = $request->alamat;
+        $input['telepon'] = $request->telepon;
+        $image = $request->file('foto')->getClientOriginalName();
+        $request->file('foto')->move('public/storage', $image);
+        $input['foto']        = $image;
+        if($image){
+                    Storage::delete('public/storage'. $input->foto);
+                    }
+        $input->save();
+        return redirect()->route('tambah_user');
     }
 
     /**

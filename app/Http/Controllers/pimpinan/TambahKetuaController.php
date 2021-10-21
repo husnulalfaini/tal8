@@ -5,6 +5,7 @@ namespace App\Http\Controllers\pimpinan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Kelompok;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -39,6 +40,8 @@ class TambahKetuaController extends Controller
      */
     public function store(Request $request)
     {
+        $ketua= User::where('level','ketua')->get();
+        $kelompok = Kelompok::all();
         // melalukan validasi
    
         $request->validate([
@@ -88,7 +91,7 @@ class TambahKetuaController extends Controller
         // menyimpan data isian
         // $tambah_ketua->save();
         // dd($tambah_ketua);
-        return view ('pimpinan.tambah_ketua');
+        return view ('pimpinan.daftar_kelompok', compact('kelompok','ketua'));
     }
 
     /**

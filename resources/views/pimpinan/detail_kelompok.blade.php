@@ -148,7 +148,7 @@
             <div class="col-12">
                <div class="card">
                   <div class="card-header">
-                     <h3 class="card-title">Data Panen Kelompok</h3>
+                     <h3 class="card-title">Data Panen Anggota Tani</h3>
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body">
@@ -220,15 +220,17 @@
   type="text/javascript"></script>
 <!-- js dari data table -->
 <script>
-   $('#example2').DataTable({
+    $('#example2').DataTable({
      "paging": true,
      "lengthChange": false,
-     "searching": false,
+     "searching": true,
      "ordering": true,
      "info": true,
      "autoWidth": false,
      "responsive": true,
-   });
+     "buttons": ["csv", "excel", "pdf", "print"]
+   }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+ 
 </script>
 
 @endsection
