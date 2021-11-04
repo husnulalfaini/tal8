@@ -11,6 +11,7 @@ class Tanam extends Model
     protected $primaryKey = "id";
     protected $fillable = ['id','nama','lahan_id','tanggal','jumlah_bibit',];
 
+
     public function lahan()
     {
         return $this->belongsTo(Lahan::class);

@@ -32,8 +32,7 @@
                                     <!-- Morris chart - Sales -->
 
                                     <!-- Seluruh User -->
-                                    <div class="chart tab-pane active" id="user"
-                                       style="position: relative; height: 300px;">
+                                    <div class="chart tab-pane success" id="user" style="position: relative;">
                                        <table id="example1" class="table table-bordered table-hover">
                                           <thead>
                                              <tr>
@@ -72,7 +71,7 @@
                                      <!-- END Seluruh User -->
                                      
                                      <!-- Seluruh Petani -->
-                                     <div class="chart tab-pane" id="petani" style="position: relative; height: 300px;">
+                                     <div class="chart tab-pane" id="petani" style="position: relative;">
                                      <table id="example2" class="table table-bordered table-hover">
                                           <thead>
                                           @php
@@ -111,7 +110,7 @@
                                     <!-- END Seluruh Petani -->
                                   
                                     <!-- Seluruh Kelompok -->
-                                    <div class="chart tab-pane" id="kelompok" style="position: relative; height: 300px;">
+                                    <div class="chart tab-pane" id="kelompok" style="position: relative;">
                                     <table id="example3" class="table table-bordered table-hover">
                                           <thead>
                                              <tr>

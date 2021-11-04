@@ -47,14 +47,12 @@ class TambahKelompokController extends Controller
         $request->validate([
             'nama'=>'required',
             'alamat'=> 'required',
-            'user_id'=> 'required',
         ]);
 
         //mengisi data baru 
         $tambah_kelompok= new Kelompok([
             'nama'=> $request->get('nama'),
             'alamat'=> $request->get('alamat'),
-            'user_id'=> $request->get('user_id'),
         ]);
         
         // menyimpan data isian

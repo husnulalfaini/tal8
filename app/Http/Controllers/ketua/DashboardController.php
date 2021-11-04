@@ -6,10 +6,10 @@ use App\Models\Petani;
 use App\Models\Tanam;
 use App\Models\Panen;
 use App\Models\Lahan;
-use App\Models\Kelompok;
+use App\Models\User;
+use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -21,20 +21,55 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id; 
-        $kelompok = Kelompok::where('user_id', $id)->has('petani')->get();
 
-        $petani = Petani::has('kelompok')->where('user_id', $id)->get();
-        dd($petani);
-        $luas_lahan = Lahan::sum('luas_lahan');
-        $panen_katak = Panen::sum('panen_katak');
-        $panen_umbi = Panen::sum('panen_umbi');
-        $total_panen = $panen_katak + $panen_umbi;
-        $jumlah_lahan = Petani::count();
-        
-        $data_panen= Panen::all();
+        $id = Auth::user()->kelompok_id;
 
-        return view('ketua.dashboard', compact('jumlah_petani','data_panen','luas_lahan','jumlah_lahan','total_panen'));
+        // total petani
+        $anggota = Petani::all()
+            ->where('kelompok_id',$id)
+            ->count();
+
+        // menghitung total lahan petani
+        $luas_lahan = Lahan::where('kelompok_id', $id)->count();
+
+        // menghitung total panen petani
+        $total_panen = Panen::select(DB::raw('SUM(panen_katak)+SUM(panen_umbi)  as katak' ))
+        ->join('lahans','lahans.id','=','panens.lahan_id')
+        ->join('petanis','petanis.id','=','lahans.petani_id')
+        ->where('lahans.petani_id', $id)
+        ->get();
+
+        foreach ($total_panen as $val) {
+            $hasil = (float)$val->katak;
+        }
+
+        $jumlah_lahan = Lahan::all()
+        ->where('kelompok_id',$id)
+        ->count();
+
+        //    menampilkan data panen petani
+       $data_panen= Panen::select('petanis.nama as nama','petanis.alamat as alamat','lahans.nama as lahan', 'panens.created_at as tanggal', 'panens.panen_umbi as umbi', 'panens.panen_katak as katak')
+       ->join('lahans','lahans.id','=','panens.lahan_id')
+       ->join('petanis','petanis.id','=','lahans.petani_id')
+       ->where('lahans.petani_id', $id)
+       ->get();
+
+       $panen_tabel = Panen::select(DB::raw('SUM(panen_umbi)+SUM(panen_katak) as total'), DB::raw('YEAR(panens.tanggal) as year'))
+       ->join('lahans','lahans.id','=','panens.lahan_id')
+       ->join('petanis','petanis.id','=','lahans.petani_id')
+       ->where('lahans.petani_id', $id)
+       ->groupBy('year')
+       ->get();       
+
+         $tgl_panen = [];
+         $panen_umbi = [];
+         foreach ($panen_tabel as $pans){
+             $tgl_panen[]= $pans->year;
+             $panen_umbi[]= (float)$pans->total;
+         }
+
+
+        return view('ketua.dashboard', compact('anggota','data_panen','luas_lahan','jumlah_lahan','hasil','tgl_panen','panen_umbi'));
     }
 
     /**

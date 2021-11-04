@@ -42,7 +42,7 @@
             <span class="info-box-icon"><i class="fa fa-user"></i></span>
             <div class="info-box-content">
                <span class="info-box-text">Ketua</span>
-               <span class="info-box-number"></span>
+               <span class="info-box-number">{{$ketua->name}}</span>
             </div>
             <!-- /.info-box-content -->
          </div>

@@ -61,6 +61,7 @@ class TambahKetuaController extends Controller
         $input['remember_token'] = Str::random(60);
         $input['alamat'] = $request->alamat;
         $input['telepon'] = $request->telepon;
+        $input['kelompok_id'] = $request->kelompok_id;
         $image = $request->file('foto')->getClientOriginalName();
         $request->file('foto')->move('public/storage', $image);
         $input['foto']        = $image;

@@ -96,18 +96,7 @@ Daftar Kelompok
 							</div>
 						</div>
 						<!-- /.form group -->
-						<div class="form-group">
-							<div class="input-group">
-								<div class="input-group-prepend"> <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
-								</div>
-								<select id="user_id" class="form-control text-darker" name="user_id" required autocomplete="user_id" autofocus>
-									@foreach ($ketua as $item)
-									<option class="text-darker" value="{{ $item->id }}">{{ $item->nama }}</option>
-									@endforeach</select>
-								<!-- /.input group -->
-							</div>
-						</div>
-						<!-- /.form group -->
+
 						<div class="col-md-4 mx-auto text-center">
 							<!-- small box -->
 							<button type="submit" class="btn btn-success btn-block">Tambah</button>
@@ -192,6 +181,23 @@ Daftar Kelompok
                      </div>
                   </div>
                   <!-- /.form group -->
+
+				  
+                  <div class="form-group">
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
+                        </div>
+                        <select id="kelompok_id" class="form-control text-darker" name="kelompok_id" required autocomplete="kelompok_id" autofocus>
+                           @foreach ($kelompok as $item)
+                              <option class="text-darker" value="{{ $item->id }}">{{ $item->nama }}</option>
+                           @endforeach
+                        </select>
+                        <!-- /.input group -->
+                     </div>
+                  </div>
+                  <!-- /.form group -->
+
                 <div class="form-group col-md-4">
                         <label for="exampleInputFile">Unggah Foto</label>
                         <div class="input-group">

@@ -26,13 +26,13 @@ class CRUDPetaniController extends Controller
         if ($lahan) {
             return response()->json([
                 'success' => true,
-                'message' => 'Data Panen Berhasil Disimpan!',
+                'message' => 'Data Lahan Berhasil Disimpan!',
                 'tanam' => $lahan,
             ], 200);
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Data Panen Gagal Disimpan!',
+                'message' => 'Data Lahan Gagal Disimpan!',
             ], 401);
         }
     }

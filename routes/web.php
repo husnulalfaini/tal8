@@ -20,6 +20,7 @@ use App\Http\Controllers\pimpinan\KelolaAgendaController;
 use App\Http\Controllers\pimpinan\TambahKelompokController;
 use App\Http\Controllers\pimpinan\TambahKetuaController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LandingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +35,11 @@ use App\Http\Controllers\LoginController;
 
 // halaman awal
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('landing');
+// });
+
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

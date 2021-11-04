@@ -17,8 +17,8 @@ class KonfirmasiController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-        $petani= Petani::where('status', 0)->where('user_id', $id)->get();
+        $id = Auth::user()->kelompok_id;
+        $petani= Petani::where('status', 0)->where('kelompok_id', $id)->get();
         return view('ketua.konfirmasi', compact ('petani'));
     }
 

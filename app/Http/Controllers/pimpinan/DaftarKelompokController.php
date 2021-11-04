@@ -60,8 +60,8 @@ class DaftarKelompokController extends Controller
 
         // anggota tani
         $anggota=Petani::where('kelompok_id', $id)->count();
-
-        //    menjumlah lahan
+        $ketua=User::where('kelompok_id', $id)->first();
+        //    menjumlah lahan,
         $jumlah_lahan = Lahan::where('kelompok_id', $id)->count();
 
          // menampilkan total panen
@@ -82,7 +82,7 @@ class DaftarKelompokController extends Controller
         ->join('kelompoks','kelompoks.id','=','petanis.kelompok_id')
         ->where('petanis.kelompok_id', $id)
         ->get();
-           return view('pimpinan.detail_kelompok', compact('panen','kelompok','anggota','jumlah_lahan','hasil',));
+           return view('pimpinan.detail_kelompok', compact('panen','kelompok','anggota','jumlah_lahan','hasil','ketua'));
    
     }
 

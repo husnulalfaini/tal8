@@ -12,7 +12,7 @@
          <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
-               <h3>{{$jumlah_petani}} Orang</h3>
+               <h3>{{$anggota}} Orang</h3>
                <p>Total Petani</p>
             </div>
             <div class="icon">
@@ -38,7 +38,7 @@
          <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
-               <h3>{{$total_panen}} Kilo</h3>
+               <h3>{{$hasil}} Kilo</h3>
                <p>Total Panen</p>
             </div>
             <div class="icon">
@@ -51,7 +51,7 @@
          <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
-               <h3>50</h3>
+               <h3>{{$jumlah_lahan}}</h3>
                <p>Jumlah Lahan</p>
             </div>
             <div class="icon">
@@ -67,7 +67,7 @@
       <!-- Left col -->
       <!-- <section class="col-lg-12 connectedSortable"> -->
       <!-- Custom tabs (Charts with tabs)-->
-      <div class="col-md-6">
+      <div class="col-md-12">
          <!-- GRAFIK -->
          <div class="card card-success">
             <div class="card-header">
@@ -89,26 +89,6 @@
             <!-- /.card-body -->
          </div>
          <!-- /.card -->
-      </div>
-      <div class="col-md-6">
-         <!-- PIE GRAFIK -->
-         <div class="card card-success">
-            <div class="card-header">
-               <h3 class="card-title">GRAFIK</h3>
-               <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
-                  </button>
-               </div>
-            </div>
-            <div class="card-body">
-               <div id="pieChart"></div>
-            </div>
-            <!-- /.card-body -->
-         </div>
       </div>
       <!-- </section> -->
    </div>
@@ -139,12 +119,12 @@
                         <tbody>
                            @foreach ($data_panen as $item)
                            <tr>
-                           <td>{{$item->lahan->petani->nama}}</td>
-                           <td>{{$item->lahan->petani->alamat}}</td>
-                           <td>{{$item->lahan->nama}}</td>
+                           <td>{{$item->nama}}</td>
+                           <td>{{$item->alamat}}</td>
+                           <td>{{$item->lahan}}</td>
                            <td>{{$item->tanggal}}</td>
-                           <td>{{$item->panen_katak}}</td>
-                           <td>{{$item->panen_umbi}}</td>
+                           <td>{{$item->katak}}</td>
+                           <td>{{$item->umbi}}</td>
                         </tr>
                         @endforeach
                         </tbody>
@@ -201,6 +181,8 @@
 <!-- js dari grafik barchart -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
+
+   
    Highcharts.chart('barChart', {
    chart: {
        type: 'column'
@@ -209,26 +191,19 @@
        text: 'Hasil Panen Porang Pertahun'
    },
    xAxis: {
-       categories: [
-           '2010',
-           '2016',
-           '2017',
-           '2018',
-           '2019',
-           '2020'
-       ],
+       categories: {!!json_encode($tgl_panen)!!},
        crosshair: true
    },
    yAxis: {
        min: 0,
        title: {
-           text: 'Rainfall (mm)'
+           text: 'Hasil Panen Porang (Ton)'
        }
    },
    tooltip: {
        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-           '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+           '<td style="padding:0"><b>{point.y:.1f} Ton</b></td></tr>',
        footerFormat: '</table>',
        shared: true,
        useHTML: true
@@ -241,67 +216,10 @@
    },
    series: [{
        name: 'Presentase Panen',
-       data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0]
+       data: {!!json_encode($panen_umbi)!!}
    }]
    });
 </script>
-<!-- js dari grafik piechart -->
-<script>
-   // Build the chart
-   Highcharts.chart('pieChart', {
-   chart: {
-   plotBackgroundColor: null,
-   plotBorderWidth: null,
-   plotShadow: false,
-   type: 'pie'
-   },
-   title: {
-   text: 'Hasil Panen Porang Pertahun'
-   },
-   tooltip: {
-   pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-   },
-   accessibility: {
-   point: {
-       valueSuffix: '%'
-   }
-   },
-   plotOptions: {
-   pie: {
-       allowPointSelect: true,
-       cursor: 'pointer',
-       dataLabels: {
-           enabled: false
-       },
-       showInLegend: true
-   }
-   },
-   series: [{
-   name: 'Presentase Panen',
-   colorByPoint: true,
-   data: [{
-       name: '2010',
-       y: 61.41,
-       sliced: true,
-       selected: true
-   }, {
-       name: '2016',
-       y: 11.84
-   }, {
-       name: '2017',
-       y: 10.85
-   }, {
-       name: '2018',
-       y: 4.67
-   }, {
-       name: '2019',
-       y: 4.18
-   }, {
-       name: '2020',
-       y: 7.05
-   }]
-   }]
-   });
-</script>
+
 @endsection
 
