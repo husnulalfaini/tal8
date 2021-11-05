@@ -32,7 +32,6 @@ use App\Http\Controllers\LandingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 // halaman awal
 
 // Route::get('/', function () {
