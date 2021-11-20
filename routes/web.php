@@ -43,13 +43,21 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/halaman_reset', [LoginController::class, 'tampilReset'])->name('halaman.reset');
+Route::post('/reset', [LoginController::class, 'reset'])->name('reset');
+
+
 // halaman admin
 Route::group(['middleware' => ['auth','CekLevel:admin']], function () {
   Route::get('/daftar_user', [DaftarUserController::class, 'index'])->name('daftar_user');
+  Route::get('/show_user/{item}', [DaftarUserController::class, 'showUser'])->name('show_user');
+  Route::get('/show_petani/{item}', [DaftarUserController::class, 'showPetani'])->name('show_petani');
+  Route::get('/show_kelompok/{item}', [DaftarUserController::class, 'showKelompok'])->name('show_kelompok');
   Route::get('/tambah_user', [TambahUserController::class, 'index'])->name('tambah_user');
   Route::post('/tambah_user/upload', [TambahUserController::class, 'store'])->name('upload.tambah_user');
   Route::get('/profile_admin', [ProfileAdminController::class, 'index']);
   Route::post('/profile_admin/{item}', [ProfileAdminController::class, 'update'])->name('update.profile_admin');
+
 });
 
 // halaman pimpinan

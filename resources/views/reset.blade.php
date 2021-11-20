@@ -14,16 +14,31 @@
 			<img src="{{asset('public/asset/dist/img/bg.svg')}}">
 		</div>
 		<div class="login-content">
-		<form action="{{route('postlogin') }}" method="post">
+		<form action="{{route('reset') }}" method="post">
           @csrf
 				<img src="{{asset('public/asset/dist/img/avatar.svg')}}">
-				<h2 class="title">Selamat Datang</h2>
-           		<div class="input-div one">
+           		<div class="input-div user">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
            		   </div>
            		   <div class="div">
+           		   		<input type="name" class="form-control" name="name" placeholder="Nama">
+           		   </div>
+           		</div>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-envelope"></i>
+           		   </div>
+           		   <div class="div">
            		   		<input type="email" class="form-control" name="email" placeholder="Email">
+           		   </div>
+           		</div>
+           		<div class="input-div telepon">
+           		   <div class="i">
+           		   		<i class="fas fa-phone"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<input type="number" class="form-control" name="telepon" placeholder="Telepon">
            		   </div>
            		</div>
            		<div class="input-div pass">
@@ -34,8 +49,7 @@
            		    	<input type="password" class="form-control" name="password" placeholder="password">
             	   </div>
             	</div>
-            	<a href="{{route('halaman.reset') }}">Reset Password?</a>
-            	<input type="submit" class="btn" value="Login">
+            	<input type="submit" class="btn" value="Reset">
             </form>
         </div>
     </div>

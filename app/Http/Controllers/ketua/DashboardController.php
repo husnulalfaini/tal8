@@ -43,6 +43,8 @@ class DashboardController extends Controller
             $hasil = (float)$val->katak;
         }
 
+        // dd($hasil);
+
         $jumlah_lahan = Lahan::all()
         ->where('kelompok_id',$id)
         ->count();

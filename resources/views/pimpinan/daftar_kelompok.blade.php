@@ -37,9 +37,9 @@ Daftar Kelompok
 									<td>{{$item->id}}</td>
 									<td>{{$item->nama}}</td>
 									<td>{{$item->alamat}}</td>
-									<td><a href="{{route('detail.kelompok',[$item->id])}}" class="text-dark"><i class="far fa-eye"></i></a>
+									<td><span class="badge bg-success"><a href="{{route('detail.kelompok',[$item->id])}}" class="text-dark">Detail<i class="far fa-eye"></i></a></span>
 										<a href="{{route('edit.kelompok',[$item->id])}}" class="text-dark"><i class="far fa-edit"></i></a>
-										<a href="#" class="text-dark"><i class="fas fa-trash-alt"></i></a>
+										
 									</td>
 								</tr>@endforeach</tbody>
 							<tfoot>

@@ -30,18 +30,23 @@ class CRUDPetaniController extends Controller
     // menampilkan data tanam sesuai id petani
     public function GetTanam($id)
     {
-        $tanam = Tanam::where('lahan_id',$id)->get();
+        $tanam = Tanam::where('petani_id',$id)->get();
         return response()->json($tanam);
     }
 
     // menampilkan data panen sesuai id petani
-    public function GetPanen()
+    public function GetPanen($id)
     {
-        $profil = Tanam::all();
-        return response()->json($profil);
+        // $panen = Panen::where('petani_id',$id)->get();
+        $panen= Panen::select('petanis.nama as nama','petanis.alamat as alamat','lahans.id as lahan_id', 'panens.created_at as tanggal', 'panens.panen_umbi as umbi', 'panens.panen_katak as katak')
+        ->join('lahans','lahans.id','=','panens.lahan_id')
+        ->join('petanis','petanis.id','=','lahans.petani_id')
+        ->where('lahans.petani_id', $id)
+        ->get();
+        return response()->json($panen);
     }
 
-    // POST DaTa
+    // POST DATA
     public function InputLahan(Request $request)
     {
         //proses input data panen baru
@@ -127,4 +132,57 @@ class CRUDPetaniController extends Controller
             ], 401);
         }
     }
+
+
+    // UPDATE DATA
+    // update data lahan
+    public function UpdateLahan(Request $request)
+    {       
+        $lahan = Lahan::where('id','=',$request->id)->first();
+        $lahan->id   = $request->id;
+        $lahan->petani_id  = $request->petani_id;
+        $lahan->kelompok_id   = $request->kelompok_id;
+        $lahan->nama   = $request->nama;
+        $lahan->alamat   = $request->alamat;
+        $lahan->luas_lahan  = $request->luas_lahan;
+
+        $image = $request->file('foto')->getClientOriginalName();
+        $request->file('foto')->move('public/storage', $image);
+        $lahan->foto        = $image;
+
+        $lahan->save();
+
+        return response()->json($lahan, 201);
+    }
+
+
+    public function UpdateTanam(Request $request)
+    {       
+        $panen = Tanam::where('id','=',$request->id)->first();
+        $panen->id   = $request->id;
+        $panen->petani_id  = $request->petani_id;
+        $panen->lahan_id   = $request->lahan_id;
+        $panen->tanggal   = $request->tanggal;
+        $panen->jumlah_bibit  = $request->jumlah_bibit;
+
+        $panen->save();
+
+        return response()->json($panen, 201);
+    }
+
+
+    public function UpdatePanen(Request $request)
+    {       
+        $panen = Panen::where('id','=',$request->id)->first();
+        $panen->id   = $request->id;
+        $panen->petani_id  = $request->petani_id;
+        $panen->lahan_id   = $request->lahan_id;
+        $panen->panen_katak   = $request->panen_katak;
+        $panen->panen_umbi   = $request->panen_umbi;
+        $panen->tanggal  = $request->tanggal;
+        $panen->save();
+
+        return response()->json($panen, 201);
+    }
+
 }

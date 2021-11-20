@@ -53,7 +53,7 @@
                                                 <td>{{$item->name}}</td>
                                                 <td>{{$item->alamat}}</td>
                                                 <td>{{$item->level}}</td>
-                                                <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
+                                                <td><a href="{{route('show_user',[$item->id])}}" class="text-dark"><i class="far fa-eye"></i></a>
                                              </tr>
                                              @endforeach
                                           </tbody>
@@ -92,7 +92,7 @@
                                                 <td>{{$item->nama}}</td>
                                                 <td>{{$item->alamat}}</td>
                                                 <td>{{$item->kelompok->nama}}</td>
-                                                <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
+                                                <td><a href="{{route('show_petani',[$item->id])}}" class="text-dark"><i class="far fa-eye"></i></a>
                                              </tr>
                                           @endforeach
                                           </tbody>
@@ -129,7 +129,7 @@
                                                 <td>{{$ang++}}</td>
                                                 <td>{{$item->nama}}</td>
                                                 <td>{{$item->alamat}}</td>
-                                                <td><a href="#" class="text-dark"><i class="far fa-eye"></i></a>
+                                                <td><a href="{{route('show_kelompok',[$item->id])}}" class="text-dark"><i class="far fa-eye"></i></a>
                                              </tr>
                                           @endforeach
                                           </tbody>

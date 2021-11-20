@@ -34,8 +34,9 @@
                                              <td>{{$item->alamat}}</td>
                                              <td>{{$item->email}}</td>
                                              <td>{{$item->telepon}}</td>
-                                             <td><a href="{{route('ketua.monitoring_petani',[$item->id])}}" class="text-dark"><i class=" fas fa-eye"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="far fa-edit"></i></a></td>
+                                             <td>
+                                                <span class="badge bg-success"><a href="{{route('ketua.monitoring_petani',[$item->id])}}" class="text-dark"> Detail <i class="fas fa-arrow-circle-right"></i></a></span>
+                                                <span class="badge bg-danger"><a href="#" class="text-dark"> Cetak Rekap <i class="fas fa-save"></i></a></span>
                                           </tr>
                                           @endforeach
                                        </tbody>

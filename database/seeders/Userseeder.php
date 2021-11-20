@@ -14,14 +14,14 @@ class Userseeder extends Seeder
      */
     public function run()
     {
-        // User::truncate();
-        // User::create([
-        //     'name' =>'husnul',
-        //     'level' =>'admin',
-        //     'email' =>'admin@gmail.com',
-        //     'password' =>bcrypt('husnul123'),
-        //     'remember_token' =>Str::random(60),
-        // ]);
+        User::truncate();
+        User::create([
+            'name' =>'husnul',
+            'level' =>'admin',
+            'email' =>'admin@gmail.com',
+            'password' =>bcrypt('admin'),
+            'remember_token' =>Str::random(60),
+        ]);
         User::create([
             'name' =>'husnul',
             'level' =>'pimpinan',
@@ -29,19 +29,20 @@ class Userseeder extends Seeder
             'password' =>bcrypt('pimpinan'),
             'remember_token' =>Str::random(60),
         ]);
-        // User::create([
-        //     'name' =>'husnul',
-        //     'level' =>'ketua',
-        //     'email' =>'husnul2@gmail.com',
-        //     'password' =>bcrypt('husnul123'),
-        //     'remember_token' =>Str::random(60),
-        // ]);
-        // User::create([
-        //     'name' =>'husnul',
-        //     'level' =>'orang_biasa',
-        //     'email' =>'husnul3@gmail.com',
-        //     'password' =>bcrypt('husnul123'),
-        //     'remember_token' =>Str::random(60),
-        // ]);
+        User::create([
+            'name' =>'husnul',
+            'kelompok_id' =>'1',
+            'level' =>'ketua',
+            'email' =>'husnul2@gmail.com',
+            'password' =>bcrypt('ketua'),
+            'remember_token' =>Str::random(60),
+        ]);
+        User::create([
+            'name' =>'husnul',
+            'level' =>'orang_biasa',
+            'email' =>'husnul3@gmail.com',
+            'password' =>bcrypt('husnul123'),
+            'remember_token' =>Str::random(60),
+        ]);
     }
 }

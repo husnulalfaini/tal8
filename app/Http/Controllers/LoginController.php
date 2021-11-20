@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use pp\Models\User;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -34,5 +34,31 @@ class LoginController extends Controller
     {
         Auth::logout();
         return redirect('/login');
+    }
+
+    public function tampilReset(){
+        return view('reset');
+    }
+
+    public function reset(Request $request){
+        $name = $request->name;
+        $email = $request->email;
+        $telepon = $request->telepon;
+
+        $user = User::where('name', $name)
+            ->where('email', $email)
+            ->where('telepon', $telepon)
+            ->first();
+
+        if($user){
+            $user['password'] = bcrypt($request->password);
+            $user->save();
+
+            return view('login');
+        }
+        else{
+
+            return view('reset');
+        }
     }
 }
