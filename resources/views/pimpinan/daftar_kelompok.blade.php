@@ -37,11 +37,13 @@ Daftar Kelompok
 									<td>{{$item->id}}</td>
 									<td>{{$item->nama}}</td>
 									<td>{{$item->alamat}}</td>
-									<td><span class="badge bg-success"><a href="{{route('detail.kelompok',[$item->id])}}" class="text-dark">Detail<i class="far fa-eye"></i></a></span>
-										<a href="{{route('edit.kelompok',[$item->id])}}" class="text-dark"><i class="far fa-edit"></i></a>
-										
-									</td>
-								</tr>@endforeach</tbody>
+									<td>
+										<span class="badge bg-success"><a href="{{route('detail.kelompok',[$item->id])}}" class="text-dark">Detail<i class="far fa-eye"></i></a></span>
+										<span class="badge bg-danger"><a href="{{route('kelompok.pdf',[$item->id])}}" class="text-dark"> Cetak Rekap <i class="fas fa-save"></i></a></span>       
+                        			</td>
+								</tr>
+								@endforeach
+							</tbody>
 							<tfoot>
 								<tr>
 									<th>No</th>

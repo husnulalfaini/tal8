@@ -36,7 +36,7 @@
                                              <td>{{$item->telepon}}</td>
                                              <td>
                                                 <span class="badge bg-success"><a href="{{route('ketua.monitoring_petani',[$item->id])}}" class="text-dark"> Detail <i class="fas fa-arrow-circle-right"></i></a></span>
-                                                <span class="badge bg-danger"><a href="#" class="text-dark"> Cetak Rekap <i class="fas fa-save"></i></a></span>
+                                                <span class="badge bg-danger"><a href="{{route('petani.pdf',[$item->id])}}" class="text-dark"> Cetak Rekap <i class="fas fa-save"></i></a></span>
                                           </tr>
                                           @endforeach
                                        </tbody>

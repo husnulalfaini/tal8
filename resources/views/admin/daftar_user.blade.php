@@ -92,7 +92,10 @@
                                                 <td>{{$item->nama}}</td>
                                                 <td>{{$item->alamat}}</td>
                                                 <td>{{$item->kelompok->nama}}</td>
-                                                <td><a href="{{route('show_petani',[$item->id])}}" class="text-dark"><i class="far fa-eye"></i></a>
+                                                <td>
+                                                   <span class="badge bg-success"><a href="{{route('show_petani',[$item->id])}}" class="text-dark">Detail<i class="far fa-eye"></i></a></span>
+                                                   <span class="badge bg-danger"><a href="{{route('cetak_petani',[$item->id])}}" class="text-dark"> Cetak Rekap <i class="fas fa-save"></i></a></span>       
+                        	                     </td>
                                              </tr>
                                           @endforeach
                                           </tbody>
@@ -129,7 +132,10 @@
                                                 <td>{{$ang++}}</td>
                                                 <td>{{$item->nama}}</td>
                                                 <td>{{$item->alamat}}</td>
-                                                <td><a href="{{route('show_kelompok',[$item->id])}}" class="text-dark"><i class="far fa-eye"></i></a>
+                                                <td>
+                                                <span class="badge bg-success"><a href="{{route('show_kelompok',[$item->id])}}" class="text-dark">Detail<i class="far fa-eye"></i></a></span>
+										                  <span class="badge bg-danger"><a href="{{route('cetak_kelompok',[$item->id])}}" class="text-dark"> Cetak Rekap <i class="fas fa-save"></i></a></span>       
+                        	                     </td>
                                              </tr>
                                           @endforeach
                                           </tbody>

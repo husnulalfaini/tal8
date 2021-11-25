@@ -52,7 +52,9 @@ Route::group(['middleware' => ['auth','CekLevel:admin']], function () {
   Route::get('/daftar_user', [DaftarUserController::class, 'index'])->name('daftar_user');
   Route::get('/show_user/{item}', [DaftarUserController::class, 'showUser'])->name('show_user');
   Route::get('/show_petani/{item}', [DaftarUserController::class, 'showPetani'])->name('show_petani');
+  Route::get('/cetak_petani/{item}', [DaftarUserController::class, 'cetakPetani'])->name('cetak_petani');
   Route::get('/show_kelompok/{item}', [DaftarUserController::class, 'showKelompok'])->name('show_kelompok');
+  Route::get('/cetak_kelompok/{item}', [DaftarUserController::class, 'cetakKelompok'])->name('cetak_kelompok');
   Route::get('/tambah_user', [TambahUserController::class, 'index'])->name('tambah_user');
   Route::post('/tambah_user/upload', [TambahUserController::class, 'store'])->name('upload.tambah_user');
   Route::get('/profile_admin', [ProfileAdminController::class, 'index']);
@@ -74,6 +76,7 @@ Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
     Route::post('/tambah_kelompok/upload', [TambahKelompokController::class, 'store'])->name('upload.tambah_kelompok');
     Route::get('/tambah_ketua', [TambahKetuaController::class, 'index']);
     Route::post('/tambah_ketua/upload', [TambahKetuaController::class, 'store'])->name('upload.tambah_ketua');
+    Route::get('/kelompok_pdf/{item}', [DaftarKelompokController::class, 'kelompokPdf'])->name('kelompok.pdf');
     
     
 
@@ -93,6 +96,7 @@ Route::group(['middleware' => ['auth','CekLevel:ketua']], function () {
     Route::get('/monitoring_petani/{item}', [DaftarPetaniController::class, 'show'])->name('ketua.monitoring_petani');
     // Route::get('/monitoring_petani', [MonitoringPetaniController::class, 'index']);
     Route::get('/monitoring_lahan/{item}', [DaftarPetaniController::class, 'lahan'])->name('ketua.monitoring_lahan');
+    Route::get('/petani_pdf/{item}', [DaftarPetaniController::class, 'petaniPdf'])->name('petani.pdf');
     // Route::get('/monitoring_lahan', [MonitoringLahanController::class, 'index']);
   });
 

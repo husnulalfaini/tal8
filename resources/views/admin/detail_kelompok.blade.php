@@ -11,7 +11,10 @@
 					<div class="card-body"> 
 						<hr> <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong>
 						<p class="text-muted">{{$kelompok->alamat}}</p>
-						<hr> <strong><i class="fas fa-phone-users mr-1"></i> Petani Tergabung</strong>
+						<hr> <strong><i class="fas fa-user mr-1"></i> Ketua</strong>
+						<br>
+						<a class="text-muted">{{$ketua->name}}</a>
+						<hr> <strong><i class="fas fa-users mr-1"></i> Petani Tergabung</strong>
 						<br>
 						<a class="text-muted">{{$anggota}}</a>
 						<hr> <strong><i class="fas fa-ring mr-1"></i> Total Panen</strong>

@@ -119,4 +119,38 @@ class DaftarKelompokController extends Controller
     {
         //
     }
+
+    public function kelompokPdf($id)
+    {
+        $data ['kelompok'] = Kelompok::find($id);
+        // $panen = Panen::where('kelompok_id',$id)->get();
+
+        // anggota tani
+        $data ['anggota']=Petani::where('kelompok_id', $id)->count();
+        $data ['ketua']=User::where('kelompok_id', $id)->first();
+        //    menjumlah lahan,
+        $data ['jumlah_lahan'] = Lahan::where('kelompok_id', $id)->count();
+
+         // menampilkan total panen
+        $total_panen = Panen::select(DB::raw('SUM(panen_katak)+SUM(panen_umbi)  as katak' ))
+        ->join('lahans','lahans.id','=','panens.lahan_id')
+        ->join('kelompoks','kelompoks.id','=','lahans.petani_id')
+        ->where('lahans.kelompok_id', $id)
+        ->get();
+
+        foreach ($total_panen as $val) {
+            $data ['hasil'] = (float)$val->katak;
+        }
+
+        //    menampilkan data panen petani
+        $data ['panen'] = Panen::select('petanis.nama as nama','lahans.nama as lahan','panens.panen_umbi as panen_umbi','panens.panen_katak as panen_katak','panens.tanggal as tanggal')
+        ->join('lahans','lahans.id','=','panens.lahan_id')
+        ->join('petanis','petanis.id','=','lahans.petani_id')
+        ->join('kelompoks','kelompoks.id','=','petanis.kelompok_id')
+        ->where('petanis.kelompok_id', $id)
+        ->get();
+  
+        $pdf = \PDF::loadView('pimpinan.kelompok_pdf',$data);
+        return $pdf->stream('Rekap_kelompok.pdf');
+    }
 }

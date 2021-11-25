@@ -7,6 +7,7 @@ use App\Models\Panen;
 use App\Models\Tanam;
 use App\Models\Lahan;
 use DB;
+// use PDF;
 use App\Models\PengolahanSensor;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -137,5 +138,40 @@ class DaftarPetaniController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function petaniPdf($id)
+    {
+        $data['petani'] = Petani::find($id);
+
+        //    menampilkan data panen petani
+       $data['panen_petani'] = Panen::select(DB::raw('*'))
+       ->join('lahans','lahans.id','=','panens.lahan_id')
+       ->join('petanis','petanis.id','=','lahans.petani_id')
+       ->where('lahans.petani_id', $id)
+       ->get();
+    
+         //    menjumlah luas lahan
+        $data ['luas_lahan'] = Lahan::where('petani_id', $id)->sum('luas_lahan');
+
+       //    menjumlah lahan
+       $data['jumlah_lahan'] = Lahan::where('petani_id', $id)->count();
+
+       //menampilkan data lahan sesuai yang dimiliki petani
+       $lahan = Lahan::where('petani_id', $id)->get();
+       
+       
+        // menghitung total panen petani
+       $total_panen = Panen::select(DB::raw('SUM(panen_katak)+SUM(panen_umbi)  as katak' ))
+        ->join('lahans','lahans.id','=','panens.lahan_id')
+        ->join('petanis','petanis.id','=','lahans.petani_id')
+        ->where('lahans.petani_id', $id)
+        ->get();
+
+        foreach ($total_panen as $val) {
+            $data['hasil'] = (float)$val->katak;
+        }
+        $pdf = \PDF::loadView('ketua.petani_pdf',$data);
+        return $pdf->stream('Rekap_Petani.pdf');
     }
 }
