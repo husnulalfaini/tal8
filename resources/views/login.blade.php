@@ -39,6 +39,8 @@
             </form>
         </div>
     </div>
+	
+
     <script src="{{asset('public/asset/dist/js/login_native.js')}}"></script>
 </body>
 </html>

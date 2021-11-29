@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\User;
 
 class LoginController extends Controller
@@ -53,11 +54,11 @@ class LoginController extends Controller
         if($user){
             $user['password'] = bcrypt($request->password);
             $user->save();
-
+            Alert::success('Reset Password Berhasil');
             return view('login');
         }
         else{
-
+            Alert::success('Reset Password Gagal');
             return view('reset');
         }
     }

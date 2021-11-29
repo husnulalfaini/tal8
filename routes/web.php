@@ -72,7 +72,7 @@ Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
     Route::get('/profile_pimpinan', [ProfilePimpinanController::class, 'index']);
     Route::post('/profile_pimpinan/{item}', [ProfilepimpinanController::class, 'update'])->name('update.profile_pimpinan');
     Route::get('/kelola_agenda', [KelolaAgendaController::class, 'index']);
-    Route::get('/tambah_kelompok', [TambahKelompokController::class, 'index']);
+    Route::get('/tambah_kelompok', [TambahKelompokController::class, 'index'])->name('tambah_kelompok');
     Route::post('/tambah_kelompok/upload', [TambahKelompokController::class, 'store'])->name('upload.tambah_kelompok');
     Route::get('/tambah_ketua', [TambahKetuaController::class, 'index']);
     Route::post('/tambah_ketua/upload', [TambahKetuaController::class, 'store'])->name('upload.tambah_ketua');

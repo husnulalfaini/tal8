@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Alert;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -66,7 +67,7 @@ class TambahUserController extends Controller
                     Storage::delete('public/storage'. $input->foto);
                     }
         $input->save();
-        return redirect()->route('tambah_user');
+        return redirect()->route('tambah_user')->with('success', 'Task Created Successfully!');
     }
 
     /**

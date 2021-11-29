@@ -5,6 +5,7 @@ namespace App\Http\Controllers\pimpinan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kelompok;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\User;
 
 class TambahKelompokController extends Controller
@@ -39,9 +40,7 @@ class TambahKelompokController extends Controller
      */
     public function store(Request $request)
     {
-        $kelompok = Kelompok::all();
         $ketua= User::where('level','ketua')->get();
-        $pagename='Berhasil Menambah Data';
         // melalukan validasi
    
         $request->validate([
@@ -57,7 +56,7 @@ class TambahKelompokController extends Controller
         
         // menyimpan data isian
         $tambah_kelompok->save();
-        return view ('pimpinan.daftar_kelompok', compact('kelompok','ketua'));
+        return redirect('/daftar_kelompok')->with('success', 'Task Created Successfully!');
     }
 
     /**

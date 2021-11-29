@@ -4,6 +4,9 @@
       @include('layout.top')
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
+      
+   @include('sweetalert::alert')
+   @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
       <div class="wrapper">
          <!-- Navbar -->
          @include('layout.header')
@@ -45,7 +48,6 @@
       <!-- /.Bottom -->
       @include('layout.bottom')
       <!-- /.Bottom -->
-      
    </body>
 </html>
 
