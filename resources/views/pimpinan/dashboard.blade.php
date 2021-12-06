@@ -1,7 +1,7 @@
 
 @extends('layout.master')
 @section('content')
-<!-- Sidebar Menu -->
+
 <!-- konten utama -->
 <section class="content">
    <div class="container-fluid">
@@ -49,6 +49,7 @@
       <!-- ./col -->
    </div>
    <!-- /.row -->
+
    <!-- Main row -->
    <div class="row">
       <!-- Left col -->
@@ -91,7 +92,6 @@
                      <h3 class="card-title">Data Panen Kelompok</h3>
                   </div>
                   <!-- /.card-header -->
-                 
                   <div class="card-body">
                 <table id="example2" class="table table-bordered table-striped">
                   <thead>
@@ -103,23 +103,23 @@
                            </tr>
                         </thead>
                         <tbody>
-                @foreach($panens as $data)
-                  <tr>
-                    <td> 
-                      {{$data->lahan->kelompok->nama}}
-                    </td>
-                    <td> 
-                      {{$data->lahan->kelompok->alamat}}
-                    </td>
-                    <td> 
-                      {{$data->tanggal}}
-                    </td>
-                    <td> 
-                      {{$data->panen_katak}}
-                    </td>
-                    
-                  </tr>
-                @endforeach
+                        @foreach($panens as $data)
+                           <tr>
+                           <td> 
+                              {{$data->lahan->kelompok->nama}}
+                           </td>
+                           <td> 
+                              {{$data->lahan->kelompok->alamat}}
+                           </td>
+                           <td> 
+                              {{$data->tanggal}}
+                           </td>
+                           <td> 
+                              {{$data->panen_katak}}
+                           </td>
+                           
+                           </tr>
+                        @endforeach
                         </tbody>
                         <tfoot>
                            <tr>

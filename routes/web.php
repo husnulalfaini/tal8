@@ -4,19 +4,15 @@ use App\Http\Controllers\admin\DaftarUserController;
 use App\Http\Controllers\admin\TambahUserController;
 use App\Http\Controllers\admin\ProfileAdminController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ketua\DaftarPetaniController;
 use App\Http\Controllers\ketua\DashboardController;
 use App\Http\Controllers\ketua\ProfileKetuaController;
 use App\Http\Controllers\ketua\KonfirmasiController;
-use App\Http\Controllers\ketua\KonfirmasiPetaniController;
-use App\Http\Controllers\ketua\LihatAgendaController;
-use App\Http\Controllers\ketua\MonitoringLahanController;
-use App\Http\Controllers\ketua\MonitoringPetaniController;
+
 use App\Http\Controllers\pimpinan\DaftarKelompokController;
 use App\Http\Controllers\pimpinan\DashboardController as PimpinanDashboardController;
-use App\Http\Controllers\pimpinan\DetailKelompokController;
 use App\Http\Controllers\pimpinan\ProfilePimpinanController;
-use App\Http\Controllers\pimpinan\KelolaAgendaController;
 use App\Http\Controllers\pimpinan\TambahKelompokController;
 use App\Http\Controllers\pimpinan\TambahKetuaController;
 use App\Http\Controllers\LoginController;
@@ -71,13 +67,9 @@ Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
     Route::get('/detail_kelompok/{item}', [DaftarKelompokController::class, 'show'])->name('detail.kelompok');
     Route::get('/profile_pimpinan', [ProfilePimpinanController::class, 'index']);
     Route::post('/profile_pimpinan/{item}', [ProfilepimpinanController::class, 'update'])->name('update.profile_pimpinan');
-    Route::get('/kelola_agenda', [KelolaAgendaController::class, 'index']);
-    Route::get('/tambah_kelompok', [TambahKelompokController::class, 'index'])->name('tambah_kelompok');
-    Route::post('/tambah_kelompok/upload', [TambahKelompokController::class, 'store'])->name('upload.tambah_kelompok');
-    Route::get('/tambah_ketua', [TambahKetuaController::class, 'index']);
-    Route::post('/tambah_ketua/upload', [TambahKetuaController::class, 'store'])->name('upload.tambah_ketua');
-    Route::get('/kelompok_pdf/{item}', [DaftarKelompokController::class, 'kelompokPdf'])->name('kelompok.pdf');
-    
+    Route::post('/tambah_kelompok/upload', [TambahKelompokController::class, 'tambahKelompok'])->name('upload.tambah_kelompok');
+    Route::post('/tambah_ketua/upload', [TambahKelompokController::class, 'tambahKetua'])->name('upload.tambah_ketua');
+    Route::get('/kelompok_pdf/{item}', [DaftarKelompokController::class, 'kelompokPdf'])->name('kelompok.pdf'); 
     
 
 });
@@ -89,14 +81,13 @@ Route::group(['middleware' => ['auth','CekLevel:ketua']], function () {
     Route::post('/profile_ketua/{item}', [ProfileKetuaController::class, 'update'])->name('update.profile');
     Route::get('/konfirmasi', [KonfirmasiController::class, 'index'])->name('petani.daftar');
     Route::get('/konfirmasi/{id}', [KonfirmasiController::class, 'terima'])->name('konfirmasiterima');
+    Route::get('/konfirmasi/edit/{id}', [KonfirmasiController::class, 'edit'])->name('edit.petani');
+    Route::post('/konfirmasi/update/{id}', [KonfirmasiController::class, 'update'])->name('update.petani');
     Route::get('/hapus/{item}', [KonfirmasiController::class, 'destroy'])->name('ketua.hapus');
     Route::get('/konfirmasi_petani/{tani}', [KonfirmasiController::class, 'show'])->name('ketua.konfirmasi_petani');
-    Route::get('/lihat_agenda', [LihatAgendaController::class, 'index']);
     Route::get('/daftar_petani', [DaftarPetaniController::class, 'index']);
     Route::get('/monitoring_petani/{item}', [DaftarPetaniController::class, 'show'])->name('ketua.monitoring_petani');
-    // Route::get('/monitoring_petani', [MonitoringPetaniController::class, 'index']);
     Route::get('/monitoring_lahan/{item}', [DaftarPetaniController::class, 'lahan'])->name('ketua.monitoring_lahan');
     Route::get('/petani_pdf/{item}', [DaftarPetaniController::class, 'petaniPdf'])->name('petani.pdf');
-    // Route::get('/monitoring_lahan', [MonitoringLahanController::class, 'index']);
   });
 

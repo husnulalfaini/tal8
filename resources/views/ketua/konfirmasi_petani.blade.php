@@ -1,9 +1,11 @@
 
 
 @extends('layout.master')
+
 @section('header')
 konfirmasi Petani
 @endsection
+
 @section('content')
 <section class="content">
    <div class="container-fluid">
@@ -30,8 +32,8 @@ konfirmasi Petani
                   <!-- /.row -->
                   <div class="col-sm-6">
                      <div class="description-block">
-                        <a href="#" class="text-danger">
-                           <h5 class="description-header">Tolak</h5>
+                        <a href="{{route('edit.petani',$petani->id)}}" class="text-danger">
+                           <h5 class="description-header">Edit Domisili</h5>
                         </a>
                      </div>
                      <!-- /.description-block -->
@@ -43,6 +45,7 @@ konfirmasi Petani
          <!-- /.widget-user -->
       </div>
    </div>
+   
    <div class="container-fluid">
       <div class="col-md-12">
          <!-- Widget: user widget style 1 -->

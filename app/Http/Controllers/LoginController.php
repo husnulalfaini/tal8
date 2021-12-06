@@ -37,14 +37,16 @@ class LoginController extends Controller
         return redirect('/login');
     }
 
+
     public function tampilReset(){
         return view('reset');
     }
 
+
     public function reset(Request $request){
-        $name = $request->name;
-        $email = $request->email;
-        $telepon = $request->telepon;
+        $name       = $request->name;
+        $email      = $request->email;
+        $telepon    = $request->telepon;
 
         $user = User::where('name', $name)
             ->where('email', $email)

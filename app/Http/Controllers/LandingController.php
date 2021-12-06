@@ -17,13 +17,28 @@ class LandingController extends Controller
 {
     public function index()
     {
-        $total_kelompok = Kelompok::count();
+        // total kelompok
+        $total_kelompok = Kelompok::count(); 
+
+        // jumlah petani
         $jumlah_petani = Petani::count();
+
+        // luas lahan
         $luas_lahan = Lahan::sum('luas_lahan');
+
+        // total panen katak
         $panen_katak = Panen::sum('panen_katak');
+
+        // total panen umbi
         $panen_umbi = Panen::sum('panen_umbi');
+
+        // total panen keseluruhan
         $total_panen = $panen_katak + $panen_umbi;
+
+        // jumlah petani
         $jumlah_lahan = Petani::count();
+
+        // data user
         $user=User::all();
         
       

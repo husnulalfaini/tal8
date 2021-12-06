@@ -1,4 +1,10 @@
-@extends('layout.master') @section('header') Monitoring Petani @endsection @section('content')
+@extends('layout.master') 
+
+@section('header') 
+Monitoring Petani 
+@endsection 
+
+@section('content')
 <section class="content">
 	<div class="container-fluid">
 		<div class="col-md-12">
@@ -68,6 +74,7 @@
 		</div>
 		<!-- /.content -->
 		<!-- end informasi petani -->
+
 		<!-- informasi lahan -->
 		<div class="col-md-12">
 			<div class="card">
@@ -110,7 +117,6 @@
 
 
 		<!-- tabel riwayat Panen -->
-		<!-- jQuery -->
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6">
@@ -133,7 +139,8 @@
 										<td>{{$item->tanggal}}</td>
 										<td>{{$item->panen_katak}}</td>
 										<td>{{$item->panen_umbi}}</td>
-									</tr>@endforeach
+									</tr>
+									@endforeach
                                 </tbody>
 								<tfoot>
 									<tr>
@@ -170,12 +177,15 @@
 									<tr>
 										<td>{{$item->id}}</td>
 										<td>{{$item->luas_lahan}}</td>
-                              <td><a href="{{route('ketua.monitoring_lahan',[$item->id])}}" class="text-dark"><i class=" fas fa-eye"></i></a>
-                                                 <a href="#"  class="text-dark"><i class="far fa-edit"></i></a></td>
-									</tr>@endforeach
+                              			<td>
+								  			<a href="{{route('ketua.monitoring_lahan',[$item->id])}}" class="text-dark"><i class=" fas fa-eye"></i></a>
+                                            <a href="#"  class="text-dark"><i class="far fa-edit"></i></a>
+										</td>
+									</tr>
+									@endforeach
                                 </tbody>
 								<tfoot>
-                           <tr>
+                           			<tr>
 										<th>lahan</th>
 										<th>luas</th>
 										<th></th>
@@ -227,4 +237,5 @@
 	     "autoWidth": false,
 	     "responsive": true,
 	   });
-</script>@endsection
+</script>
+@endsection

@@ -1,12 +1,13 @@
-
-
 @extends('layout.master')
+
 @section('header')
 Lihat Agenda
 @endsection
+
 @section('content')
 <section class="content">
    <div class="container-fluid">
+      
    <div class="row">
       <div class="col-md">
          <div class="card card-outline card-warning">
@@ -46,6 +47,7 @@ Lihat Agenda
          <!-- /.col -->
       </div>
    </div>
+
    <div class="row">
       <div class="col-12">
          <div class="card card-outline card-warning">

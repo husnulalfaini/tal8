@@ -9,22 +9,9 @@
           <div class="card-header ">
             <h3 class="card-title-center">Edit Kelompok</h3>
           </div>
-          <form action="{{route('update.kelompok',$kelompok->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+          <form action="{{route('update.petani',$petani->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
             {{ csrf_field() }}
             <div class="card-body">
-              <!-- Nama -->
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text ">
-                      <i class="far fa-user"></i>
-                    </span>
-                  </div>
-                  <input type="Text" class="form-control" id="text-input" name="nama" value="{{$kelompok->nama}}">
-                </div>
-                <!-- /.input group -->
-              </div>
-              <!-- /.form group -->
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -32,7 +19,7 @@
                       <i class="fas fa-user-alt"></i>
                     </span>
                   </div>
-                  <select id="user_id" class="form-control text-darker" name="user_id" required autocomplete="user_id" autofocus> @foreach ($ketua as $item) <option class="text-darker" value="{{ $item->id }}">{{ $item->nama }}</option> @endforeach </select>
+                  <select id="kelompok_id" class="form-control text-darker" name="kelompok_id" required autocomplete="kelompok_id" autofocus> @foreach ($kelompok as $item) <option class="text-darker" value="{{ $item->id }}">{{ $item->nama }}</option> @endforeach </select>
                   <!-- /.input group -->
                 </div>
               </div>

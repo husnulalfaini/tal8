@@ -11,9 +11,12 @@ class SensorController extends Controller
 {
     public function kirimSensor()
     {
+        // menampilkan semua data sensor
         $sensor = PengolahanSensor::all();
+
         return response()->json($sensor);
     }
+    
     
     public function terimaSensor(Request $request)
     {   
@@ -70,17 +73,16 @@ class SensorController extends Controller
         //proses create data baru
         $sensor = PengolahanSensor::create([
             
-            'lahan_id' => $request->input('lahan_id'),
-            'kelembapan' => $request->input('kelembapan'),
-            'ph' => $request->input('ph'),
-            'info_kelembapan' => $hasilkelembapan,
-            'info_ph' => $hasilph,
-            'rekom_kelembapan' => $rekomkelembapan,
-            'rekom_ph' => $rekomph,
-            
-            
+            'lahan_id'          => $request->input('lahan_id'),
+            'kelembapan'        => $request->input('kelembapan'),
+            'ph'                => $request->input('ph'),
+            'info_kelembapan'   => $hasilkelembapan,
+            'info_ph'           => $hasilph,
+            'rekom_kelembapan'  => $rekomkelembapan,
+            'rekom_ph'          => $rekomph,
         ]);
 
+        // pengondisian sukses
         if ($sensor) {
             return response()->json([
                 'success' => true,

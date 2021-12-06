@@ -1,64 +1,62 @@
 
-
 @extends('layout.master')
+
 @section('content')
 <!-- Sidebar Menu -->
+
 <!-- konten utama -->
 <section class="content">
    <div class="container-fluid">
-   <div class="row">
-      <!-- Left col -->
-      <!-- <section class="col-lg-12 connectedSortable"> -->
-      <!-- Custom tabs (Charts with tabs)-->
-      <div class="col-md-12">
-               <div class="card">
-                  <div class="card-header">
-                     <h3 class="card-title">Monitoring Lahan</h3>
+      <div class="row">
+         <!-- Custom tabs (Charts with tabs)-->
+         <div class="col-md-12">
+                  <div class="card">
+                     <div class="card-header">
+                        <h3 class="card-title">Monitoring Lahan</h3>
+                     </div>
+                     <!-- /.card-header -->
+                     <div class="card-body">
+                        <table id="example1" class="table table-bordered table-hover">
+                           <thead>
+                              <tr>
+                                 <th>Tanggal</th>
+                                 <th>Kelembapan</th>
+                                 <th>Ph</th>
+                                 <th>Keterangan</th>
+                                 <th></th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              @foreach ($monitoring_lahan as $item)
+                              <tr>
+                                 <td>{{$item->created_at}}</td>
+                                 <td>{{$item->kelembapan}}</td>
+                                 <td>{{$item->ph}}</td>
+                                 <td>kelembapan tinggi</td>
+                                 <td>ph normal</td>
+                              </tr>
+                              @endforeach
+                           </tbody>
+                           <tfoot>
+                              <tr>
+                                 <th>Tanggal</th>
+                                 <th>Kelembapan</th>
+                                 <th>Ph</th>
+                                 <th>Keterangan</th>
+                                 <th></th>
+                              </tr>
+                           </tfoot>
+                        </table>
+                     </div>
+                     <!-- /.card-body -->
                   </div>
-                  <!-- /.card-header -->
-                  <div class="card-body">
-                     <table id="example1" class="table table-bordered table-hover">
-                        <thead>
-                           <tr>
-                              <th>Tanggal</th>
-                              <th>Kelembapan</th>
-                              <th>Ph</th>
-                              <th>Keterangan</th>
-                              <th></th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           @foreach ($monitoring_lahan as $item)
-                           <tr>
-                              <td>{{$item->created_at}}</td>
-                              <td>{{$item->kelembapan}}</td>
-                              <td>{{$item->ph}}</td>
-                              <td>kelembapan tinggi</td>
-                              <td>ph normal</td>
-                           </tr>
-                           @endforeach
-                        </tbody>
-                        <tfoot>
-                           <tr>
-                              <th>Tanggal</th>
-                              <th>Kelembapan</th>
-                              <th>Ph</th>
-                              <th>Keterangan</th>
-                              <th></th>
-                           </tr>
-                        </tfoot>
-                     </table>
-                  </div>
-                  <!-- /.card-body -->
+                  <!-- /.card -->
                </div>
-               <!-- /.card -->
-            </div>
-            <!-- /.col -->
-      <!-- </section> -->
-   </div>
+               <!-- /.col -->
+         <!-- </section> -->
+      </div>
    <!-- /.Left col -->
-   <!-- right col (We are only adding the ID to make the widgets sortable)-->
-   <!-- <section class="col-lg-5 connectedSortable"> -->
+ 
 
    <!-- Tabel Aktifitas lahan -->
          <div class="row">
@@ -96,6 +94,7 @@
             </div>
             <!-- /.col -->
 
+            <!-- tabel aktifitas panen -->
             <div class="col-md-6">
                <div class="card">
                   <div class="card-header">

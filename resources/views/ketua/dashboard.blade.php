@@ -1,153 +1,148 @@
+@extends('layout.master') 
 
-
-@extends('layout.master')
 @section('content')
-<!-- Sidebar Menu -->
+
 <!-- konten utama -->
 <section class="content">
-   <div class="container-fluid">
-   <!-- Small boxes (Stat box) -->
-   <div class="row">
+  <div class="container-fluid">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
       <div class="col-lg-3 col-6">
-         <!-- small box -->
-         <div class="small-box bg-success">
-            <div class="inner">
-               <h3>{{$anggota}} Orang</h3>
-               <p>Total Petani</p>
-            </div>
-            <div class="icon">
-               <i class="ion ion-stats-bars"></i>
-            </div>
-         </div>
+        <!-- small box -->
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3>{{$anggota}} Orang</h3>
+            <p>Total Petani</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+        </div>
       </div>
       <!-- ./col -->
       <div class="col-lg-3 col-6">
-         <!-- small box -->
-         <div class="small-box bg-success">
-            <div class="inner">
-               <h3>{{$luas_lahan}} Hektar</h3>
-               <p>Luas Lahan</p>
-            </div>
-            <div class="icon">
-               <i class="ion ion-stats-bars"></i>
-            </div>
-         </div>
+        <!-- small box -->
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3>{{$luas_lahan}} Hektar</h3>
+            <p>Luas Lahan</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+        </div>
       </div>
       <!-- ./col -->
       <div class="col-lg-3 col-6">
-         <!-- small box -->
-         <div class="small-box bg-success">
-            <div class="inner">
-               <h3>{{$hasil}} Kilo</h3>
-               <p>Total Panen</p>
-            </div>
-            <div class="icon">
-               <i class="ion ion-stats-bars"></i>
-            </div>
-         </div>
+        <!-- small box -->
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3>{{$hasil}} Kilo</h3>
+            <p>Total Panen</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+        </div>
       </div>
       <!-- ./col -->
       <div class="col-lg-3 col-6">
-         <!-- small box -->
-         <div class="small-box bg-success">
-            <div class="inner">
-               <h3>{{$jumlah_lahan}}</h3>
-               <p>Jumlah Lahan</p>
-            </div>
-            <div class="icon">
-               <i class="ion ion-stats-bars"></i>
-            </div>
-         </div>
+        <!-- small box -->
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3>{{$jumlah_lahan}}</h3>
+            <p>Jumlah Lahan</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+        </div>
       </div>
       <!-- ./col -->
-   </div>
-   <!-- /.row -->
-   <!-- Main row -->
-   <div class="row">
+    </div>
+    <!-- /.row -->
+
+    <!-- Main row -->
+    <div class="row">
       <!-- Left col -->
       <!-- <section class="col-lg-12 connectedSortable"> -->
       <!-- Custom tabs (Charts with tabs)-->
       <div class="col-md-12">
-         <!-- GRAFIK -->
-         <div class="card card-success">
-            <div class="card-header">
-               <h3 class="card-title">GRAFIK</h3>
-               <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
-                  </button>
-               </div>
+        <!-- GRAFIK -->
+        <div class="card card-success">
+          <div class="card-header">
+            <h3 class="card-title">GRAFIK</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
             </div>
-            <div class="card-body">
-               <div class="chart">
-                  <div id="barChart"></div>
-               </div>
+          </div>
+          <div class="card-body">
+            <div class="chart">
+              <div id="barChart"></div>
             </div>
-            <!-- /.card-body -->
-         </div>
-         <!-- /.card -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
       </div>
       <!-- </section> -->
-   </div>
-   <!-- /.Left col -->
-   <!-- right col (We are only adding the ID to make the widgets sortable)-->
-   <!-- <section class="col-lg-5 connectedSortable"> -->
-      
-   <!-- Tabel Data Panen Petani -->
-         <div class="row">
-            <div class="col-12">
-               <div class="card">
-                  <div class="card-header">
-                     <h3 class="card-title">Data Panen Petani</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body">
-                     <table id="example2" class="table table-bordered table-hover">
-                        <thead>
-                           <tr>
-                              <th>Petani</th>
-                              <th>Alamat</th>
-                              <th>Lahan</th>
-                              <th>Tanggal Panen</th>
-                              <th>Jumlah Panen Katak</th>
-                              <th>Jumlah Panen Umbi</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           @foreach ($data_panen as $item)
-                           <tr>
-                           <td>{{$item->nama}}</td>
-                           <td>{{$item->alamat}}</td>
-                           <td>{{$item->lahan}}</td>
-                           <td>{{$item->tanggal}}</td>
-                           <td>{{$item->katak}}</td>
-                           <td>{{$item->umbi}}</td>
-                        </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
-                           <tr>
-                              <th>Petani</th>
-                              <th>Alamat</th>
-                              <th>Lahan</th>
-                              <th>Tanggal Panen</th>
-                              <th>Jumlah Panen Katak</th>
-                              <th>Jumlah Panen Umbi</th>
-                           </tr>
-                        </tfoot>
-                     </table>
-                  </div>
-                  <!-- /.card-body -->
-               </div>
-               <!-- /.card -->
-            </div>
-            <!-- /.col -->
-         </div>
-         <!-- /.row -->
+    </div>
+    <!-- /.Left col -->
+  
+    <!-- Tabel Data Panen Petani -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Data Panen Petani</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Petani</th>
+                  <th>Alamat</th>
+                  <th>Lahan</th>
+                  <th>Tanggal Panen</th>
+                  <th>Jumlah Panen Katak</th>
+                  <th>Jumlah Panen Umbi</th>
+                </tr>
+              </thead>
+              <tbody> @foreach ($data_panen as $item) <tr>
+                  <td>{{$item->nama}}</td>
+                  <td>{{$item->alamat}}</td>
+                  <td>{{$item->lahan}}</td>
+                  <td>{{$item->tanggal}}</td>
+                  <td>{{$item->katak}}</td>
+                  <td>{{$item->umbi}}</td>
+                </tr> @endforeach </tbody>
+              <tfoot>
+                <tr>
+                  <th>Petani</th>
+                  <th>Alamat</th>
+                  <th>Lahan</th>
+                  <th>Tanggal Panen</th>
+                  <th>Jumlah Panen Katak</th>
+                  <th>Jumlah Panen Umbi</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
 </section>
+
 <!-- /.content -->
 <!-- jQuery -->
 <script src="{{asset('public/asset/plugins/jquery/jquery.min.js')}}"></script>
@@ -168,58 +163,65 @@
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <!-- js dari data table -->
 <script>
-   $('#example2').DataTable({
-     "paging": true,
-     "lengthChange": false,
-     "searching": false,
-     "ordering": true,
-     "info": true,
-     "autoWidth": false,
-     "responsive": true,
-   });
+  $('#example2').DataTable({
+    "paging": true,
+    "lengthChange": false,
+    "searching": false,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+    "responsive": true,
+  });
 </script>
 <!-- js dari grafik barchart -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
-
-   
-   Highcharts.chart('barChart', {
-   chart: {
-       type: 'column'
-   },
-   title: {
-       text: 'Hasil Panen Porang Pertahun'
-   },
-   xAxis: {
-       categories: {!!json_encode($tgl_panen)!!},
-       crosshair: true
-   },
-   yAxis: {
-       min: 0,
-       title: {
-           text: 'Hasil Panen Porang (Ton)'
-       }
-   },
-   tooltip: {
-       headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-       pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-           '<td style="padding:0"><b>{point.y:.1f} Ton</b></td></tr>',
-       footerFormat: '</table>',
-       shared: true,
-       useHTML: true
-   },
-   plotOptions: {
-       column: {
-           pointPadding: 0.2,
-           borderWidth: 0
-       }
-   },
-   series: [{
-       name: 'Presentase Panen',
-       data: {!!json_encode($panen_umbi)!!}
-   }]
-   });
-</script>
-
+  Highcharts.chart('barChart', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: 'Hasil Panen Porang Pertahun'
+    },
+    xAxis: {
+      categories: {
+        !!json_encode($tgl_panen) !!
+      },
+      crosshair: true
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Hasil Panen Porang (Ton)'
+      }
+    },
+    tooltip: {
+      headerFormat: ' < span style = "font-size:10px" > {
+        point.key
+      } < /span> < table > ',
+      pointFormat: ' < tr > < td style = "color:{series.color};padding:0" > {
+        series.name
+      }: < /td>' +
+      ' < td style = "padding:0" > < b > {
+        point.y: .1 f
+      }
+      Ton < /b> < /td> < /tr>',
+      footerFormat: ' < /table>',
+      shared: true,
+      useHTML: true
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 0
+      }
+    },
+    series: [{
+      name: 'Presentase Panen',
+      data: {
+        !!json_encode($panen_umbi) !!
+      }
+    }]
+  });
+</script> 
 @endsection
-

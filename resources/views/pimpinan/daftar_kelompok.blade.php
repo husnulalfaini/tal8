@@ -223,41 +223,35 @@ Daftar Kelompok
 </div>
       <!-- END Modal Tambah Kelompok -->
 
-	  
-
-		<script src="{{asset('public/asset/plugins/jquery/jquery.min.js')}}"></script>
-		<!-- Bootstrap 4 -->
-		<script src="{{asset('public/asset/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-		<!-- DataTables  & Plugins -->
-		<script src="{{asset('public/asset/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-		<script src="{{asset('public/asset/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-		<script src="{{asset('public/asset/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-		<script src="{{asset('public/asset/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-		<script src="{{asset('public/asset/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-		<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-		<script src="{{asset('public/asset/plugins/jszip/jszip.min.js')}}"></script>
-		<script src="{{asset('public/asset/plugins/pdfmake/pdfmake.min.js')}}"></script>
-		<script src="{{asset('public/asset/plugins/pdfmake/vfs_fonts.js')}}"></script>
-		<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-		<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-		<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-		<!-- js dari data table -->
-		<script>
-			$('#example2').DataTable({
-			           "paging": true,
-			           "lengthChange": false,
-			           "searching": true,
-			           "ordering": true,
-			           "info": true,
-			           "autoWidth": false,
-			           "responsive": true,
-			         });
+<script src="{{asset('public/asset/plugins/jquery/jquery.min.js')}}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{asset('public/asset/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{asset('public/asset/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<!-- js dari data table -->
+<script>
+	$('#example2').DataTable({
+				"paging": true,
+				"lengthChange": false,
+				"searching": true,
+				"ordering": true,
+				"info": true,
+				"autoWidth": false,
+				"responsive": true,
+				});
 
 
-		</script>
-
-		
-
-	
-		@endsection
+</script>
+@endsection
