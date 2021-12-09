@@ -48,6 +48,16 @@ class ProfileAdminController extends Controller
             $admin->telepon         = $request->telepon;
             $admin->remember_token  = Str::random(60);
             $admin->alamat          = $request->alamat;
+            $admin->save();
+
+            return redirect()->route('profile_admin')->with('sukses','Data Admin Berhasil di Update');
+    }
+
+    
+    public function updateFoto(Request $request, $id)
+    {
+        //  mencari user sesuai authentikasi user yang ada
+        $admin=User::find(Auth()->user()->id);
 
             // input data foto
             $image                  = $request->file('foto')->getClientOriginalName();
@@ -60,9 +70,7 @@ class ProfileAdminController extends Controller
 
             $admin->save();
 
-        return view ('admin.profile_admin')->with('sukses','Data Admin Berhasil di Update');
-        
-    
+            return redirect()->route('profile_admin')->with('sukses','Data Admin Berhasil di Update');
     }
 
 }

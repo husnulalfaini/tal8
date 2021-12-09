@@ -47,18 +47,28 @@ class ProfilePimpinanController extends Controller
             $pimpinan->telepon          = $request->telepon;
             $pimpinan->remember_token   = Str::random(60);
             $pimpinan->alamat           = $request->alamat;
+            $pimpinan->save();
+            
+            return redirect()->route('profile_pimpinan')->with('sukses','tugas berhasil disimpan');
+        
+    }
+
+
+    public function updateFoto(Request $request, $id)
+    {
+        //  mencari user sesuai authentikasi user yang ada
+        $pimpinan=User::find(Auth()->user()->id);
 
             $image                      = $request->file('foto')->getClientOriginalName();
                                           $request->file('foto')->move('public/storage', $image);
             $pimpinan->foto             = $image;
             if($image){
-                        Storage::delete('public/storage'. $pimpinan->foto);
-                        }
-            
-            $pimpinan->save();
-            
-        return view ('pimpinan.profile_pimpinan')->with('sukses','tugas berhasil disimpan');
-        
+            Storage::delete('public/storage'. $pimpinan->foto);
+            }
+
+        $pimpinan->save();
+
+            return redirect()->route('profile_pimpinan')->with('sukses','Data Admin Berhasil di Update');
     }
 
 }

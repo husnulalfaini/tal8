@@ -7,7 +7,7 @@ use App\Models\Panen;
 use App\Models\Tanam;
 use App\Models\Lahan;
 use DB;
-// use PDF;
+use Carbon\Carbon;
 use App\Models\PengolahanSensor;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +43,13 @@ class DaftarPetaniController extends Controller
             ->join('petanis','petanis.id','=','lahans.petani_id')
             ->where('lahans.petani_id', $id)
             ->get();
+            
+        // menampilkan data panen petani
+        $tanam_petani = Tanam::select(DB::raw('*'))
+            ->join('lahans','lahans.id','=','tanams.lahan_id')
+            ->join('petanis','petanis.id','=','lahans.petani_id')
+            ->where('lahans.petani_id', $id)
+            ->get();
     
         // menjumlah luas lahan
         $luas_lahan = Lahan::where('petani_id', $id)->sum('luas_lahan');
@@ -64,7 +71,7 @@ class DaftarPetaniController extends Controller
             $hasil = (float)$val->katak;
         }
 
-        return view('ketua.monitoring_petani', compact('petani','lahan','luas_lahan','jumlah_lahan','hasil','panen_petani'));
+        return view('ketua.monitoring_petani', compact('petani','lahan','luas_lahan','jumlah_lahan','hasil','panen_petani','tanam_petani'));
     
     }
 
@@ -74,13 +81,19 @@ class DaftarPetaniController extends Controller
         // menampilkan data sensor sesuai lahan petani
         $monitoring_lahan = PengolahanSensor::where('lahan_id', $id)->get();
 
+        //grafik kelembapan
+        $data_kelembapan = PengolahanSensor::whereDate('created_at', Carbon::today())->get();;
+
+        //grafik kelembapan
+        $data_PH = PengolahanSensor::whereDate('created_at', Carbon::today())->get();;
+
         // menampilkan data panen sesuai lahan petani
         $panen_petani = Panen::where('lahan_id', $id)->get();
 
         // menampilkan data Tanam sesuai lahan petani
         $tanam_petani = Tanam::where('lahan_id', $id)->get();
 
-        return view('ketua.monitoring_lahan', compact('monitoring_lahan','panen_petani','tanam_petani'));
+        return view('ketua.monitoring_lahan', compact('monitoring_lahan','panen_petani','tanam_petani','data_PH','data_kelembapan'));
 
     }
 

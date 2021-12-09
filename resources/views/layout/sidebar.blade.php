@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-light-primary elevation-4">
   <!-- Brand Logo -->
   <a class="brand-link">
-    <img src="{{asset ('public/asset/dist/img/porasiti.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">Porasiti</span>
+    <img src="{{asset('public/asset/dist/img/API.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">PT. API Banyuwangi</span>
   </a>
   <!-- Sidebar -->
   <div class="sidebar">

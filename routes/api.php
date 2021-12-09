@@ -37,3 +37,6 @@ Route::post('/UpdateTanam', [CRUDPetaniController::class, 'UpdateTanam']);
 Route::post('/UpdatePanen', [CRUDPetaniController::class, 'UpdatePanen']);
 
 Route::post('/terimaSensor', [SensorController::class, 'terimaSensor']);
+
+Route::get('/chartKelembapan', [SensorController::class, 'chartKelembapan'])->name('chartKelembapan');
+Route::get('/chartPH', [SensorController::class, 'chartPH'])->name('chartPH');

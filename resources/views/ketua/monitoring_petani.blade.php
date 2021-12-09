@@ -13,7 +13,7 @@ Monitoring Petani
 				<!-- Add the bg color to the header using any of the bg-* classes -->
 				<div class="widget-user-header bg-info" style="background: url('public/asset/dist/img/view.jpg') center center;"></div>
 				<div class="widget-user-image">
-					<img class="img-circle elevation-2" style="width: 110px;" src="{{asset('public/asset/dist/img/bambang.jpg')}}" alt="User Avatar">
+					<img class="img-circle elevation-2" style="width: 110px;" src="{{ asset('public/storage/'.$petani->foto)}}" alt="Profil Petani">
 				</div>
 				<div class="card-footer">
 					<div class="row"></div>
@@ -120,14 +120,27 @@ Monitoring Petani
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6">
-					<div class="card">
-						<div class="card-header">
-							<h3 class="card-title">Riwayat Panen</h3>
-						</div>
-						<!-- /.card-header -->
-						<div class="card-body">
-							<table id="example2" class="table table-bordered table-hover">
-								<thead>
+            <div class="card">
+               <div class="card-header card-tools">
+                  <ul class="nav nav-pills mr-auto">
+                     <li class="nav-item">
+                        <a class="nav-link active" href="#panen" data-toggle="tab">Aktivitas Panen</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#tanam" data-toggle="tab">Aktivitas Tanam</a>
+                     </li>
+                  </ul>
+               </div>
+               <!-- /.card-header -->
+
+               <div class="card-body">
+                  <div class="tab-content p-0">
+                     <!-- Morris chart - Sales -->
+
+                     <!-- Seluruh User -->
+                     <div class="chart tab-pane success" id="panen" style="position: relative;">
+                        <table id="example1" class="table table-bordered table-hover">
+							<thead>
 									<tr>
 										<th>Tanggal</th>
 										<th>Jumlah Panen Katak</th>
@@ -141,7 +154,7 @@ Monitoring Petani
 										<td>{{$item->panen_umbi}}</td>
 									</tr>
 									@endforeach
-                                </tbody>
+								</tbody>
 								<tfoot>
 									<tr>
 										<th>Tanggal</th>
@@ -149,13 +162,47 @@ Monitoring Petani
 										<th>Jumlah Panen Umbi</th>
 									</tr>
 								</tfoot>
-							</table>
-						</div>
-						<!-- /.card-body -->
-					</div>
-					<!-- /.card -->
-				</div>
-            <!-- end riwayat panen -->
+                        </table>
+                     </div>
+                     <!-- END Seluruh User -->
+
+                     <!-- Seluruh Petani -->
+                     <div class="chart tab-pane" id="tanam" style="position: relative;">
+                        <table id="example2" class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>Tanggal</th>
+									<th>lahan</th>
+									<th>Jumlah bibit</th>
+								</tr>
+							</thead>
+							<tbody>@foreach ($tanam_petani as $item)
+								<tr>
+									<td>{{$item->tanggal}}</td>
+									<td>{{$item->lahan->nama}}</td>
+									<td>{{$item->jumlah_bibit}}</td>
+								</tr>
+								@endforeach
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>Tanggal</th>
+									<th>lahan</th>
+									<th>Jumlah bibit</th>
+								</tr>
+							</tfoot>
+                        </table>
+                     </div>
+                     <!-- END Seluruh Petani -->
+                  </div>
+               </div>
+               <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+         </div>
+         <!-- /.card -->
+			
+         <!-- end riwayat panen -->
 
             <!-- info lahan -->
 				<div class="col-md-6">

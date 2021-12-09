@@ -96,4 +96,27 @@ class SensorController extends Controller
             ], 401);
         }
     }
+
+
+    public function chartKelembapan()
+    {
+
+        $data_kelembapan = PengolahanSensor::whereDate('created_at', Carbon::today())->take(30)->get()->sortBy('id');
+        $labels = $data_kelembapan->pluck('created_at');
+        $data_kelembapan = $data_kelembapan->pluck('kelembapan');
+
+        return response()->json(compact('labels', 'data_kelembapan'));
+    }
+
+
+    public function chartPH()
+    {
+
+        $data_PH = PengolahanSensor::whereDate('created_at', Carbon::today())->take(30)->get()->sortBy('id');
+        $labels = $data_PH->pluck('created_at');
+        $data_PH = $data_PH->pluck('ph');
+        // $status = $status->pluck('status_ph');
+
+        return response()->json(compact('labels', 'data_PH'));
+    }
 }

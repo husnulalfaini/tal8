@@ -4,13 +4,46 @@
 @section('content')
 <!-- Sidebar Menu -->
 
-<!-- konten utama -->
+<!-- Grafik Kelembapan -->
 <section class="content">
    <div class="container-fluid">
       <div class="row">
-         <!-- Custom tabs (Charts with tabs)-->
-         <div class="col-md-12">
-                  <div class="card">
+         <div class="col-md-6">
+         <div class="card">
+            <div class="card-header">
+               <h3 class="card-title">Grafik Kelembapan</h3>
+            </div>
+            <!-- /.card-header -->
+
+            <div class="card-body">
+                <canvas id="myChart1"></canvas>
+            </div>
+         </div>
+      </div>
+   <!-- /.Left col -->
+
+
+<!-- Grafik PH -->
+         <div class="col-md-6">
+         <div class="card">
+            <div class="card-header">
+               <h3 class="card-title">Grafik PH</h3>
+            </div>
+            <!-- /.card-header -->
+
+            <div class="card-body">
+                <canvas id="myChart2"></canvas>
+            </div>
+         </div>
+      </div>
+      </div>
+   <!-- /.Left col -->
+ 
+
+   <!-- Tabel Aktifitas lahan -->
+         <div class="row">
+            <div class="col-md-12">
+            <div class="card">
                      <div class="card-header">
                         <h3 class="card-title">Monitoring Lahan</h3>
                      </div>
@@ -52,86 +85,11 @@
                   </div>
                   <!-- /.card -->
                </div>
+               </div>
+               </div>
                <!-- /.col -->
          <!-- </section> -->
-      </div>
-   <!-- /.Left col -->
- 
-
-   <!-- Tabel Aktifitas lahan -->
-         <div class="row">
-            <div class="col-md-6">
-               <div class="card">
-                  <div class="card-header">
-                     <h3 class="card-title">Aktivitas Tanam</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body">
-                     <table id="example2" class="table table-bordered table-hover">
-                        <thead>
-                           <tr>
-                              <th>Tanggal</th>
-                              <th>jumlah Bibit</th>
-                           </tr>
-                        </thead>
-                        <tbody>@foreach ($tanam_petani as $item)
-									<tr>
-										<td>{{$item->tanggal}}</td>
-										<td>{{$item->jumlah_bibit}}</td>
-									</tr>@endforeach
-                        </tbody>
-                        <tfoot>
-                           <tr>
-                              <th>Tanggal</th>
-                              <th>jumlah Bibit</th>
-                           </tr>
-                        </tfoot>
-                     </table>
-                  </div>
-                  <!-- /.card-body -->
-               </div>
-               <!-- /.card -->
-            </div>
-            <!-- /.col -->
-
-            <!-- tabel aktifitas panen -->
-            <div class="col-md-6">
-               <div class="card">
-                  <div class="card-header">
-                     <h3 class="card-title">Aktivitas Panen</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body">
-                     <table id="example3" class="table table-bordered table-hover">
-                        <thead>
-                           <tr>
-                              <th>Tanggal</th>
-                              <th>Panen Katak</th>
-                              <th>Panen Umbi</th>
-                           </tr>
-                        </thead>
-                        <tbody>@foreach ($panen_petani as $item)
-									<tr>
-										<td>{{$item->tanggal}}</td>
-										<td>{{$item->panen_katak}}</td>
-										<td>{{$item->panen_umbi}}</td>
-									</tr>@endforeach
-                        </tbody>
-                        <tfoot>
-                           <tr>
-                              <th>Tanggal</th>
-                              <th>Panen Katak</th>
-                              <th>Panen Umbi</th>
-                           </tr>
-                        </tfoot>
-                     </table>
-                  </div>
-                  <!-- /.card-body -->
-               </div>
-               <!-- /.card -->
-            </div>
-            <!-- /.col -->
-         </div>
+         
          <!-- /.row -->
    
       <!-- /.container-fluid -->
@@ -155,6 +113,108 @@
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+<script>
+    var ctx = document.getElementById("myChart1");
+    var myChart1 = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          fill: false,
+          pointBorderColor: 'blue',
+          borderColor: 'blue',
+          label: 'kelembapan',
+          data: [],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          xAxes: [],
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+    var updateChart = function() {
+      $.ajax({
+        url: "{{ route('chartKelembapan') }}",
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(data_kelembapan) {
+          myChart1.data.labels = data_kelembapan.labels;
+          myChart1.data.datasets[0].data = data_kelembapan.data_kelembapan;
+          myChart1.update();
+        },
+        error: function(data_kelembapan){
+          console.log(data_kelembapan);
+        }
+      });
+    }
+
+    updateChart();
+    setInterval(() => {
+      updateChart();
+    }, 1000); 
+ 
+    var ctx = document.getElementById("myChart2");
+    var myChart2 = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          fill: false,
+          pointBorderColor: 'blue',
+          borderColor: 'blue',
+          label: 'ph',
+          data: [],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          xAxes: [],
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+    var updateChart = function() {
+      $.ajax({
+        url: "{{ route('chartPH') }}",
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(data_PH) {
+          myChart2.data.labels = data_PH.labels;
+          myChart2.data.datasets[0].data = data_PH.data_PH;
+          myChart2.update();
+        },
+        error: function(data_PH){
+          console.log(data_PH);
+        }
+      });
+    }
+
+    updateChart();
+    setInterval(() => {
+      updateChart();
+    }, 1000); 
+  </script>
 <!-- js dari data table -->
 <script>
    $('#example1').DataTable({

@@ -109,6 +109,6 @@
 <script src="{{asset('public/asset/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('public/asset/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
+@include('sweetalert::alert')
 @endsection
 

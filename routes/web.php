@@ -53,8 +53,9 @@ Route::group(['middleware' => ['auth','CekLevel:admin']], function () {
   Route::get('/cetak_kelompok/{item}', [DaftarUserController::class, 'cetakKelompok'])->name('cetak_kelompok');
   Route::get('/tambah_user', [TambahUserController::class, 'index'])->name('tambah_user');
   Route::post('/tambah_user/upload', [TambahUserController::class, 'store'])->name('upload.tambah_user');
-  Route::get('/profile_admin', [ProfileAdminController::class, 'index']);
+  Route::get('/profile_admin', [ProfileAdminController::class, 'index'])->name('profile_admin');
   Route::post('/profile_admin/{item}', [ProfileAdminController::class, 'update'])->name('update.profile_admin');
+  Route::post('/profile_admin/foto/{item}', [ProfileAdminController::class, 'updateFoto'])->name('updateFoto.profile_admin');
 
 });
 
@@ -65,8 +66,9 @@ Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
     Route::get('/daftar_kelompok/edit/{id}', [TambahKelompokController::class, 'edit'])->name('edit.kelompok');
     Route::post('/daftar_kelompok/update/{id}', [TambahKelompokController::class, 'update'])->name('update.kelompok');
     Route::get('/detail_kelompok/{item}', [DaftarKelompokController::class, 'show'])->name('detail.kelompok');
-    Route::get('/profile_pimpinan', [ProfilePimpinanController::class, 'index']);
+    Route::get('/profile_pimpinan', [ProfilePimpinanController::class, 'index'])->name('profile_pimpinan');
     Route::post('/profile_pimpinan/{item}', [ProfilepimpinanController::class, 'update'])->name('update.profile_pimpinan');
+    Route::post('/profile_pimpinan/foto/{item}', [ProfilepimpinanController::class, 'updateFoto'])->name('updateFoto.profile_pimpinan');
     Route::post('/tambah_kelompok/upload', [TambahKelompokController::class, 'tambahKelompok'])->name('upload.tambah_kelompok');
     Route::post('/tambah_ketua/upload', [TambahKelompokController::class, 'tambahKetua'])->name('upload.tambah_ketua');
     Route::get('/kelompok_pdf/{item}', [DaftarKelompokController::class, 'kelompokPdf'])->name('kelompok.pdf'); 
@@ -77,8 +79,9 @@ Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
 // halaman ketua
 Route::group(['middleware' => ['auth','CekLevel:ketua']], function () {
     Route::get('/dashboard_ketua', [DashboardController::class, 'index'])->name('dashboard_ketua');
-    Route::get('/profile_ketua', [ProfileKetuaController::class, 'show']);
+    Route::get('/profile_ketua', [ProfileKetuaController::class, 'show'])->name('profile_ketua');
     Route::post('/profile_ketua/{item}', [ProfileKetuaController::class, 'update'])->name('update.profile');
+    Route::post('/profile_ketua/foto/{item}', [ProfileKetuaController::class, 'updateFoto'])->name('updateFoto.profile_ketua');
     Route::get('/konfirmasi', [KonfirmasiController::class, 'index'])->name('petani.daftar');
     Route::get('/konfirmasi/{id}', [KonfirmasiController::class, 'terima'])->name('konfirmasiterima');
     Route::get('/konfirmasi/edit/{id}', [KonfirmasiController::class, 'edit'])->name('edit.petani');

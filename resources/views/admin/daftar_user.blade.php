@@ -240,4 +240,6 @@ Data User
       "responsive": true,
       "buttons": ["csv", "excel", "pdf", "print"]
    }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
-</script> @endsection
+</script>
+@include('sweetalert::alert')
+ @endsection

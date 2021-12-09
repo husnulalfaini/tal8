@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProfileKetuaController extends Controller
 {
@@ -44,9 +45,21 @@ class ProfileKetuaController extends Controller
             $ketua->name            = $request->name;
             $ketua->email           = $request->email;
             $ketua->password        = bcrypt($request->password);
-            $admin->remember_token  = Str::random(60);
+            $ketua->remember_token  = Str::random(60);
             $ketua->telepon         = $request->telepon;
             $ketua->alamat          = $request->alamat;
+            $ketua->save();
+
+            return redirect()->route('profile_ketua')->with('sukses','tugas berhasil disimpan');       
+    }
+
+
+    public function updateFoto(Request $request, $id)
+    {
+        //  mencari user sesuai authentikasi user yang ada
+        $ketua=User::find(Auth()->user()->id);
+
+            // input data foto
             $image                  = $request->file('foto')->getClientOriginalName();
                                       $request->file('foto')->move('public/storage', $image);
             $ketua->foto            = $image;
@@ -56,7 +69,6 @@ class ProfileKetuaController extends Controller
 
             $ketua->save();
 
-        return view ('ketua.profile_ketua')->with('sukses','tugas berhasil disimpan');
-        
+            return redirect()->route('profile_ketua')->with('sukses','Data Admin Berhasil di Update');
     }
 }
