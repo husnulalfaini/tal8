@@ -33,7 +33,7 @@ class TambahKelompokController extends Controller
         // menyimpan data isian
         $tambah_kelompok->save();
 
-        return redirect('/daftar_kelompok')->with('success', 'Task Created Successfully!');
+        return redirect('/daftar_kelompok')->with('success', 'kelompok baru berhasil ditambahkan!');
     }
 
 
@@ -69,8 +69,7 @@ class TambahKelompokController extends Controller
                     Storage::delete('public/storage'. $input->foto);
                     }
         $input->save();
-        
-        return view ('pimpinan.daftar_kelompok', compact('kelompok','ketua'));
+        return redirect('/daftar_kelompok', compact('kelompok','ketua'))->with('success', 'ketua baru berhasil ditambahkan!');
     }
 
 

@@ -50,7 +50,7 @@ class ProfileAdminController extends Controller
             $admin->alamat          = $request->alamat;
             $admin->save();
 
-            return redirect()->route('profile_admin')->with('sukses','Data Admin Berhasil di Update');
+            return redirect()->route('profile_admin')->with('success','Data Admin Berhasil di Update');
     }
 
     
@@ -70,7 +70,7 @@ class ProfileAdminController extends Controller
 
             $admin->save();
 
-            return redirect()->route('profile_admin')->with('sukses','Data Admin Berhasil di Update');
+            return redirect()->route('profile_admin')->with('success','Data Admin Berhasil di Update');
     }
 
 }

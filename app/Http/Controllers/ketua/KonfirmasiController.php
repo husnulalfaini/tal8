@@ -62,7 +62,7 @@ class KonfirmasiController extends Controller
             $petani->kelompok_id  = $request->kelompok_id;
             $petani->save();
 
-        return redirect()->route('petani.daftar');
+        return redirect()->route('petani.daftar')->with('success','alamat petani berhasil dirubah');
         
     }
 
@@ -83,6 +83,6 @@ class KonfirmasiController extends Controller
             $terima->status= 1;
             $terima->update();
 
-        return redirect(route('petani.daftar'));
+        return redirect(route('petani.daftar'))->with('success','petani berhasil dikonfirmasi');
     }
 }

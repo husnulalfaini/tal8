@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\DaftarUserController;
 use App\Http\Controllers\admin\TambahUserController;
 use App\Http\Controllers\admin\ProfileAdminController;
+use App\Http\Controllers\admin\BibitController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ketua\DaftarPetaniController;
@@ -51,8 +52,14 @@ Route::group(['middleware' => ['auth','CekLevel:admin']], function () {
   Route::get('/cetak_petani/{item}', [DaftarUserController::class, 'cetakPetani'])->name('cetak_petani');
   Route::get('/show_kelompok/{item}', [DaftarUserController::class, 'showKelompok'])->name('show_kelompok');
   Route::get('/cetak_kelompok/{item}', [DaftarUserController::class, 'cetakKelompok'])->name('cetak_kelompok');
+  Route::get('/cetak_invoice/{item}', [BibitController::class, 'cetakInvoice'])->name('cetak_invoice');
   Route::get('/tambah_user', [TambahUserController::class, 'index'])->name('tambah_user');
   Route::post('/tambah_user/upload', [TambahUserController::class, 'store'])->name('upload.tambah_user');
+  Route::get('/daftar_stok', [BibitController::class, 'index'])->name('daftar_stok');
+  Route::post('/Tambah_stok', [BibitController::class, 'TambahStok'])->name('tambah_stok');
+  Route::get('/pesanan', [BibitController::class, 'Pesanan'])->name('pesanan');
+  Route::get('/pesanan/update/{item}', [BibitController::class, 'UpdateStatus'])->name('update_status');
+  Route::get('/pesanan/batal/{item}', [BibitController::class, 'destroy'])->name('batal_pesan');
   Route::get('/profile_admin', [ProfileAdminController::class, 'index'])->name('profile_admin');
   Route::post('/profile_admin/{item}', [ProfileAdminController::class, 'update'])->name('update.profile_admin');
   Route::post('/profile_admin/foto/{item}', [ProfileAdminController::class, 'updateFoto'])->name('updateFoto.profile_admin');

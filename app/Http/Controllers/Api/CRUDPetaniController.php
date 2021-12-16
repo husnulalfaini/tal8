@@ -8,6 +8,8 @@ use App\Models\Kelompok;
 use App\Models\Lahan;
 use App\Models\Tanam;
 use App\Models\Panen;
+use App\Models\Pesanan;
+use App\Models\Bibit;
 
 class CRUDPetaniController extends Controller
 {
@@ -132,6 +134,42 @@ class CRUDPetaniController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Data Panen Gagal Disimpan!',
+            ], 401);
+        }
+    }
+
+
+
+    public function InputPesanan(Request $request)
+    {
+        $bibit = Bibit::where('id',$request->input('bibit_id'))->get()->toArray();
+        // return $bibit;
+        $harga = $bibit[0]['harga'];
+
+        $total = $harga*$request->input('stok');
+        $catatan = 'silahkan kirim bukti tranfer ke no wa 0888888888 paling lambat 1x24jam';
+        //proses input data pesan baru
+        $pesan = Pesanan::create([
+                
+            'petani_id'         => $request->input('petani_id'),
+            'bibit_id'          => $request->input('bibit_id'),
+            'stok'              => $request->input('stok'),
+            'harga'             => $harga,
+            'total_bayar'       => $total,    
+            'catatan'           => $catatan,    
+        ]);
+
+        // pengondisian sukses
+        if ($pesan) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Data Pesan Berhasil Disimpan!',
+                'pesan' => $pesan,
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data Pesan Gagal Disimpan!',
             ], 401);
         }
     }

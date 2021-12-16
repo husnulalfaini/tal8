@@ -24,7 +24,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library --> 
       @if(auth()->user()->level=="admin") 
-         <li class="nav-item">
+      <li class="nav-item">
           <a href="{{url('/daftar_user')}}" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p> Data User </p>
@@ -35,7 +35,30 @@
             <i class="nav-icon fas fa-user"></i>
             <p> Tambah User </p>
           </a>
-        </li> 
+        </li>
+        <li class="nav-item   menu-is-opening menu-open">
+            <a class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                Bibit
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block;">
+              <li class="nav-item">
+                <a href="{{route('daftar_stok')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Stok Bibit</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('pesanan')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Penjualan</p>
+                </a>
+              </li>
+            </ul>
+          </li> 
 
         @elseif (auth()->user()->level=="pimpinan") 
         <li class="nav-item">

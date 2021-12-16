@@ -23,18 +23,14 @@ konfirmasi Petani
                <div class="row">
                   <div class="col-sm-6">
                      <div class="description-block">
-                        <a href="{{ route('konfirmasiterima', $petani->id) }}" class="text-success">
-                           <h5 class="description-header">Terima</h5>
-                        </a>
+                        <a class="btn btn-success terima"   role="button">Terima</a></td>
+                        </div>
+                        <!-- /.description-block -->
                      </div>
-                     <!-- /.description-block -->
-                  </div>
                   <!-- /.row -->
                   <div class="col-sm-6">
                      <div class="description-block">
-                        <a href="{{route('edit.petani',$petani->id)}}" class="text-danger">
-                           <h5 class="description-header">Edit Domisili</h5>
-                        </a>
+                        <a class="btn btn-warning" href="{{route('edit.petani',$petani->id)}}"  role="button">edit</a></td>
                      </div>
                      <!-- /.description-block -->
                   </div>
@@ -128,6 +124,28 @@ konfirmasi Petani
      "info": true,
      "autoWidth": false,
      "responsive": true,
+   });
+</script>
+
+<script>
+   $('.terima').click(function(){
+      swal({
+      title: "Terima Petani?",
+      text: "kamu akan mengonfirmasi petani. pastikan domisili sudah sesuai!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+      })
+      .then((willDelete) => {
+      if (willDelete) {
+         window.location = "{{ route('konfirmasiterima', $petani->id) }}"
+         swal("Selamat! Petani diterima!", {
+            icon: "success",
+         });
+      } else {
+         swal("segera konfirmasi petani!");
+      }
+      });
    });
 </script>
 @endsection

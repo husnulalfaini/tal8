@@ -11,7 +11,7 @@
                      <img class="profile-user-img img-fluid img-circle" style="width: 110px;" src="{{ asset('public/storage/'.Auth::user()->foto)}}" alt="Belum ada foto">
                   </div>
                   
-                  <form action="{{route('updateFoto.profile_admin', Auth::user()->id)}}" method="post" enctype="multipart/form-data">
+                  <form class="update" action="{{route('updateFoto.profile_admin', Auth::user()->id)}}" method="post" enctype="multipart/form-data">
                      {{ csrf_field() }}
                         <div class="form-group col-md-12">
                            <label for="exampleInputFile">Unggah Foto</label>
@@ -150,4 +150,7 @@
          </div>
       </div>
    </div>
-</section> @endsection
+</section> 
+
+
+@endsection

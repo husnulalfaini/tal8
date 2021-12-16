@@ -58,6 +58,6 @@ class TambahUserController extends Controller
 
         $input->save();
 
-        return redirect('/daftar_user')->with('success', 'Task Created Successfully!');
+        return redirect('/daftar_user')->with('success', 'User Baru Berhasil Ditambahkan!');
     }
 }

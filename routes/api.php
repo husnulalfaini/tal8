@@ -28,6 +28,7 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/InputLahan', [CRUDPetaniController::class, 'InputLahan']);
 Route::post('/InputTanam', [CRUDPetaniController::class, 'InputTanam']);
 Route::post('/InputPanen', [CRUDPetaniController::class, 'InputPanen']);
+Route::post('/InputPesanan', [CRUDPetaniController::class, 'InputPesanan']);
 Route::get('/GetKelompok', [CRUDPetaniController::class, 'GetKelompok']);
 Route::get('/GetLahan/{id}', [CRUDPetaniController::class, 'GetLahan']);
 Route::get('/GetTanam/{id}', [CRUDPetaniController::class, 'GetTanam']);
