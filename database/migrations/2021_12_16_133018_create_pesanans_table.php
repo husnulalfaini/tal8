@@ -19,8 +19,10 @@ class CreatePesanansTable extends Migration
         $table->foreign('petani_id')->references('id')->on('petanis');
         $table->unsignedBigInteger('bibit_id');
         $table->foreign('bibit_id')->references('id')->on('bibits');
-        $table->Integer('stok');
-        $table->Integer('harga')->nullable();
+        $table->Integer('stok_katak')->nullable();
+        $table->Integer('stok_umbi')->nullable();
+        $table->Integer('harga_katak')->nullable();
+        $table->Integer('harga_umbi')->nullable();
         $table->Integer('total_bayar')->nullable();
         $table->String('catatan')->nullable();
         $table->string('status')->default('0');

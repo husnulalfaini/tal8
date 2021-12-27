@@ -27,6 +27,7 @@
   --primary: #007bff;
   --secondary: #6c757d;
   --success: #28a745;
+  --gradien: #212b10;
   --info: #17a2b8;
   --warning: #ffc107;
   --danger: #dc3545;
@@ -14046,7 +14047,10 @@ body.text-sm .control-sidebar {
 }
 
 .navbar-success {
-  background-color: #28a745;
+  background-color: linear-gradient(to right, #4682B4, #00FFFF, #00FA9A);
+}
+.navbar-gradien {
+  background-color: #212b10;
 }
 
 .navbar-info {

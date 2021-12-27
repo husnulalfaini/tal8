@@ -21,10 +21,10 @@ Lihat Agenda
                      <tr>
                         <th>no</th>
                         <th>Petani</th>
-                        <th>Kelompok</th>
-                        <th>Jumlah pesan</th>
-                        <th>Jenis</th>
-                        <th>Harga</th>
+                        <th>Pesan Katak</th>
+                        <th>Pesan Umbi</th>
+                        <th>Harga Katak</th>
+                        <th>Harga Umbi</th>
                         <th>Total Bayar</th>
                         <th>Catatan</th>
                         <th>tanggal pesanan</th>
@@ -37,11 +37,11 @@ Lihat Agenda
                      <tr>
                         <td>{{$item->id}}</td>
                         <td>{{$item->petani->nama}}</td>
-                        <td>{{$item->petani->kelompok->nama}}</td>
-                        <td>{{$item->stok}} kilo</td>
-                        <td>{{$item->bibit->jenis}}</td>
-                        <td>Rp.{{$item->harga}} ,-</td>
-                        <td>{{$item->total_bayar}} Ribu</td>
+                        <td>{{$item->stok_katak}} kilo</td>
+                        <td>{{$item->stok_umbi}} kilo</td>
+                        <td>Rp.{{$item->harga_katak}} ,-</td>
+                        <td>Rp.{{$item->harga_umbi}} ,-</td>
+                        <td>Rp.{{$item->total_bayar}} ,-</td>
                         <td>{{$item->catatan}}</td>
                         <td>{{$item->created_at}}</td>
 

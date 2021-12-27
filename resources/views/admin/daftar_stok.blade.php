@@ -25,18 +25,20 @@ Lihat Agenda
                   <thead>
                      <tr>
                         <th>no</th>
-                        <th>jenis</th>
-                        <th>Stok</th>
-                        <th>harga</th>
+                        <th>Stok katak</th>
+                        <th>Stok Umbi</th>
+                        <th>Harga Katak</th>
+                        <th>harga Umbi</th>
                      </tr>
                   </thead>
                   @foreach ($bibit as $item)
                   <tbody>
                      <tr>
                         <td>{{$item->id}}</td>
-                        <td>{{$item->jenis}}</td>
-                        <td>{{$item->stok}} kilo</td>
-                        <td>Rp.{{$item->harga}} ,-</td>
+                        <td>{{$item->stok_katak}} kilo</td>
+                        <td>{{$item->stok_umbi}} kilo</td>
+                        <td>Rp.{{$item->harga_katak}} ,-</td>
+                        <td>Rp.{{$item->harga_umbi}} ,-</td>
                      </tr>
                   </tbody>
                   @endforeach
@@ -68,9 +70,10 @@ Lihat Agenda
                   <thead>
                      <tr>
                         <th>No</th>
-                        <th>Jumlah bibit</th>
-                        <th>Jenis</th>
-                        <th>Harga beli</th>
+                        <th>Jumlah Katak</th>
+                        <th>Jumlah Umbi</th>
+                        <th>Harga beli Katak</th>
+                        <th>Harga beli Umbi</th>
                         <th>Supplier</th>
                         <th>Tanggal beli</th>
                      </tr>
@@ -79,24 +82,15 @@ Lihat Agenda
                   <tbody>
                      <tr>
                         <td>{{$item->id}}</td>
-                        <td>{{$item->stok}} kilo</td>
-                        <td>{{$item->bibit->jenis}}</td>
-                        <td>Rp.{{$item->harga_beli}} ,-</td>
+                        <td>{{$item->stok_katak}} kilo</td>
+                        <td>{{$item->stok_umbi}} kilo</td>
+                        <td>Rp.{{$item->harga_katak}} ,-</td>
+                        <td>Rp.{{$item->harga_umbi}} ,-</td>
                         <td>{{$item->supplier}}</td>
                         <td>{{$item->created_at}}</td>
                      </tr>
                   </tbody>
                   @endforeach
-                  <tfoot>
-                     <tr>
-                        <th>No</th>
-                        <th>Jumlah bibit</th>
-                        <th>Jenis</th>
-                        <th>Harga beli</th>
-                        <th>Supplier</th>
-                        <th>Tanggal beli</th>
-                     </tr>
-                  </tfoot>
                </table>
             </div>
             <!-- /.card-body -->
@@ -125,7 +119,18 @@ Lihat Agenda
                         <div class="input-group-prepend">
                            <span class="input-group-text "><i class="far fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="text-input" name="stok" placeholder="stok" required autocomplete="isi nama">
+                        <input type="text" class="form-control" id="text-input" name="stok_katak" placeholder="stok_katak" >
+                     </div>
+                     <!-- /.input group -->
+                  </div>
+                  <!-- /.form group -->
+                  <!-- Nama -->
+                  <div class="form-group">
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text "><i class="far fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="text-input" name="stok_umbi" placeholder="stok_umbi" >
                      </div>
                      <!-- /.input group -->
                   </div>
@@ -136,18 +141,18 @@ Lihat Agenda
                         <div class="input-group-prepend">
                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="text-input" name="harga_beli" placeholder="Harga Beli" require required autocomplete="isi email">
+                        <input type="text" class="form-control" id="text-input" name="harga_katak" placeholder="harga_katak" >
                         <!-- /.input group -->
                      </div>
                   </div>
                   <!-- /.form group -->
-                  <!-- password -->
+                  <!-- email -->
                   <div class="form-group">
                      <div class="input-group">
                         <div class="input-group-prepend">
-                           <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                           <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="text-input" name="harga_jual" placeholder="Harga Jual" require required autocomplete="isi email">
+                        <input type="text" class="form-control" id="text-input" name="harga_umbi" placeholder="harga_umbi" >
                         <!-- /.input group -->
                      </div>
                   </div>
@@ -164,23 +169,9 @@ Lihat Agenda
                      </div>
                   </div>
                   <!-- /.form group -->
-                  <div class="form-group">
-                     <div class="input-group">
-                        <div class="input-group-prepend">
-                           <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
-                        </div>
-                        <select id="bibit_id" class="form-control text-darker" name="bibit_id" required autocomplete="bibit_id" autofocus>
-                        @foreach ($bibit as $item)
-                              <option class="text-darker" value="{{ $item->id }}">{{ $item->jenis }}</option>
-                           @endforeach
-                        </select>
-                        <!-- /.input group -->
-                     </div>
-                  </div>
-                  <!-- /.form group -->
                   <div class="col-md-4 mx-auto text-center">
                      <!-- small box -->
-					 <button type="submit" class="btn btn-success btn-block"> Tambah Stok</button>
+					 <button type="submit" class="btn btn-success btn-block">Tambah Stok</button>
                   </div>
                </div>
                <!-- /.card-body -->

@@ -547,3 +547,17 @@ Jika memungkinkan!!!!
 -->
 
 <!-- composer required barryvdh/laravel dompdf -->
+
+<!-- triger tambah data
+BEGIN
+UPDATE bibits SET bibits.stok_katak=bibits.stok_katak+old.stok_katak
+WHERE bibits.id = old.bibit_id;
+END
+
+
+triger hapus data biar data kembali
+BEGIN
+UPDATE bibits SET bibits.stok_umbi=bibits.stok_umbi+old.stok_umbi
+WHERE bibits.id = old.bibit_id;
+END
+-->

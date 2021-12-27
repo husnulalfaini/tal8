@@ -15,9 +15,10 @@ class CreateBibitsTable extends Migration
     {
         Schema::create('bibits', function (Blueprint $table) {
             $table->id();
-            $table->String('jenis');
-            $table->Integer('stok');
-            $table->Integer('harga')->nullable();
+            $table->Integer('stok_katak');
+            $table->Integer('stok_umbi');
+            $table->Integer('harga_katak')->nullable();
+            $table->Integer('harga_umbi')->nullable();
             $table->timestamps();
         });
     }

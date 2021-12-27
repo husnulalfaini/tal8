@@ -11,7 +11,7 @@ class Kelompok extends Model
 
     protected $table = "kelompoks";
     protected $primaryKey = "id";
-    protected $fillable = ['id','nama','alamat','user_id','longitude','latitude','created_at',];
+    protected $fillable = ['id','nama','alamat','kecamatan','user_id','longitude','latitude','created_at',];
 
     public function petani()
     {

@@ -144,17 +144,22 @@ class CRUDPetaniController extends Controller
     {
         $bibit = Bibit::where('id',$request->input('bibit_id'))->get()->toArray();
         // return $bibit;
-        $harga = $bibit[0]['harga'];
+        $harga_katak = $bibit[0]['harga_katak'];
+        $harga_umbi = $bibit[0]['harga_umbi'];
 
-        $total = $harga*$request->input('stok');
+        $total_katak = $harga_katak*$request->input('stok_katak');
+        $total_umbi = $harga_umbi*$request->input('stok_umbi');
+        $total = $total_katak+$total_umbi;
         $catatan = 'silahkan kirim bukti tranfer ke no wa 0888888888 paling lambat 1x24jam';
         //proses input data pesan baru
         $pesan = Pesanan::create([
                 
             'petani_id'         => $request->input('petani_id'),
             'bibit_id'          => $request->input('bibit_id'),
-            'stok'              => $request->input('stok'),
-            'harga'             => $harga,
+            'stok_katak'        => $request->input('stok_katak'),
+            'stok_umbi'         => $request->input('stok_umbi'),
+            'harga_katak'       => $harga_katak,
+            'harga_umbi'        => $harga_umbi,
             'total_bayar'       => $total,    
             'catatan'           => $catatan,    
         ]);

@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <span>Porasity.</span>
+          <span>PT API.</span>
         </a>
         <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="oi oi-menu"></span> Menu </button>
@@ -61,14 +61,8 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-8 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="d-flex align-items-center" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-              <a href="https://youtu.be/SJ6KRDq1vOg" class="icon-video popup-vimeo d-flex justify-content-center align-items-center mr-3">
-                <span class="ion-ios-play play mr-2"></span>
-                <span class="watch">Watch Video</span>
-              </a>
-            </p>
-            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style='color:success;'>Komunitas Porang Kabupaten Banyuwangi</h1>
-            <p class="mb-4 " data-scrollax="properties: { translateY: '30%', opacity: 1.6, }">website manajemen petani dan lahan porang</p>
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style='color:success;'>Asosiasi Petani Porang Kabupaten Banyuwangi</h1>
+            <p class="mb-4 " data-scrollax="properties: { translateY: '30%', opacity: 1.6, }">website Administrasi petani dan lahan porang</p>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ class Pesanan extends Model
 
     protected $table = "pesanans";
     protected $primaryKey = "id";
-    protected $fillable = ['id','petani_id','bibit_id','stok','harga','total_bayar','catatan','status','created_at',];
+    protected $fillable = ['id','petani_id','bibit_id','stok_katak','stok_umbi','harga_katak','harga_umbi','total_bayar','catatan','status','created_at',];
 
     public function bibit()
     {

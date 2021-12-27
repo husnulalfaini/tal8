@@ -9,6 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Validator;
 use Illuminate\Support\Str;
 
 class TambahKelompokController extends Controller
@@ -18,16 +19,24 @@ class TambahKelompokController extends Controller
     {
         $ketua= User::where('level','ketua')->get();
         // melalukan validasi
-   
-        $request->validate([
+
+        // validasi register
+        $validator = Validator::make($request->all(), [
             'nama'=>'required',
             'alamat'=> 'required',
+            'kecamatan'=> 'required|unique:kelompoks',
         ]);
+
+        // pengondisian error
+        if ($validator->fails()) {
+           return redirect('/daftar_kelompok')->with('error', 'kelompok sudah ada!');               
+        }
 
         //mengisi data baru 
         $tambah_kelompok= new Kelompok([
             'nama'=> $request->get('nama'),
             'alamat'=> $request->get('alamat'),
+            'kecamatan'=> $request->get('kecamatan'),
         ]);
         
         // menyimpan data isian
@@ -41,17 +50,18 @@ class TambahKelompokController extends Controller
     {
         $ketua= User::where('level','ketua')->get();
 
-        $kelompok = Kelompok::all();
+        $kelompok = Kelompok::first();
 
-        // melalukan validasi
-        $request->validate([
-            'name'      =>'required',
-            'email'     =>'required',
-            'password'  =>'required',
-            'telepon'   =>'required',
-            'alamat'    =>'required',
-            'foto'      =>'required',
+        // validasi register
+        $validator = Validator::make($request->all(), [
+            'kelompok_id'   =>'required|unique:users',
         ]);
+
+        // pengondisian error
+        if ($validator->fails()) {
+            return redirect('/daftar_kelompok')->with('error', 'kelompok sudah memiliki ketua, pilih kelompok lain!');               
+        }
+
 
         $input                      = new User();
         $input['name']              = $request->name;

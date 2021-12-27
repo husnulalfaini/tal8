@@ -16,6 +16,7 @@ class CreateKelompoksTable extends Migration
         Schema::create('kelompoks', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('kecamatan');
             $table->string('alamat')->null();
             $table->string('longitude')->null();
             $table->string('latitude')->null();

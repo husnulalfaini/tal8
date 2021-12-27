@@ -17,9 +17,10 @@ class CreateTambahBibitsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('bibit_id');
             $table->foreign('bibit_id')->references('id')->on('bibits');
-            $table->Integer('stok');
-            $table->Integer('harga_beli');
-            $table->Integer('harga_jual');
+            $table->Integer('stok_katak')->nullable();
+            $table->Integer('stok_umbi')->nullable();
+            $table->Integer('harga_katak')->nullable();
+            $table->Integer('harga_umbi')->nullable();
             $table->String('supplier');
             $table->String('catatan')->nullable();
             $table->timestamps();

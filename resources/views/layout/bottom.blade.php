@@ -54,4 +54,10 @@
    }
    @endif
 </script>
+<script>
+   @if (Session::has('error')) {
+   toastr.error("{{Session::get('error')}}")
+   }
+   @endif
+</script>
 

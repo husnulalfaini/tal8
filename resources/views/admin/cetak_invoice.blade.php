@@ -117,7 +117,7 @@
             height: 30%;
             font-size: 15px;
             text-align: left;
-            width: 32%;
+            width: 28%;
          }
          #customers {
             font-family: Arial, Helvetica, sans-serif;
@@ -237,9 +237,10 @@
       <table id="customers">
             <tr>
                <th>No</th>
-               <th>Jenis Bibit</th>
-               <th>Kuantitas</th>
-               <th>Harga</th>
+               <th>Pesan Katak</th>
+               <th>Pesan Umbi</th>
+               <th>Harga Katak</th>
+               <th>Harga Umbi</th>
                <th>Total</th>
             </tr>
 
@@ -249,9 +250,10 @@
             
             <tr>
                <td>{{$no++}}</td>
-               <td>{{$pesanan->bibit->jenis}}</td>
-               <td>{{$pesanan->stok}} Kilo</td>
-               <td>{{$pesanan->harga}} ,-</td>
+               <td>{{$pesanan->stok_katak}} Kilo</td>
+               <td>{{$pesanan->stok_umbi}} Kilo</td>
+               <td>{{$pesanan->harga_katak}} ,-</td>
+               <td>{{$pesanan->harga_umbi}} ,-</td>
                <td>{{$pesanan->total_bayar}} ,-</td>
             </tr> 
            

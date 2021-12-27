@@ -83,7 +83,7 @@ Daftar Kelompok
 							<div class="input-group">
 								<div class="input-group-prepend"> <span class="input-group-text "><i class="far fa-user"></i></span>
 								</div>
-								<input type="Text" class="form-control" id="text-input" name="nama" placeholder="Nama Kelompok">
+								<input type="Text" class="form-control" id="text-input" name="nama" placeholder="Nama Kelompok" required>
 							</div>
 							<!-- /.input group -->
 						</div>
@@ -93,7 +93,17 @@ Daftar Kelompok
 							<div class="input-group">
 								<div class="input-group-prepend"> <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
 								</div>
-								<input type="Text" class="form-control" id="text-input" name="alamat" placeholder="Alamat">
+								<input type="Text" class="form-control" id="text-input" name="alamat" placeholder="Alamat" required>
+								<!-- /.input group -->
+							</div>
+						</div>
+						<!-- /.form group -->
+						<!-- IP mask -->
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend"> <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+								</div>
+								<input type="Text" class="form-control" id="text-input" name="kecamatan" placeholder="Wilayah Kecamatan" required>
 								<!-- /.input group -->
 							</div>
 						</div>

@@ -25,14 +25,15 @@ class BibitController extends Controller
     {
 
         //mengisi data baru 
+        
         $tambah_bibit= new Tambah_Bibit([
-            'bibit_id'      => $request->get('bibit_id'),
-            'stok'          => $request->get('stok'),
-            'harga_beli'    => $request->get('harga_beli'),
-            'harga_jual'    => $request->get('harga_jual'),
+            'bibit_id'      => 1,
+            'stok_katak'    => $request->get('stok_katak'),
+            'stok_umbi'     => $request->get('stok_umbi'),
+            'harga_katak'   => $request->get('harga_katak'),
+            'harga_umbi'    => $request->get('harga_umbi'),
             'supplier'      => $request->get('supplier'),
         ]);
-        
         // menyimpan data isian
         $tambah_bibit->save();
         return redirect()->route('daftar_stok')->with('success','Data Stok Berhasil Ditambah');

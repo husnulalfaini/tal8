@@ -64,9 +64,12 @@ class UserController extends Controller
 
         // pengondisian error
         if ($validator->fails()) {
-            $val = $validateData->errors()->first();
-            return $this->error($val);
+            return response()->json([
+                'success'       => 0,
+                'message'       => 'Email telah dipakai',
+            ], 401);            
         }
+
         // input register
         $petani = Petani::create([
             'nama'              => $request->get('nama'),
@@ -78,6 +81,8 @@ class UserController extends Controller
             'foto'              => $request->get('foto'),
         ]);
 
+
+    
         $petani->save();
 
         return response()->json([
@@ -85,6 +90,7 @@ class UserController extends Controller
             'message'       => 'selamat datang ' . $petani->nama,
             'petani'     => $petani
         ]);
+    
     }
 
 

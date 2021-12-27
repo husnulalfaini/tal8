@@ -13,7 +13,7 @@ class Tambah_Bibit extends Model
 
     protected $table = "tambah_bibits";
     protected $primaryKey = "id";
-    protected $fillable = ['id','bibit_id','stok','harga_beli','harga_jual','supplier','catatan','created_at',];
+    protected $fillable = ['id','bibit_id','stok_katak','stok_umbi','harga_katak','harga_umbi','supplier','catatan','created_at',];
 
     public function bibit()
     {
