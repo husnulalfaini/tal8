@@ -27,6 +27,8 @@ class User extends Authenticatable
         'alamat',
         'telepon',
         'foto',
+        'kelompok_id',
+        'status',
     ];
 
     /**
@@ -50,7 +52,7 @@ class User extends Authenticatable
 
     public function kelompok()
     {
-        return $this->hasMany(Kelompok::class);
+        return $this->belongsTo(Kelompok::class);
     }
 
     // public function getfoto(Type $var = null)

@@ -179,10 +179,12 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12 ">
-            <div id="lat" style="display:none;">-8.192552</div>
-            <div id="long" style="display:none;">114.2936452</div>
-            <div id="map" style="width:1100px;height:480px;"></div>
+          <div class="col-sm-12">
+            @foreach ($kelompok as $maps)
+            <div id="lat" style="display:none;">{{$maps->latitude}}</div>
+            <div id="long" style="display:none;">{{$maps->longitude}}</div>
+            <div id="map" style="height:480px;" ></div>
+            @endforeach
           </div>
           <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
           <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>

@@ -40,11 +40,13 @@
                 <span class="info-box-icon">
                   <i class="fa fa-user"></i>
                 </span>
+                @foreach ( $ketua as $ket)
                 <div class="info-box-content">
                   <span class="info-box-text">Ketua</span>
-                  <span class="info-box-number">{{$ketua->name}}</span>
+                  <span class="info-box-number">{{$ket->name ? $ket->name:'Ketua Belum Ditambahkan'}}</span>
                 </div>
                 <!-- /.info-box-content -->
+                @endforeach
               </div>
               <!-- /.info-box -->
               <div class="info-box mb-3 bg-white">
@@ -101,9 +103,9 @@
             </div>
           </div>
           <div class="card-body">
-            <div id="lat" style="display:none;">-8.192552</div>
-            <div id="long" style="display:none;">114.2936452</div>
-            <div id="map" style="width:500px;height:480px;"></div>
+            <div id="lat" style="display:none;">{{$kelompok->latitude}}</div>
+            <div id="long" style="display:none;">{{$kelompok->longitude}}</div>
+            <div id="map" style="height:480px;" ></div>
           </div>
           <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
           <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
@@ -116,10 +118,10 @@
             const defaultLayers = platform.createDefaultLayers();
             const map = new H.Map(document.getElementById('map'), defaultLayers.vector.normal.map, {
               center: {
-                lat: 0.000000,
-                lng: 118.00000
+                lat:  -8.219233,
+                lng: 114.369227
               },
-              zoom: 5,
+              zoom: 11,
               pixelRatio: window.devicePixelRatio || 1
             });
             window.addEventListener('resize', () => map.getViewPort().resize());

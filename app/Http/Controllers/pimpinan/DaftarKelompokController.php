@@ -36,8 +36,11 @@ class DaftarKelompokController extends Controller
        $kelompok = Kelompok::find($id);
       
        // mencari ketua kelompok berdasarkan id kelompok yang sama
-       $ketua=User::where('kelompok_id', $id)->first();
-
+       $ketua=User::where('kelompok_id', $id)->where('level','ketua')->get();
+    //    dd($ketua);
+        // if (!$ketua) {
+        //     $ketua = 'ketua belum ada';
+        // }
        // total petani
        $anggota = Petani::all()
            ->where('kelompok_id',$id)

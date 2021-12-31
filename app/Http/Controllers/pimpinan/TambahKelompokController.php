@@ -37,6 +37,8 @@ class TambahKelompokController extends Controller
             'nama'=> $request->get('nama'),
             'alamat'=> $request->get('alamat'),
             'kecamatan'=> $request->get('kecamatan'),
+            'longitude'=> $request->get('longitude'),
+            'latitude'=> $request->get('latitude'),
         ]);
         
         // menyimpan data isian
@@ -50,7 +52,7 @@ class TambahKelompokController extends Controller
     {
         $ketua= User::where('level','ketua')->get();
 
-        $kelompok = Kelompok::first();
+        $kelompok = Kelompok::all();
 
         // validasi register
         $validator = Validator::make($request->all(), [

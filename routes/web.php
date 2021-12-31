@@ -34,6 +34,9 @@ use App\Http\Controllers\LandingController;
 // Route::get('/', function () {
 //     return view('landing');
 // });
+// Route::get('/', function () {
+//     return view('landing');
+// });
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
@@ -42,7 +45,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/halaman_reset', [LoginController::class, 'tampilReset'])->name('halaman.reset');
 Route::post('/reset', [LoginController::class, 'reset'])->name('reset');
-
+Route::get('/daftar_keompok', [KelompokController::class, 'index']);
 
 // halaman admin
 Route::group(['middleware' => ['auth','CekLevel:admin']], function () {

@@ -40,8 +40,8 @@ class LandingController extends Controller
 
         // data user
         $user=User::all();
-        
+        $kelompok=Kelompok::all();
       
-        return view('landing', compact('total_kelompok','jumlah_petani','jumlah_lahan','total_panen','user'));
+        return view('landing', compact('total_kelompok','jumlah_petani','jumlah_lahan','total_panen','user','kelompok'));
     }
 }

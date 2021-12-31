@@ -17,9 +17,10 @@ class CreateKelompoksTable extends Migration
             $table->id();
             $table->string('nama');
             $table->string('kecamatan');
-            $table->string('alamat')->null();
-            $table->string('longitude')->null();
-            $table->string('latitude')->null();
+            $table->string('alamat')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('status')->default('0');
             $table->timestamps();
         });
     }

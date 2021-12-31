@@ -111,7 +111,7 @@ Lihat Agenda
       })
       .then((willDelete) => {
       if (willDelete) {
-         window.location = "{{route('update_status',$item->id)}}"
+         window.location = "{{route('batal_pesan',$item->id)}}"
          swal("Selamat! Status transaksi berhasil dirubah!", {
             icon: "success",
          });
@@ -134,7 +134,7 @@ Lihat Agenda
       })
       .then((willDelete) => {
       if (willDelete) {
-         window.location = "{{route('batal_pesan',$item->id)}}"
+         window.location = "{{route('batal_pesan',$item->id)}}";
          swal("Selamat! Transaksi telah dibatalkan!", {
             icon: "success",
          });

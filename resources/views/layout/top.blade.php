@@ -19,7 +19,7 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{asset('public/asset/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{asset('public/asset/plugins/daterangepicker/daterangepicker.css')}}">
+  <!-- <link rel="stylesheet" href="{{asset('public/asset/plugins/daterangepicker/daterangepicker.css')}}"> -->
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('public/asset/plugins/summernote/summernote-bs4.min.css')}}">
 
@@ -30,8 +30,8 @@
   <link rel="stylesheet" href="{{asset('public/asset/dist/css/adminlte.min.css')}}">
 
   <!-- date picker -->
-<link rel="stylesheet" href="{{asset('node_modules\air-datepicker\dist\css\datepicker.css')}}">
-<link rel="stylesheet" href="{{asset('node_modules\air-datepicker\dist\css\datepicker.min.css')}}">
+<!-- <link rel="stylesheet" href="{{asset('node_modules\air-datepicker\dist\css\datepicker.css')}}">
+<link rel="stylesheet" href="{{asset('node_modules\air-datepicker\dist\css\datepicker.min.css')}}"> -->
 
 <!-- overlayScrollbars -->
 <link rel="stylesheet" href="{{asset('public/asset/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
@@ -40,3 +40,5 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('public/asset/plugins/summernote/summernote-bs4.min.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css">
