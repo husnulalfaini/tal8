@@ -24,15 +24,18 @@ class DaftarUserController extends Controller
 
         // menampilkan data seluruh kelompok
         $kelompok=Kelompok::all();
-
-        return view('admin.daftar_user', compact('user','petani','kelompok'));
+        $empty ='-- Data Tidak Tersedia --';
+        return view('admin.daftar_user', compact('user','petani','kelompok','empty'));
     }
 
 
     public function showUser($id)
     {
         $user = User::find($id);
-        return view('admin.detail_user', compact('user'));
+
+        $empty ='-- Data Tidak Tersedia --';
+
+        return view('admin.detail_user', compact('user','empty'));
     
     }
 
@@ -69,8 +72,10 @@ class DaftarUserController extends Controller
         foreach ($total_panen as $val) {
             $hasil = (float)$val->katak;
         }
+
+        $empty ='-- Data Tidak Tersedia --';
         
-        return view('admin.detail_petani', compact('petani','luas_lahan','jumlah_lahan','hasil','panen_petani'));
+        return view('admin.detail_petani', compact('petani','luas_lahan','jumlah_lahan','hasil','panen_petani','empty'));
     }
 
     /**
@@ -116,6 +121,8 @@ class DaftarUserController extends Controller
             ->join('petanis','petanis.id','=','lahans.petani_id')
             ->where('lahans.petani_id', $id)
             ->get();
+        
+        $empty ='-- Data Tidak Tersedia --';
 
         return view('admin.detail_kelompok', compact('kelompok','ketua','anggota','data_panen','luas_lahan','jumlah_lahan','hasil',));
     }

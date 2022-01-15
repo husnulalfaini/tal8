@@ -29,7 +29,9 @@ class DaftarPetaniController extends Controller
             ->where('status',1)
             ->where('kelompok_id',$id);
 
-        return view('ketua.daftar_petani', compact('daftar_petani'));
+        $empty ='-- Data Tidak Tersedia --';
+
+        return view('ketua.daftar_petani', compact('daftar_petani','empty'));
     }
 
     
@@ -45,11 +47,11 @@ class DaftarPetaniController extends Controller
             ->get();
             
         // menampilkan data panen petani
-        $tanam_petani = Tanam::select(DB::raw('*'))
-            ->join('lahans','lahans.id','=','tanams.lahan_id')
-            ->join('petanis','petanis.id','=','lahans.petani_id')
-            ->where('lahans.petani_id', $id)
-            ->get();
+        // $tanam_petani = Tanam::select(DB::raw('*'))
+        //     ->join('lahans','lahans.id','=','tanams.lahan_id')
+        //     ->join('petanis','petanis.id','=','lahans.petani_id')
+        //     ->where('lahans.petani_id', $id)
+        //     ->get();
     
         // menjumlah luas lahan
         $luas_lahan = Lahan::where('petani_id', $id)->sum('luas_lahan');
@@ -71,7 +73,9 @@ class DaftarPetaniController extends Controller
             $hasil = (float)$val->katak;
         }
 
-        return view('ketua.monitoring_petani', compact('petani','lahan','luas_lahan','jumlah_lahan','hasil','panen_petani','tanam_petani'));
+        $empty ='-- Data Tidak Tersedia --';
+
+        return view('ketua.monitoring_petani', compact('petani','lahan','luas_lahan','jumlah_lahan','hasil','panen_petani','empty'));
     
     }
 
@@ -82,18 +86,23 @@ class DaftarPetaniController extends Controller
         $monitoring_lahan = PengolahanSensor::where('lahan_id', $id)->get();
 
         //grafik kelembapan
-        $data_kelembapan = PengolahanSensor::whereDate('created_at', Carbon::today())->get();;
+        $data_kelembapan = PengolahanSensor::whereDate('created_at', Carbon::today())->get();
 
         //grafik kelembapan
-        $data_PH = PengolahanSensor::whereDate('created_at', Carbon::today())->get();;
-
+        // $data_PH = PengolahanSensor::whereDate('created_at', Carbon::today())->get();
+        $data_PH = PengolahanSensor::where('lahan_id',$id)->whereDate('created_at', Carbon::today())->take(30)->get()->sortBy('id');
+        $labels = $data_PH->pluck('created_at');
+        $data_PH = $data_PH->pluck('ph');
+        // dd($labels);
         // menampilkan data panen sesuai lahan petani
         $panen_petani = Panen::where('lahan_id', $id)->get();
 
         // menampilkan data Tanam sesuai lahan petani
-        $tanam_petani = Tanam::where('lahan_id', $id)->get();
+        // $tanam_petani = Tanam::where('lahan_id', $id)->get();
 
-        return view('ketua.monitoring_lahan', compact('monitoring_lahan','panen_petani','tanam_petani','data_PH','data_kelembapan'));
+        $empty ='-- Data Tidak Tersedia --';
+
+        return view('ketua.monitoring_lahan', compact('monitoring_lahan','panen_petani','data_PH','labels','data_kelembapan','empty'));
 
     }
 

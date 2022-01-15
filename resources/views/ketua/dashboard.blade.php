@@ -176,52 +176,43 @@
 <!-- js dari grafik barchart -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
-  Highcharts.chart('barChart', {
-    chart: {
-      type: 'column'
-    },
-    title: {
-      text: 'Hasil Panen Porang Pertahun'
-    },
-    xAxis: {
-      categories: {
-        !!json_encode($tgl_panen) !!
-      },
-      crosshair: true
-    },
-    yAxis: {
-      min: 0,
-      title: {
-        text: 'Hasil Panen Porang (Ton)'
-      }
-    },
-    tooltip: {
-      headerFormat: ' < span style = "font-size:10px" > {
-        point.key
-      } < /span> < table > ',
-      pointFormat: ' < tr > < td style = "color:{series.color};padding:0" > {
-        series.name
-      }: < /td>' +
-      ' < td style = "padding:0" > < b > {
-        point.y: .1 f
-      }
-      Ton < /b> < /td> < /tr>',
-      footerFormat: ' < /table>',
-      shared: true,
-      useHTML: true
-    },
-    plotOptions: {
-      column: {
-        pointPadding: 0.2,
-        borderWidth: 0
-      }
-    },
-    series: [{
-      name: 'Presentase Panen',
-      data: {
-        !!json_encode($panen_umbi) !!
-      }
-    }]
-  });
-</script> 
+
+   
+   Highcharts.chart('barChart', {
+   chart: {
+       type: 'column'
+   },
+   title: {
+       text: 'Hasil Panen Porang Pertahun'
+   },
+   xAxis: {
+       categories: {!!json_encode($tgl_panen)!!},
+       crosshair: true
+   },
+   yAxis: {
+       min: 0,
+       title: {
+           text: 'Hasil Panen Porang (Ton)'
+       }
+   },
+   tooltip: {
+       headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+       pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+           '<td style="padding:0"><b>{point.y:.1f} Ton</b></td></tr>',
+       footerFormat: '</table>',
+       shared: true,
+       useHTML: true
+   },
+   plotOptions: {
+       column: {
+           pointPadding: 0.2,
+           borderWidth: 0
+       }
+   },
+   series: [{
+       name: 'Presentase Panen',
+       data: {!!json_encode($panen_umbi)!!}
+   }]
+   });
+</script>
 @endsection

@@ -17,7 +17,9 @@ class ProfileAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.profile_admin');
+        $empty ='-- Data Tidak Tersedia --';
+
+        return view('admin.profile_admin',compact('empty'));
     }
 
   
@@ -49,6 +51,7 @@ class ProfileAdminController extends Controller
             $admin->remember_token  = Str::random(60);
             $admin->alamat          = $request->alamat;
             $admin->save();
+            
 
             return redirect()->route('profile_admin')->with('success','Data Admin Berhasil di Update');
     }

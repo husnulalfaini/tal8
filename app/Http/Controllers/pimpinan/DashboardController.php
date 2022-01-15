@@ -60,6 +60,8 @@ class DashboardController extends Controller
             $panen_umbi[]= (float)$pans->total;
         }
 
-        return view('pimpinan.dashboard', compact('jumlah_petani','panens','total_kelompok','luas_lahan','jumlah_lahan','total_panen','tgl_panen','panen_umbi'));
+        $empty ='-- Data Tidak Tersedia --';
+
+        return view('pimpinan.dashboard', compact('jumlah_petani','panens','total_kelompok','luas_lahan','jumlah_lahan','total_panen','tgl_panen','panen_umbi','empty'));
     }
 }

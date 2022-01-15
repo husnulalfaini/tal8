@@ -43,7 +43,7 @@
                 @foreach ( $ketua as $ket)
                 <div class="info-box-content">
                   <span class="info-box-text">Ketua</span>
-                  <span class="info-box-number">{{$ket->name ? $ket->name:'Ketua Belum Ditambahkan'}}</span>
+                  <span class="info-box-number">{{$ket->name ?:$empty}}</span>
                 </div>
                 <!-- /.info-box-content -->
                 @endforeach
@@ -180,8 +180,8 @@
                 <td>{{$no++}}</td>
                 <td>{{$item->nama}}</td>
                 <td>{{$item->lahan}}</td>
-                <td>{{$item->panen_umbi}}</td>
-                <td>{{$item->panen_katak}}</td>
+                <td>{{$item->panen_umbi}} kg</td>
+                <td>{{$item->panen_katak}} kg</td>
                 <td>{{$item->tanggal}}</td>
               </tr> 
               @endforeach 

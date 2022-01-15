@@ -65,8 +65,8 @@
                                  <td>{{$item->created_at}}</td>
                                  <td>{{$item->kelembapan}}</td>
                                  <td>{{$item->ph}}</td>
-                                 <td>kelembapan tinggi</td>
-                                 <td>ph normal</td>
+                                 <td>{{$item->info_kelembapan}}</td>
+                                 <td>{{$item->info_ph}}</td>
                               </tr>
                               @endforeach
                            </tbody>

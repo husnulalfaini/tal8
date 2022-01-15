@@ -98,6 +98,7 @@ class SensorController extends Controller
     }
 
 
+   
     public function chartKelembapan()
     {
 
@@ -111,12 +112,11 @@ class SensorController extends Controller
 
     public function chartPH()
     {
-
-        $data_PH = PengolahanSensor::whereDate('created_at', Carbon::today())->take(30)->get()->sortBy('id');
-        $labels = $data_PH->pluck('created_at');
-        $data_PH = $data_PH->pluck('ph');
-        // $status = $status->pluck('status_ph');
-
-        return response()->json(compact('labels', 'data_PH'));
+        // $data_PH = PengolahanSensor::where('lahan_id',$id)->whereDate('created_at', Carbon::today())->take(30)->get()->sortBy('id');
+        // $labels = $data_PH->pluck('created_at');
+        // $data_PH = $data_PH->pluck('ph');
+        // // $status = $status->pluck('status_ph');
+        
+        // return response()->json(compact('labels', 'data_PH'));
     }
 }

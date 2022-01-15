@@ -21,27 +21,27 @@
                      <hr>
                      <strong>
                         <i class="fas fa-map-marker-alt mr-1"></i> Alamat </strong>
-                     <p class="text-muted">{{$petani->alamat}}</p>
+                     <p class="text-muted">{{$petani->alamat?:$empty}}</p>
                      <hr>
                      <strong>
                         <i class="fas fa-phone-alt mr-1"></i> Telepon </strong>
                      <br>
-                     <a class="text-muted">{{$petani->telepon}}</a>
+                     <a class="text-muted">{{$petani->telepon?:$empty}}</a>
                      <hr>
                      <strong>
                         <i class="fas fa-ring mr-1"></i> Panen </strong>
                      <br>
-                     <a class="text-muted">{{$hasil}}</a>
+                     <a class="text-muted">{{$hasil?:$empty}}</a>
                      <hr>
                      <strong>
                         <i class="fas fa-leaf mr-1"></i> luas Lahan </strong>
                      <br>
-                     <a class="text-muted">{{$luas_lahan}}</a>
+                     <a class="text-muted">{{$luas_lahan?:$empty}}</a>
                      <hr>
                      <strong>
                         <i class="fas fa-tree mr-1"></i> Jumlah Lahan </strong>
                      <br>
-                     <a class="text-muted">{{$jumlah_lahan}}</a>
+                     <a class="text-muted">{{$jumlah_lahan?:$empty}}</a>
                   </div>
                   <!-- /.card-body -->
                </div>
@@ -71,10 +71,10 @@
 
 								  @foreach ($panen_petani as $item) <tr>
                                     <td>{{$item->nama}}</td>
-                                    <td>{{$item->alamat}}</td>
+                                    <td>{{$item->alamat?:$empty}}</td>
                                     <td>{{$item->tanggal}}</td>
-                                    <td>{{$item->panen_katak}} kilo</td>
-                                    <td>{{$item->panen_umbi}} kilo</td>
+                                    <td>{{$item->panen_katak?:$empty}} kilo</td>
+                                    <td>{{$item->panen_umbi?:$empty}} kilo</td>
                                  </tr> 
 
 								 @endforeach </tbody>

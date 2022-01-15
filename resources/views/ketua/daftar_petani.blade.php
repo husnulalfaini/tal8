@@ -21,8 +21,8 @@ Daftar Petani
                   <thead>
                     <tr>
                       <th>Nama</th>
-                      <th>Alamat</th>
                       <th>Email</th>
+                      <th>Alamat</th>
                       <th>Telepon</th>
                       <th></th>
                     </tr>
@@ -31,9 +31,9 @@ Daftar Petani
                      @foreach ($daftar_petani as $item) 
                      <tr>
                       <td>{{$item->nama}}</td>
-                      <td>{{$item->alamat}}</td>
                       <td>{{$item->email}}</td>
-                      <td>{{$item->telepon}}</td>
+                      <td>{{$item->alamat?:$empty}}</td>
+                      <td>{{$item->telepon?:$empty}}</td>
                       <td>
                         <span class="badge bg-success">
                           <a href="{{route('ketua.monitoring_petani',[$item->id])}}" class="text-dark"> Detail <i class="fas fa-arrow-circle-right"></i>

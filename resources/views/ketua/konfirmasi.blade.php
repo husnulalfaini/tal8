@@ -27,8 +27,8 @@ konfirmasi Petani
                   <thead>
                     <tr>
                       <th>Nama</th>
-                      <th>Alamat</th>
                       <th>Email</th>
+                      <th>Alamat</th>
                       <th>Telepon</th>
                       <th>aksi</th>
                     </tr>
@@ -37,9 +37,9 @@ konfirmasi Petani
                      @foreach ($petani as $tani) 
                      <tr>
                       <td>{{$tani->nama}}</td>
-                      <td>{{$tani->alamat}}</td>
                       <td>{{$tani->email}}</td>
-                      <td>{{$tani->telepon}}</td>
+                      <td>{{$tani->alamat?:$empty}}</td>
+                      <td>{{$tani->telepon?:$empty}}</td>
                       <td>
                         <span class="badge bg-success">
                           <a href="{{route('ketua.konfirmasi_petani',[$tani->id])}}" class="text-dark"> Info Selengkapnya <i class="fas fa-arrow-circle-right"></i>

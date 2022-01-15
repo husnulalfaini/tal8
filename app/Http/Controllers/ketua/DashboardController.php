@@ -36,9 +36,10 @@ class DashboardController extends Controller
         $total_panen = Panen::select(DB::raw('SUM(panen_katak)+SUM(panen_umbi)  as katak' ))
             ->join('lahans','lahans.id','=','panens.lahan_id')
             ->join('petanis','petanis.id','=','lahans.petani_id')
-            ->where('lahans.petani_id', $id)
+            ->where('petanis.kelompok_id', $id)
+            // ->where('lahans.petani_id', $id)
             ->get();
-
+            // dd($total_panen);
         foreach ($total_panen as $val) {
             $hasil = (float)$val->katak;
         }
@@ -52,14 +53,14 @@ class DashboardController extends Controller
         $data_panen= Panen::select('petanis.nama as nama','petanis.alamat as alamat','lahans.nama as lahan', 'panens.created_at as tanggal', 'panens.panen_umbi as umbi', 'panens.panen_katak as katak')
             ->join('lahans','lahans.id','=','panens.lahan_id')
             ->join('petanis','petanis.id','=','lahans.petani_id')
-            ->where('lahans.petani_id', $id)
+            ->where('petanis.kelompok_id', $id)
             ->get();
 
         // grafik panen
         $panen_tabel = Panen::select(DB::raw('SUM(panen_umbi)+SUM(panen_katak) as total'), DB::raw('YEAR(panens.tanggal) as year'))
             ->join('lahans','lahans.id','=','panens.lahan_id')
             ->join('petanis','petanis.id','=','lahans.petani_id')
-            ->where('lahans.petani_id', $id)
+            ->where('petanis.kelompok_id', $id)
             ->groupBy('year')
             ->get();       
 
@@ -69,7 +70,7 @@ class DashboardController extends Controller
              $tgl_panen[]= $pans->year;
              $panen_umbi[]= (float)$pans->total;
          }
-
+// dd($panen_umbi);
         return view('ketua.dashboard', compact('anggota','data_panen','luas_lahan','jumlah_lahan','hasil','tgl_panen','panen_umbi'));
     }
 

@@ -60,4 +60,17 @@
    }
    @endif
 </script>
+<script>
+	@if (Session::has('info')) {
+		swal({
+			title: "Berhasil!",
+			text: "{{Session::get('info')}}",
+			icon: "success",
+			button: "kembali"
+		});
+	}
+	@endif
+	</script>
+</script> -->
+
 

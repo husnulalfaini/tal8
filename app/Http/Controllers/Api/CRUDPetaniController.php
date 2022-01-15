@@ -9,6 +9,8 @@ use App\Models\Lahan;
 use App\Models\Tanam;
 use App\Models\Panen;
 use App\Models\Pesanan;
+use App\Models\Petani;
+use Validator;
 use App\Models\Bibit;
 
 class CRUDPetaniController extends Controller
@@ -19,7 +21,17 @@ class CRUDPetaniController extends Controller
         // menampilkan data seluruh kelompok
         $kelompok = Kelompok::all();
 
-        return response()->json($kelompok);
+        if ($kelompok) {
+            return response()->json([
+                'success'=>1,
+                'massage'=> $kelompok]);      
+        } else  {
+
+            return response()->json([
+                'success'=>0,
+                'massage'=>'kelompok tidak tersedia']); 
+        }
+
     }
 
 
@@ -28,7 +40,19 @@ class CRUDPetaniController extends Controller
         // menampilkan data lahan sesuai id petani
         $lahan = Lahan::where('id', $id)->get();
         
-        return response()->json($lahan);
+        if ($lahan) {
+            return response()->json([
+                'success'=>1,
+                'massage'=> $lahan]);      
+        } else  {
+
+            return response()->json([
+                'success'=>0,
+                'massage'=>'lahan tidak tersedia']); 
+        }
+           
+            
+        
     }
 
     
@@ -50,15 +74,41 @@ class CRUDPetaniController extends Controller
             ->where('lahans.petani_id', $id)
             ->get();
 
-        return response()->json($panen);
+            if ($panen) {
+                return response()->json([
+                    'success'=>1,
+                    'massage'=> $panen]);      
+            } else  {
+    
+                return response()->json([
+                    'success'=>0,
+                    'massage'=>'panen tidak tersedia']); 
+            }
     }
 
     
     public function InputLahan(Request $request)
     {
+        // validasi register
+        $validator = Validator::make($request->all(),[
+            'petani_id'     => 'required',
+            'kelompok_id'   => 'required',
+            'nama'          => 'required',
+            'alamat'        => 'required',
+            'foto'          => 'required',
+        ]);
+
+        // pengondisian error
+        if ($validator->fails()) {
+            return response()->json([
+                'success'   => 0, 
+                'pesan'     =>$validator->errors()], 401);            
+        }           
+        
+   
         // menyimpan data foto dengan nama asli
         $image = $request->file('foto')->getClientOriginalName();
-        $request->file('foto')->move('public/storage', $image);
+        $request->file('foto')->move('public/storage',$image);
 
         //proses input data panen baru
         $lahan = Lahan::create([               
@@ -114,6 +164,21 @@ class CRUDPetaniController extends Controller
 
     public function InputPanen(Request $request)
     {
+        // validasi register
+        $validator = Validator::make($request->all(),[
+            'lahan_id'     => 'required',
+            'panen_katak'  => 'required',
+            'panen_umbi'   => 'required',
+            'tanggal'      => 'required',
+        ]);
+
+        // pengondisian error
+        if ($validator->fails()) {
+            return response()->json([
+                'success'   => 0, 
+                'pesan'     =>$validator->errors()], 401);            
+        }  
+
         //proses input data panen baru
         $panen = Panen::create([
                 
@@ -142,6 +207,21 @@ class CRUDPetaniController extends Controller
 
     public function InputPesanan(Request $request)
     {
+        // validasi register
+        $validator = Validator::make($request->all(),[
+            'petani_id'     => 'required',
+            'bibit_id'      => 'required',
+            'stok_katak'    => 'required',
+            'stok_umbi'     => 'required',
+        ]);
+
+        // pengondisian error
+        if ($validator->fails()) {
+            return response()->json([
+                'success'   => 0, 
+                'pesan'     =>$validator->errors()], 401);            
+        } 
+
         $bibit = Bibit::where('id',$request->input('bibit_id'))->get()->toArray();
         // return $bibit;
         $harga_katak = $bibit[0]['harga_katak'];
@@ -231,6 +311,15 @@ class CRUDPetaniController extends Controller
             $panen->save();
 
         return response()->json($panen, 201);
+    }
+
+    // pesan error
+    public function error($pesan)
+    {
+        return response()->json([
+            'success' => 0,
+            'message' => $pesan
+        ]);
     }
 
 }

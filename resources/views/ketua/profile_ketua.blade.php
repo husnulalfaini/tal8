@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-5">
         <!-- Profile Image -->
-        <div class="card card-primary card-outline">
+        <div class="card card-success card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
               <img class="profile-user-img img-fluid img-circle" style="width: 110px;" src="{{ asset('public/storage/'.Auth::user()->foto)}}" alt="Belum ada foto">
@@ -47,12 +47,12 @@
               <hr>
               <strong>
                 <i class="fas fa-map-marker-alt mr-1"></i> Alamat </strong>
-              <p class="text-muted">{{ Auth::user()->alamat }}</p>
+              <p class="text-muted">{{ Auth::user()->alamat?:'-- Data Tidak Ditemukan --' }}</p>
               <hr>
               <strong>
                 <i class="fas fa-phone-alt mr-1"></i> Telepon </strong>
               <br>
-              <a class="text-muted">{{ Auth::user()->telepon }}</a>
+              <a class="text-muted">{{ Auth::user()->telepon?:'-- Data Tidak Ditemukan --' }}</a>
             </div>
             <!-- /.card-body -->
             <!-- /.card -->
@@ -80,7 +80,7 @@
                       <i class="far fa-user"></i>
                     </span>
                   </div>
-                  <input type="Text" class="form-control" name="name" id="name" value="{{ Auth::user()->name }}">
+                  <input type="Text" class="form-control" name="name" id="name" value="{{ Auth::user()->name }}" required>
                 </div>
                 <!-- /.input group -->
               </div>

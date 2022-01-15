@@ -30,7 +30,7 @@ Monitoring Petani
 						<div class="col-sm-2 border-right">
 							<div class="description-block">
 								<h5 class="description-header">Kelompok Tani</h5>
-								<span class="description-text">Tani Jaya</span>
+								<span class="description-text">{{$petani->kelompok->nama?:$empty}}</span>
 							</div>
 							<!-- /.description-block -->
 						</div>
@@ -38,7 +38,7 @@ Monitoring Petani
 						<div class="col-sm-2 border-right">
 							<div class="description-block">
 								<h5 class="description-header">Alamat</h5>
-								<span class="description-text">{{$petani->alamat}}</span>
+								<span class="description-text">{{$petani->alamat?:$empty}}</span>
 							</div>
 							<!-- /.description-block -->
 						</div>
@@ -62,7 +62,7 @@ Monitoring Petani
 						<div class="col-sm-2 border-left">
 							<div class="description-block">
 								<h5 class="description-header">Telepon</h5>
-								<span class="description-text">{{$petani->telepon}}</span>
+								<span class="description-text">{{$petani->telepon?:$empty}}</span>
 							</div>
 							<!-- /.description-block -->
 						</div>
@@ -87,7 +87,7 @@ Monitoring Petani
 						<div class="col-sm-4 border-right">
 							<div class="description-block">
 								<h5 class="description-header">Luas Lahan</h5>
-								<span class="description-text">{{$luas_lahan}}</span>
+								<span class="description-text">{{$luas_lahan?:$empty}}</span>
 							</div>
 							<!-- /.description-block -->
 						</div>
@@ -95,7 +95,7 @@ Monitoring Petani
 						<div class="col-sm-4 border-right">
 							<div class="description-block">
 								<h5 class="description-header">Jumlah Lahan</h5>
-								<span class="description-text">{{$jumlah_lahan}}</span>
+								<span class="description-text">{{$jumlah_lahan?:$empty}}</span>
 							</div>
 							<!-- /.description-block -->
 						</div>
@@ -103,7 +103,7 @@ Monitoring Petani
 						<div class="col-sm-4 ">
 							<div class="description-block">
 								<h5 class="description-header">Total Panen</h5>
-								<span class="description-text">{{$hasil}}</span>
+								<span class="description-text">{{$hasil?:$empty}}</span>
 							</div>
 							<!-- /.description-block -->
 						</div>
@@ -120,17 +120,10 @@ Monitoring Petani
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6">
-            <div class="card">
-               <div class="card-header card-tools">
-                  <ul class="nav nav-pills mr-auto">
-                     <li class="nav-item">
-                        <a class="nav-link active" href="#panen" data-toggle="tab">Aktivitas Panen</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="#tanam" data-toggle="tab">Aktivitas Tanam</a>
-                     </li>
-                  </ul>
-               </div>
+				<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Panen</h3>
+						</div>
                <!-- /.card-header -->
 
                <div class="card-body">
@@ -138,7 +131,6 @@ Monitoring Petani
                      <!-- Morris chart - Sales -->
 
                      <!-- Seluruh User -->
-                     <div class="chart tab-pane success" id="panen" style="position: relative;">
                         <table id="example1" class="table table-bordered table-hover">
 							<thead>
 									<tr>
@@ -150,8 +142,8 @@ Monitoring Petani
 								<tbody>@foreach ($panen_petani as $item)
 									<tr>
 										<td>{{$item->tanggal}}</td>
-										<td>{{$item->panen_katak}}</td>
-										<td>{{$item->panen_umbi}}</td>
+										<td>{{$item->panen_katak}} kg</td>
+										<td>{{$item->panen_umbi}} kg</td>
 									</tr>
 									@endforeach
 								</tbody>
@@ -166,42 +158,12 @@ Monitoring Petani
                      </div>
                      <!-- END Seluruh User -->
 
-                     <!-- Seluruh Petani -->
-                     <div class="chart tab-pane" id="tanam" style="position: relative;">
-                        <table id="example2" class="table table-bordered table-hover">
-							<thead>
-								<tr>
-									<th>Tanggal</th>
-									<th>lahan</th>
-									<th>Jumlah bibit</th>
-								</tr>
-							</thead>
-							<tbody>@foreach ($tanam_petani as $item)
-								<tr>
-									<td>{{$item->tanggal}}</td>
-									<td>{{$item->lahan->nama}}</td>
-									<td>{{$item->jumlah_bibit}}</td>
-								</tr>
-								@endforeach
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Tanggal</th>
-									<th>lahan</th>
-									<th>Jumlah bibit</th>
-								</tr>
-							</tfoot>
-                        </table>
-                     </div>
-                     <!-- END Seluruh Petani -->
                   </div>
                </div>
                <!-- /.card-body -->
             </div>
             <!-- /.card -->
-         </div>
-         <!-- /.card -->
-			
+
          <!-- end riwayat panen -->
 
             <!-- info lahan -->
@@ -223,7 +185,7 @@ Monitoring Petani
 								<tbody>@foreach ($lahan as $item)
 									<tr>
 										<td>{{$item->id}}</td>
-										<td>{{$item->luas_lahan}}</td>
+										<td>{{$item->luas_lahan?:$empty}}</td>
                               			<td>
 								  			<a href="{{route('ketua.monitoring_lahan',[$item->id])}}" class="text-dark"><i class=" fas fa-eye"></i></a>
                                             <a href="#"  class="text-dark"><i class="far fa-edit"></i></a>

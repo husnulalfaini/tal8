@@ -11,23 +11,25 @@ class LoginController extends Controller
 {
     public function login()
     {
-        return view('login');
+        return view('/login');
     }
     
 
     public function postlogin(Request $request)
     {   
+        // if(Auth::attempt($request->only('email','password')))
         if(Auth::attempt($request->only('email','password')))
         {
             if (auth()->user()->level=="admin") {
-                return redirect('/daftar_user');
+                return redirect('/daftar_user')->with('info', 'Selamat Datang Admin!');
             } elseif (auth()->user()->level=="pimpinan") {
-                return redirect('/dashboard_pimpinan');
+                return redirect('/dashboard_pimpinan')->with('info', 'Selamat Datang Pimpinan!');
             } else {
-                return redirect('/dashboard_ketua');
+                return redirect('/dashboard_ketua')->with('info', 'Selamat Datang Ketua!');
             }  
         }
-            return redirect('/login');
+            return redirect('/login')->with('error', 'Email atau Password Anda Salah!!');
+
     }
 
 
@@ -52,7 +54,7 @@ class LoginController extends Controller
             ->where('email', $email)
             ->where('telepon', $telepon)
             ->first();
-
+        // dd($user);
         if($user){
             $user['password'] = bcrypt($request->password);
             $user->save();

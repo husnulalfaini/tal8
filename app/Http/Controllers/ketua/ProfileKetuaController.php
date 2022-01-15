@@ -17,7 +17,9 @@ class ProfileKetuaController extends Controller
      */
     public function index()
     {
-        return view('ketua.profile_ketua');
+        $empty ='-- Data Tidak Tersedia --';
+
+        return view('ketua.profile_ketua',compact('empty'));
     }
 
 
@@ -50,7 +52,7 @@ class ProfileKetuaController extends Controller
             $ketua->alamat          = $request->alamat;
             $ketua->save();
 
-            return redirect()->route('profile_ketua')->with('sukses','tugas berhasil disimpan');       
+            return redirect()->route('profile_ketua')->with('success','Data berhasil diubah');       
     }
 
 

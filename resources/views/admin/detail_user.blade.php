@@ -14,12 +14,12 @@
 					<!-- /.card-header -->
 					<div class="card-body"> 
 						<hr> <strong><i class="fas fa-envelope mr-1"></i>Email</strong>
-						<p class="text-muted">{{$user->email}}</p>
+						<p class="text-muted">{{$user->email?:$empty}}</p>
 						<hr> <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong>
-						<p class="text-muted">{{$user->alamat}}</p>
+						<p class="text-muted">{{$user->alamat?:$empty}}</p>
 						<hr> <strong><i class="fas fa-phone-alt mr-1"></i> Telepon</strong>
 						<br>
-						<a class="text-muted">{{$user->telepon}}</a>
+						<a class="text-muted">{{$user->telepon?:$empty}}</a>
 					<!-- /.card-body -->
 				</div>
 			<!-- /.card -->

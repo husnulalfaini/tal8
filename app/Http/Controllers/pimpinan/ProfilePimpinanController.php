@@ -17,6 +17,9 @@ class ProfilePimpinanController extends Controller
      */
     public function index()
     {
+
+       
+
         return view('pimpinan.profile_pimpinan');
     }
 
@@ -25,7 +28,9 @@ class ProfilePimpinanController extends Controller
     {
        $pimpinan=User::find(Auth()->user()->id);
 
-       return view('pimpinan.profile_pimpinan', compact ('pimpinan'));
+       $empty ='-- Data Tidak Tersedia --';
+
+       return view('pimpinan.profile_pimpinan', compact ('pimpinan','empty'));
     }
 
 

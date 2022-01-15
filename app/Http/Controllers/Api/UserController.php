@@ -33,7 +33,7 @@ class UserController extends Controller
                 if ($petani->status==0) {
                     return $this->error('anda belum diverifikasi');
                 }
-
+                
                 $tokenResult    = $petani->createToken('AccessToken');
                 $token          = $tokenResult->token;
                 $token->save();
@@ -55,20 +55,31 @@ class UserController extends Controller
     public function register(Request $request)
     {
         // validasi register
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(),[
             'nama'          => 'required',
-            'email'         => 'required|email',
+            'email'         => 'required|email|unique:petanis',
             'password'      => 'required',
             'kelompok_id'   => 'required',
+            'foto'   => 'required',
         ]);
 
-        // pengondisian error
+        // // pengondisian error
+        // if ($validator->fails()) {
+        //     return response()->json([
+        //         'success'       => 0,
+        //         'message'       => 'Email telah dipakai',
+        //     ], 401);            
+        // }
+
+        
         if ($validator->fails()) {
             return response()->json([
-                'success'       => 0,
-                'message'       => 'Email telah dipakai',
-            ], 401);            
+                'success'   => 0, 
+                'pesan'     =>$validator->errors()], 401);           
         }
+        
+        $image = $request->file('foto')->getClientOriginalName();
+        $request->file('foto')->move('public/storage', $image);
 
         // input register
         $petani = Petani::create([
@@ -78,7 +89,8 @@ class UserController extends Controller
             'kelompok_id'       => $request->get('kelompok_id'),
             'alamat'            => $request->get('alamat'),
             'telepon'           => $request->get('telepon'),
-            'foto'              => $request->get('foto'),
+            'foto'              => $image,
+            
         ]);
 
 

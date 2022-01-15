@@ -56,10 +56,11 @@ class BibitController extends Controller
     public function Pesanan()
     {
         $pesanan=Pesanan::all();
-        if (!!$pesanan) {
+        if ($pesanan) {
         //     return abort(403,'Anda tidak punya akses karena anda Malas Ngoding');
-            return view ('errors.daftar_pesanan');
-        }
+        return view ('admin.daftar_pesanan',compact('pesanan'));
+    }
+    return view ('errors.daftar_pesanan');
         // try {
         //     $pesanan=Pesanan::all();
         // } catch (Throwable $e) {
@@ -67,7 +68,6 @@ class BibitController extends Controller
     
         //     return false;
         // }
-        return view ('admin.daftar_pesanan',compact('pesanan'));
     }
 
 

@@ -37,10 +37,10 @@ Lihat Agenda
                      <tr>
                         <td>{{$item->id}}</td>
                         <td>{{$item->petani->nama}}</td>
-                        <td>{{$item->stok_katak}} kilo</td>
-                        <td>{{$item->stok_umbi}} kilo</td>
-                        <td>Rp.{{$item->harga_katak}} ,-</td>
-                        <td>Rp.{{$item->harga_umbi}} ,-</td>
+                        <td>{{$item->stok_katak?:'-'}} kilo</td>
+                        <td>{{$item->stok_umbi?:'-'}} kilo</td>
+                        <td>Rp.{{$item->harga_katak?:'-'}} ,-</td>
+                        <td>Rp.{{$item->harga_umbi?:'-'}} ,-</td>
                         <td>Rp.{{$item->total_bayar}} ,-</td>
                         <td>{{$item->catatan}}</td>
                         <td>{{$item->created_at}}</td>
@@ -111,7 +111,7 @@ Lihat Agenda
       })
       .then((willDelete) => {
       if (willDelete) {
-         window.location = "{{route('batal_pesan',$item->id)}}"
+         window.location = "{{route('update_status',$item->id)}}"
          swal("Selamat! Status transaksi berhasil dirubah!", {
             icon: "success",
          });

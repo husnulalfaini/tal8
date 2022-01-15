@@ -4,11 +4,7 @@
 Data User 
 @endsection 
 
-@section('header_kanan') 
-<a class="btn btn-success btn-lg " href="#" role="button">
-   <i class="fa fa-plus"></i>
-</a> 
-@endsection 
+
 
 @section('content') 
 <section class="content">
@@ -57,7 +53,7 @@ Data User
                               <tr>
                                  <td>{{$no++}}</td>
                                  <td>{{$item->name}}</td>
-                                 <td>{{$item->alamat}}</td>
+                                 <td>{{$item->alamat?:$empty}}</td>
                                  <td>{{$item->level}}</td>
                                  <td>
                                     <a href="{{route('show_user',[$item->id])}}" class="text-dark">
@@ -102,7 +98,7 @@ Data User
                               <tr>
                                  <td>{{$num++}}</td>
                                  <td>{{$item->nama}}</td>
-                                 <td>{{$item->alamat}}</td>
+                                 <td>{{$item->alamat?:$empty}}</td>
                                  <td>{{$item->kelompok->nama}}</td>
                                  <td>
                                     <span class="badge bg-success">

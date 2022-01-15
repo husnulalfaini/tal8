@@ -26,7 +26,9 @@ class DaftarKelompokController extends Controller
         // menampilkan seluruh data ketua
         $ketua= User::where('level','ketua')->get();
 
-        return view('pimpinan.daftar_kelompok', compact('kelompok','ketua'));
+        $empty ='-- Data Tidak Tersedia --';
+
+        return view('pimpinan.daftar_kelompok', compact('kelompok','ketua','empty'));
     }
 
 
@@ -67,8 +69,10 @@ class DaftarKelompokController extends Controller
             ->join('kelompoks','kelompoks.id','=','petanis.kelompok_id')
             ->where('petanis.kelompok_id', $id)
             ->get();
+
+        $empty ='-- Data Tidak Tersedia --';
             
-        return view('pimpinan.detail_kelompok', compact('panen','kelompok','anggota','jumlah_lahan','hasil','ketua'));
+        return view('pimpinan.detail_kelompok', compact('panen','kelompok','anggota','jumlah_lahan','hasil','ketua','empty'));
    
     }
 

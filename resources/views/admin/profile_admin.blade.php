@@ -44,12 +44,12 @@
                      <hr>
                      <strong>
                         <i class="fas fa-map-marker-alt mr-1"></i> Alamat </strong>
-                     <p class="text-muted">{{ Auth::user()->alamat }}</p>
+                     <p class="text-muted">{{ Auth::user()->alamat?:$empty }}</p>
                      <hr>
                      <strong>
                         <i class="fas fa-phone-alt mr-1"></i> Telepon </strong>
                      <br>
-                     <a class="text-muted">{{ Auth::user()->telepon }}</a>
+                     <a class="text-muted">{{ Auth::user()->telepon?:$empty }}</a>
                   </div>
                   <!-- /.card-body -->
                   <!-- /.card -->

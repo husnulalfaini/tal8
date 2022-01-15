@@ -82,10 +82,10 @@ Lihat Agenda
                   <tbody>
                      <tr>
                         <td>{{$item->id}}</td>
-                        <td>{{$item->stok_katak}} kilo</td>
-                        <td>{{$item->stok_umbi}} kilo</td>
-                        <td>Rp.{{$item->harga_katak}} ,-</td>
-                        <td>Rp.{{$item->harga_umbi}} ,-</td>
+                        <td>{{$item->stok_katak?:'-'}} kilo</td>
+                        <td>{{$item->stok_umbi?:'-'}} kilo</td>
+                        <td>Rp.{{$item->harga_katak?:'-'}} ,-</td>
+                        <td>Rp.{{$item->harga_umbi?:'-'}} ,-</td>
                         <td>{{$item->supplier}}</td>
                         <td>{{$item->created_at}}</td>
                      </tr>
@@ -115,44 +115,48 @@ Lihat Agenda
                <div class="card-body">
                   <!-- Nama -->
                   <div class="form-group">
+                  <label for="">Stok katak</label>
                      <div class="input-group">
                         <div class="input-group-prepend">
                            <span class="input-group-text "><i class="far fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="text-input" name="stok_katak" placeholder="stok_katak" >
+                        <input type="text" class="form-control" id="text-input" name="stok_katak" placeholder="stok_katak"  value="0">
                      </div>
                      <!-- /.input group -->
                   </div>
                   <!-- /.form group -->
                   <!-- Nama -->
                   <div class="form-group">
+                  <label for="">Stok Umbi</label>
                      <div class="input-group">
                         <div class="input-group-prepend">
                            <span class="input-group-text "><i class="far fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="text-input" name="stok_umbi" placeholder="stok_umbi" >
+                        <input type="text" class="form-control" id="text-input" name="stok_umbi" placeholder="stok_umbi" value="0">
                      </div>
                      <!-- /.input group -->
                   </div>
                   <!-- /.form group -->
                   <!-- email -->
                   <div class="form-group">
+                     <label for="">harga katak</label>
                      <div class="input-group">
                         <div class="input-group-prepend">
                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="text-input" name="harga_katak" placeholder="harga_katak" >
+                        <input type="text" class="form-control" id="text-input" name="harga_katak" placeholder="harga_katak" value="0">
                         <!-- /.input group -->
                      </div>
                   </div>
                   <!-- /.form group -->
                   <!-- email -->
                   <div class="form-group">
+                  <label for="">Harga Umbi</label>
                      <div class="input-group">
                         <div class="input-group-prepend">
                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="text-input" name="harga_umbi" placeholder="harga_umbi" >
+                        <input type="text" class="form-control" id="text-input" name="harga_umbi" placeholder="harga_umbi" value="0">
                         <!-- /.input group -->
                      </div>
                   </div>
@@ -160,6 +164,7 @@ Lihat Agenda
 
                   <!-- password -->
                   <div class="form-group">
+                  <label for="">Supplier</label>
                      <div class="input-group">
                         <div class="input-group-prepend">
                            <span class="input-group-text"><i class="fas fa-phone"></i></span>

@@ -23,15 +23,19 @@ class KonfirmasiController extends Controller
         // menampilkan data petani mendaftar
         $petani= Petani::where('status', 0)->where('kelompok_id', $id)->get();
 
-        return view('ketua.konfirmasi', compact ('petani'));
+        $empty ='-- Data Tidak Tersedia --';
+
+        return view('ketua.konfirmasi', compact ('petani','empty'));
     }
 
 
     public function show($id)
     {
         $petani = Petani::find($id);
-        
-        return view('ketua.konfirmasi_petani', compact ('petani'));
+
+        $empty ='-- Data Tidak Tersedia --';
+
+        return view('ketua.konfirmasi_petani', compact ('petani','empty'));
     }
 
     

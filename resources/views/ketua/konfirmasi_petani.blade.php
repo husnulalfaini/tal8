@@ -60,7 +60,7 @@ konfirmasi Petani
                   <div class="col-sm-2 border-right">
                      <div class="description-block">
                         <h5 class="description-header">Alamat</h5>
-                        <span class="description-text">{{$petani->alamat}}</span>
+                        <span class="description-text">{{$petani->alamat?:$empty}}</span>
                      </div>
                      <!-- /.description-block -->
                   </div>
@@ -84,7 +84,7 @@ konfirmasi Petani
                   <div class="col-sm-2 border-left">
                      <div class="description-block">
                         <h5 class="description-header">Telepon</h5>
-                        <span class="description-text">{{$petani->telepon}}</span>
+                        <span class="description-text">{{$petani->telepon?:$empty}}</span>
                      </div>
                      <!-- /.description-block -->
                   </div>

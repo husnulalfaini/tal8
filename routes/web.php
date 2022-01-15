@@ -34,8 +34,8 @@ use App\Http\Controllers\LandingController;
 // Route::get('/', function () {
 //     return view('landing');
 // });
-// Route::get('/', function () {
-//     return view('landing');
+// Route::get('/loginv1', function () {
+//     return view('loginv1');
 // });
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
@@ -69,6 +69,13 @@ Route::group(['middleware' => ['auth','CekLevel:admin']], function () {
 
 });
 
+Route::get('/passport-install', function () {
+    Artisan::call('passport:install --force');
+  
+    dd("passport berhasil di install");
+});
+
+
 // halaman pimpinan
 Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
   Route::get('/dashboard_pimpinan', [PimpinanDashboardController::class, 'index'])->name('dashboard_pimpinan');
@@ -80,6 +87,7 @@ Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
     Route::post('/profile_pimpinan/{item}', [ProfilepimpinanController::class, 'update'])->name('update.profile_pimpinan');
     Route::post('/profile_pimpinan/foto/{item}', [ProfilepimpinanController::class, 'updateFoto'])->name('updateFoto.profile_pimpinan');
     Route::post('/tambah_kelompok/upload', [TambahKelompokController::class, 'tambahKelompok'])->name('upload.tambah_kelompok');
+    Route::get('/tambah_ketua', [TambahKelompokController::class, 'tampilKetua'])->name('tambah_ketua');
     Route::post('/tambah_ketua/upload', [TambahKelompokController::class, 'tambahKetua'])->name('upload.tambah_ketua');
     Route::get('/kelompok_pdf/{item}', [DaftarKelompokController::class, 'kelompokPdf'])->name('kelompok.pdf'); 
     

@@ -109,13 +109,14 @@
                               {{$data->lahan->kelompok->nama}}
                            </td>
                            <td> 
-                              {{$data->lahan->kelompok->alamat}}
+                              {{$data->lahan->kelompok->alamat?:$empty}}
                            </td>
                            <td> 
                               {{$data->tanggal}}
                            </td>
+                           <!-- panen diperbaiki -->
                            <td> 
-                              {{$data->panen_katak}}
+                              {{$data->panen_katak}} kg
                            </td>
                            
                            </tr>
