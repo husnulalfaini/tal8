@@ -50,7 +50,7 @@ class DashboardController extends Controller
             ->count();
 
         // menampilkan data panen petani
-        $data_panen= Panen::select('petanis.nama as nama','petanis.alamat as alamat','lahans.nama as lahan', 'panens.created_at as tanggal', 'panens.panen_umbi as umbi', 'panens.panen_katak as katak')
+        $data_panen= Panen::select('petanis.nama as nama','petanis.alamat as alamat','lahans.nama as lahan', 'panens.tanggal as tanggal', 'panens.panen_umbi as umbi', 'panens.panen_katak as katak')
             ->join('lahans','lahans.id','=','panens.lahan_id')
             ->join('petanis','petanis.id','=','lahans.petani_id')
             ->where('petanis.kelompok_id', $id)
@@ -70,8 +70,10 @@ class DashboardController extends Controller
              $tgl_panen[]= $pans->year;
              $panen_umbi[]= (float)$pans->total;
          }
-// dd($panen_umbi);
-        return view('ketua.dashboard', compact('anggota','data_panen','luas_lahan','jumlah_lahan','hasil','tgl_panen','panen_umbi'));
+
+         $empty ='-- Data Tidak Tersedia --';
+
+        return view('ketua.dashboard', compact('anggota','data_panen','luas_lahan','jumlah_lahan','hasil','tgl_panen','panen_umbi','empty'));
     }
 
 }

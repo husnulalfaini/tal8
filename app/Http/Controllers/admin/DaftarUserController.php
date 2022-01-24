@@ -124,7 +124,7 @@ class DaftarUserController extends Controller
         
         $empty ='-- Data Tidak Tersedia --';
 
-        return view('admin.detail_kelompok', compact('kelompok','ketua','anggota','data_panen','luas_lahan','jumlah_lahan','hasil',));
+        return view('admin.detail_kelompok', compact('kelompok','ketua','anggota','empty','data_panen','luas_lahan','jumlah_lahan','hasil',));
     }
 
 

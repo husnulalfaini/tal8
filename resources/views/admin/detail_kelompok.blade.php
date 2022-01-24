@@ -1,14 +1,20 @@
 @extends('layout.master') 
+
+@section('header_kanan') 
+<a class="btn btn-success btn-md float-right"  href="{{route('daftar_user')}}" role="button">Kembali</a>
+@endsection 
+
+
 @section('content') 
 <section class="content">
    <div class="container-fluid">
       <div class="row">
          <div class="col-md-4">
-            <!-- Profile Image -->
             <div class="card card-yellow card-outline">
                <div class="card-body box-profile">
                   <h3 class="profile-username text-center">{{$kelompok->nama}}</h3>
-                  <!-- /.card-header -->
+
+
                   <div class="card-body">
                      <hr>
                      <strong>
@@ -47,7 +53,6 @@
          <!-- /.card -->
 
          <div class="col-md-8">
-            <!-- Profile Image -->
             <div class="card card-yellow card-outline">
                <div class="card-body box-profile">
                   <!-- /.card-header -->
@@ -66,16 +71,16 @@
                               </thead>
                               <tbody> 
 
-								  @foreach ($data_panen as $item) 
-								  <tr>
-                                    <td>{{$item->nama}}</td>
-                                    <td>{{$item->alamat?:$empty}}</td>
-                                    <td>{{$item->tanggal}}</td>
-                                    <td>{{$item->katak?:$empty}} kilo</td>
-                                    <td>{{$item->umbi?:$empty}} kilo</td>
-                                 </tr> 
-								 @endforeach 
-								</tbody>
+                              @foreach ($data_panen as $item) 
+                              <tr>
+                                          <td>{{$item->nama}}</td>
+                                          <td>{{$item->alamat?:$empty}}</td>
+                                          <td>{{$item->tanggal}}</td>
+                                          <td>{{$item->katak?:$empty}} kilo</td>
+                                          <td>{{$item->umbi?:$empty}} kilo</td>
+                                       </tr> 
+                              @endforeach 
+                              </tbody>
                            </table>
                         </div>
                         <!-- /.row -->
@@ -89,6 +94,8 @@
          </div>
       </div>
 </section>
+
+
 <script src="{{asset('public/asset/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('public/asset/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -105,6 +112,8 @@
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
+
 <!-- js dari data table -->
 <script>
    $('#example2').DataTable({

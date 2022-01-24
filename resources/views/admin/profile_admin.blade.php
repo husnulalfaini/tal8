@@ -4,13 +4,13 @@
    <div class="container-fluid">
       <div class="row">
          <div class="col-md-5">
-            <!-- Profile Image -->
             <div class="card card-yellow card-outline">
                <div class="card-body box-profile">
                   <div class="text-center">
-                     <img class="profile-user-img img-fluid img-circle" style="width: 110px;" src="{{ asset('public/storage/'.Auth::user()->foto)}}" alt="Belum ada foto">
+                     <img class="profile-user-img img-fluid img-circle" style="width: 110px;" src="{{ asset('public\storage\profil'.Auth::user()->foto)}}" alt="Belum ada foto">
                   </div>
                   
+
                   <form class="update" action="{{route('updateFoto.profile_admin', Auth::user()->id)}}" method="post" enctype="multipart/form-data">
                      {{ csrf_field() }}
                         <div class="form-group col-md-12">
@@ -23,10 +23,10 @@
                                  <button type="submit" class="btn btn-warning btn-block"> Update Foto </button>
                               </div>
                            </div>
-
                         </div>
                   </form>
-                     <!-- /.form group -->
+                  <!-- /.form group -->
+
 
                   <!-- /.card-header -->
                   <div class="card-body">
@@ -53,12 +53,14 @@
                   </div>
                   <!-- /.card-body -->
                   <!-- /.card -->
+
+
                </div>
                <!-- /.card-body -->
             </div>
          </div>
          <!-- /.card -->
-         <!-- About Me Box -->
+
          <div class="col-md-7">
             <div class="card card-success">
                <div class="card-header ">
@@ -67,6 +69,7 @@
                <div class="card-body">
                   <form action="{{route('update.profile_admin', Auth::user()->id)}}" method="post" enctype="multipart/form-data">
                      {{ csrf_field() }}
+
                      <!-- Nama -->
                      <div class="form-group">
                         <label>Nama:</label>
@@ -78,9 +81,10 @@
                            </div>
                            <input type="Text" class="form-control" name="name" id="name" value="{{ Auth::user()->name }}">
                         </div>
-                        <!-- /.input group -->
                      </div>
-                     <!-- /.form group -->
+                     <!-- end  Nama -->
+
+
                      <!-- Email -->
                      <div class="form-group">
                         <label>Email:</label>
@@ -92,9 +96,10 @@
                            </div>
                            <input type="email" class="form-control" name="email" id="email" value="{{ Auth::user()->email }}">
                         </div>
-                        <!-- /.input group -->
                      </div>
-                     <!-- /.form group -->
+                     <!-- end  Email -->
+
+
                      <!-- Password -->
                      <div class="form-group">
                         <label>Password:</label>
@@ -106,10 +111,11 @@
                            </div>
                            <input type="password" class="form-control" name="password" id="password" value="{{ Auth::user()->password }}">
                         </div>
-                        <!-- /.input group -->
                      </div>
-                     <!-- /.form group -->
-                     <!-- Re Password -->
+                     <!-- end Password -->
+
+
+                     <!-- Telepon -->
                      <div class="form-group ">
                         <label>Telepon:</label>
                         <div class="input-group">
@@ -120,10 +126,11 @@
                            </div>
                            <input type="number" class="form-control" name="telepon" id="telepon" value="{{ Auth::user()->telepon }}">
                         </div>
-                        <!-- /.input group -->
                      </div>
-                     <!-- /.form group -->
-                     <!-- IP mask -->
+                     <!--end  Telepon -->
+
+
+                     <!-- alamat -->
                      <div class="form-group">
                         <label>Alamat:</label>
                         <div class="input-group">
@@ -133,12 +140,12 @@
                               </span>
                            </div>
                            <input type="Text" class="form-control" name="alamat" id="alamat" value="{{ Auth::user()->alamat }}">
-                           <!-- /.input group -->
                         </div>
                      </div>
-                        <!-- /.form group -->
+                     <!-- end alamat -->
+
+                     <!-- tombol update -->
                      <div class="col-md-4 mx-auto text-center">
-                        <!-- small box -->
                         <button type="submit" class="btn btn-warning btn-block"> Update</button>
                      </div>
                </div>

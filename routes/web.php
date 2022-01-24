@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth','CekLevel:admin']], function () {
   Route::get('/pesanan', [BibitController::class, 'Pesanan'])->name('pesanan');
   Route::get('/pesanan/update/{item}', [BibitController::class, 'UpdateStatus'])->name('update_status');
   Route::get('/pesanan/batal/{item}', [BibitController::class, 'destroy'])->name('batal_pesan');
+  Route::get('/pesanan_kosonh', [BibitController::class, 'pesananKosong'])->name('pesanan_kosong');
   Route::get('/profile_admin', [ProfileAdminController::class, 'index'])->name('profile_admin');
   Route::post('/profile_admin/{item}', [ProfileAdminController::class, 'update'])->name('update.profile_admin');
   Route::post('/profile_admin/foto/{item}', [ProfileAdminController::class, 'updateFoto'])->name('updateFoto.profile_admin');
@@ -86,9 +87,8 @@ Route::group(['middleware' => ['auth','CekLevel:pimpinan']], function () {
     Route::get('/profile_pimpinan', [ProfilePimpinanController::class, 'index'])->name('profile_pimpinan');
     Route::post('/profile_pimpinan/{item}', [ProfilepimpinanController::class, 'update'])->name('update.profile_pimpinan');
     Route::post('/profile_pimpinan/foto/{item}', [ProfilepimpinanController::class, 'updateFoto'])->name('updateFoto.profile_pimpinan');
+    Route::get('/tambah_kelompok', [TambahKelompokController::class, 'tampilKelompok'])->name('tambah_kelompok');
     Route::post('/tambah_kelompok/upload', [TambahKelompokController::class, 'tambahKelompok'])->name('upload.tambah_kelompok');
-    Route::get('/tambah_ketua', [TambahKelompokController::class, 'tampilKetua'])->name('tambah_ketua');
-    Route::post('/tambah_ketua/upload', [TambahKelompokController::class, 'tambahKetua'])->name('upload.tambah_ketua');
     Route::get('/kelompok_pdf/{item}', [DaftarKelompokController::class, 'kelompokPdf'])->name('kelompok.pdf'); 
     
 
@@ -106,9 +106,11 @@ Route::group(['middleware' => ['auth','CekLevel:ketua']], function () {
     Route::post('/konfirmasi/update/{id}', [KonfirmasiController::class, 'update'])->name('update.petani');
     Route::get('/hapus/{item}', [KonfirmasiController::class, 'destroy'])->name('ketua.hapus');
     Route::get('/konfirmasi_petani/{tani}', [KonfirmasiController::class, 'show'])->name('ketua.konfirmasi_petani');
-    Route::get('/daftar_petani', [DaftarPetaniController::class, 'index']);
+    Route::get('/daftar_petani', [DaftarPetaniController::class, 'index'])->name('ketua.daftar_petani');
     Route::get('/monitoring_petani/{item}', [DaftarPetaniController::class, 'show'])->name('ketua.monitoring_petani');
     Route::get('/monitoring_lahan/{item}', [DaftarPetaniController::class, 'lahan'])->name('ketua.monitoring_lahan');
     Route::get('/petani_pdf/{item}', [DaftarPetaniController::class, 'petaniPdf'])->name('petani.pdf');
+    Route::get('/tidak_aktif', [DaftarPetaniController::class, 'tidakAktif'])->name('petani.tidak_aktif');
+    Route::get('/tidak_aktif/update/{id}', [DaftarPetaniController::class, 'update'])->name('update.tidak_aktif');
   });
 

@@ -1,7 +1,7 @@
 @extends('layout.master') 
+@section('header_kanan')
 
-@section('header') 
-konfirmasi Petani 
+<a class="btn btn-success btn-md float-right"  href="{{route('ketua.daftar_petani')}}" role="button">Kembali </a>
 @endsection 
 
 @section('content') 
@@ -11,17 +11,11 @@ konfirmasi Petani
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div class="card"> 
-               @if (session()->get('sukses')) 
-                  <div class="alert alert-success">
-                     {{session()->get('sukses')}}
-               </div> 
-              @endif 
-
+            <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Petani Mendaftar</h3>
+                <h3 class="card-title">Daftar Petani Tidak Aktif</h3>
               </div>
-
+              <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -30,40 +24,38 @@ konfirmasi Petani
                       <th>Email</th>
                       <th>Alamat</th>
                       <th>Telepon</th>
-                      <th>aksi</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody> 
-                     @foreach ($petani as $tani) 
+                     @foreach ($daftar_petani as $item) 
                      <tr>
-                      <td>{{$tani->nama}}</td>
-                      <td>{{$tani->email}}</td>
-                      <td>{{$tani->alamat?:$empty}}</td>
-                      <td>{{$tani->telepon?:$empty}}</td>
+                      <td>{{$item->nama}}</td>
+                      <td>{{$item->email}}</td>
+                      <td>{{$item->alamat?:$empty}}</td>
+                      <td>{{$item->telepon?:$empty}}</td>
                       <td>
                         <span class="badge bg-success">
-                          <a href="{{route('ketua.konfirmasi_petani',[$tani->id])}}" class="text-dark"> Info Selengkapnya <i class="fas fa-arrow-circle-right"></i>
+                          <a href="{{route('ketua.monitoring_petani',[$item->id])}}" class="text-dark"> Detail <i class="fas fa-arrow-circle-right"></i>
                           </a>
                         </span>
                         <span class="badge bg-danger">
-                          <a href="{{route('ketua.hapus',[$tani->id])}}">Hapus</a>
+                          <a href="{{route('konfirmasiterima',[$item->id])}}" class="text-dark"> Aktifkan <i class="fas fa-ring"></i>
+                          </a>
                         </span>
-                      </td>
-                    </tr>
+                    </tr> 
+                    @endforeach 
                   </tbody>
-                  @endforeach
-
                   <tfoot>
                     <tr>
                       <th>Nama</th>
                       <th>Alamat</th>
                       <th>Email</th>
                       <th>Telepon</th>
-                      <th>aksi</th>
+                      <th></th>
                     </tr>
                   </tfoot>
                 </table>
-                
               </div>
               <!-- /.card-body -->
             </div>

@@ -6,7 +6,7 @@ Daftar Kelompok
 
 @section('header_kanan')
 
-<a class="btn btn-success btn-md float-right"  href="{{route('tambah_ketua')}}" role="button">Tambah Kelompok</a>
+<a class="btn btn-success btn-md float-right"  href="{{route('tambah_kelompok')}}" role="button">Tambah Kelompok</a>
 @endsection 
 
 @section('content')
@@ -21,8 +21,8 @@ Daftar Kelompok
 						<h3 class="card-title">Daftar Seluruh Kelompok</h3>
 					</div>
 					<!-- /.card-header -->
+
 					<div class="card-body">
-						<!-- ./col -->
 						<table id="example2" class="table table-bordered table-hover">
 							<thead>
 								<tr>
@@ -32,7 +32,8 @@ Daftar Kelompok
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>@foreach ($kelompok as $item)
+							<tbody>
+								@foreach ($kelompok as $item)
 								<tr>
 									<td>{{$item->id}}</td>
 									<td>{{$item->nama}}</td>

@@ -8,6 +8,7 @@ use App\Models\Kelompok;
 use App\Models\Lahan;
 use App\Models\Tanam;
 use App\Models\Panen;
+use App\Models\PengolahanSensor;
 use App\Models\Pesanan;
 use App\Models\Petani;
 use Validator;
@@ -38,7 +39,11 @@ class CRUDPetaniController extends Controller
     public function GetLahan($id)
     {
         // menampilkan data lahan sesuai id petani
-        $lahan = Lahan::where('id', $id)->get();
+        $lahan= Lahan::select('lahans.id as id', 'lahans.nama as nama','lahans.alamat as alamat','lahans.luas_lahan as luas','lahans.foto as foto')
+            ->join('petanis','petanis.id','=','lahans.petani_id')
+            ->where('lahans.petani_id', $id)
+            ->get();
+        // $lahan = Petani::select('lahan')->where('id', $id)->get();
         
         if ($lahan) {
             return response()->json([
@@ -68,10 +73,11 @@ class CRUDPetaniController extends Controller
     public function GetPanen($id)
     {
         // menampilkan data panen sesuai id petani
-        $panen= Panen::select('petanis.nama as nama','petanis.alamat as alamat','lahans.id as lahan_id', 'panens.created_at as tanggal', 'panens.panen_umbi as umbi', 'panens.panen_katak as katak')
+        $panen= Panen::select('lahans.id as lahan_id','lahans.nama as nama', 'panens.created_at as tanggal', 'panens.panen_umbi as umbi', 'panens.panen_katak as katak')
             ->join('lahans','lahans.id','=','panens.lahan_id')
-            ->join('petanis','petanis.id','=','lahans.petani_id')
-            ->where('lahans.petani_id', $id)
+            // ->join('petanis','petanis.id','=','lahans.petani_id')
+            ->where('panens.lahan_id', $id)
+            ->orderBy('panens.created_at', 'desc')
             ->get();
 
             if ($panen) {
@@ -85,6 +91,54 @@ class CRUDPetaniController extends Controller
                     'massage'=>'panen tidak tersedia']); 
             }
     }
+    
+    
+        public function GetPesanan($id)
+    {
+        // menampilkan data panen sesuai id petani
+        $pesanan= Pesanan::select('petanis.id as petani_id','petanis.nama as nama', 'pesanans.created_at as tanggal', 'pesanans.stok_katak as pesan_katak','pesanans.stok_umbi as pesan_umbi', 'pesanans.harga_katak as harga_katak','pesanans.harga_umbi as harga_umbi','pesanans.total_bayar as total_bayar','pesanans.catatan as catatan')
+            ->join('petanis','petanis.id','=','pesanans.petani_id')
+            // ->join('petanis','petanis.id','=','lahans.petani_id')
+            ->where('pesanans.petani_id', $id)
+            ->orderBy('pesanans.created_at', 'desc')
+            ->get();
+
+            if ($pesanan) {
+                return response()->json([
+                    'success'=>1,
+                    'massage'=> $pesanan]);      
+            } else  {
+    
+                return response()->json([
+                    'success'=>0,
+                    'massage'=>'pesanan tidak tersedia']); 
+            }
+    }
+    
+    
+    
+    public function GetSensor($id)
+    {
+        // menampilkan data panen sesuai id petani
+        $sensor= PengolahanSensor::select('lahans.id as lahan_id','lahans.nama as nama', 'pengolahan_sensors.created_at as tanggal', 'pengolahan_sensors.ph as ph', 'pengolahan_sensors.kelembapan as kelembapan','pengolahan_sensors.info_ph as info_ph','pengolahan_sensors.info_kelembapan as info_kelembapan','pengolahan_sensors.rekom_ph as rekom_ph','pengolahan_sensors.rekom_kelembapan as rekom_kelembapan')
+            ->join('lahans','lahans.id','=','pengolahan_sensors.lahan_id')
+            // ->join('petanis','petanis.id','=','lahans.petani_id')
+            ->where('pengolahan_sensors.lahan_id', $id)
+            ->orderBy('pengolahan_sensors.created_at', 'desc')
+            ->get();
+                
+            if ($sensor) {
+                return response()->json([
+                    'success'=>1,
+                    'massage'=> $sensor]);      
+            } else  {
+    
+                return response()->json([
+                    'success'=>0,
+                    'massage'=>'Sensor tidak tersedia']); 
+            }
+    }
+
 
     
     public function InputLahan(Request $request)

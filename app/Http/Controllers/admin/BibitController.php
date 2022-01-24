@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bibit;
-use Exception;
+// use Exception;
 use App\Models\Pesanan;
 use App\Models\Tambah_Bibit;
 
@@ -17,7 +17,7 @@ class BibitController extends Controller
         $tambah=Tambah_Bibit::all();
         // // cetak pdf
         // $pdf = \PDF::loadView('admin.cetak_kelompok',$data);
-        
+        // dd($tambah);
         return view ('admin.daftar_stok',compact('bibit','tambah'));
     }
 
@@ -40,6 +40,7 @@ class BibitController extends Controller
         return redirect()->route('daftar_stok')->with('success','Data Stok Berhasil Ditambah');
     }
 
+    
     public function cetakInvoice($id)
     {
         
@@ -56,20 +57,16 @@ class BibitController extends Controller
     public function Pesanan()
     {
         $pesanan=Pesanan::all();
-        if ($pesanan) {
+        // dd($pesanan);
+        if ($pesanan->isEmpty()) {
+            return view ('errors.daftar_pesanan');
         //     return abort(403,'Anda tidak punya akses karena anda Malas Ngoding');
+        
+    }
         return view ('admin.daftar_pesanan',compact('pesanan'));
+ 
     }
-    return view ('errors.daftar_pesanan');
-        // try {
-        //     $pesanan=Pesanan::all();
-        // } catch (Throwable $e) {
-        //     report($e);
     
-        //     return false;
-        // }
-    }
-
 
     public function updateStatus(Request $request, $id)
     {

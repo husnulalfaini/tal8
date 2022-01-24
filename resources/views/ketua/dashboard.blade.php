@@ -5,10 +5,10 @@
 <!-- konten utama -->
 <section class="content">
   <div class="container-fluid">
-    <!-- Small boxes (Stat box) -->
     <div class="row">
+
+      <!-- total petani -->
       <div class="col-lg-3 col-6">
-        <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
             <h3>{{$anggota}} Orang</h3>
@@ -19,9 +19,11 @@
           </div>
         </div>
       </div>
-      <!-- ./col -->
+      <!-- total petani -->
+
+
+      <!-- luas lahan -->
       <div class="col-lg-3 col-6">
-        <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
             <h3>{{$luas_lahan}} Hektar</h3>
@@ -32,9 +34,11 @@
           </div>
         </div>
       </div>
-      <!-- ./col -->
+      <!-- end luas lahan -->
+
+
+      <!-- total panen -->
       <div class="col-lg-3 col-6">
-        <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
             <h3>{{$hasil}} Kilo</h3>
@@ -45,9 +49,11 @@
           </div>
         </div>
       </div>
-      <!-- ./col -->
+      <!-- total panen -->
+
+
+      <!-- jumlah lahan -->
       <div class="col-lg-3 col-6">
-        <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
             <h3>{{$jumlah_lahan}}</h3>
@@ -58,15 +64,12 @@
           </div>
         </div>
       </div>
-      <!-- ./col -->
+      <!-- end jumlah lahan -->
     </div>
     <!-- /.row -->
 
     <!-- Main row -->
     <div class="row">
-      <!-- Left col -->
-      <!-- <section class="col-lg-12 connectedSortable"> -->
-      <!-- Custom tabs (Charts with tabs)-->
       <div class="col-md-12">
         <!-- GRAFIK -->
         <div class="card card-success">
@@ -88,12 +91,15 @@
           </div>
           <!-- /.card-body -->
         </div>
+
+
         <!-- /.card -->
       </div>
       <!-- </section> -->
     </div>
     <!-- /.Left col -->
   
+
     <!-- Tabel Data Panen Petani -->
     <div class="row">
       <div class="col-12">
@@ -116,11 +122,11 @@
               </thead>
               <tbody> @foreach ($data_panen as $item) <tr>
                   <td>{{$item->nama}}</td>
-                  <td>{{$item->alamat}}</td>
+                  <td>{{$item->alamat?:$empty}}</td>
                   <td>{{$item->lahan}}</td>
                   <td>{{$item->tanggal}}</td>
-                  <td>{{$item->katak}}</td>
-                  <td>{{$item->umbi}}</td>
+                  <td>{{$item->katak}} KG</td>
+                  <td>{{$item->umbi}} KG</td>
                 </tr> @endforeach </tbody>
               <tfoot>
                 <tr>
@@ -142,6 +148,8 @@
     </div>
     <!-- /.row -->
 </section>
+
+
 
 <!-- /.content -->
 <!-- jQuery -->
@@ -192,13 +200,13 @@
    yAxis: {
        min: 0,
        title: {
-           text: 'Hasil Panen Porang (Ton)'
+           text: 'Hasil Panen Porang (Kilo Gram)'
        }
    },
    tooltip: {
        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-           '<td style="padding:0"><b>{point.y:.1f} Ton</b></td></tr>',
+           '<td style="padding:0"><b>{point.y:.1f} KG</b></td></tr>',
        footerFormat: '</table>',
        shared: true,
        useHTML: true

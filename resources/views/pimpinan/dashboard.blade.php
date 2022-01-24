@@ -5,10 +5,10 @@
 <!-- konten utama -->
 <section class="content">
    <div class="container-fluid">
-   <!-- Small boxes (Stat box) -->
    <div class="row">
+
+   <!-- total kelompok -->
       <div class="col-lg-3 col-6 ">
-         <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
                <h3>{{$total_kelompok}} Kelompok</h3>
@@ -16,9 +16,11 @@
             </div>
          </div>
       </div>
-      <!-- ./col -->
+   <!-- total kelompok -->
+
+   
+   <!-- total petani -->
       <div class="col-lg-3 col-6">
-         <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
                <h3>{{$jumlah_petani}} Orang</h3>
@@ -26,9 +28,12 @@
             </div>
          </div>
       </div>
-      <!-- ./col -->
+   <!-- end total petani -->
+
+
+      
+   <!-- luas lahan -->
       <div class="col-lg-3 col-6">
-         <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
                <h3>{{$luas_lahan}} Hektar</h3>
@@ -36,9 +41,11 @@
             </div>
          </div>
       </div>
-      <!-- ./col -->
+   <!-- end luas lahan -->
+
+
+   <!-- total panen -->
       <div class="col-lg-3 col-6">
-         <!-- small box -->
          <div class="small-box bg-success">
             <div class="inner">
             <h3>{{$total_panen}} Kilo</h3>
@@ -46,16 +53,16 @@
             </div>
          </div>
       </div>
-      <!-- ./col -->
+   <!-- total panen -->
+
    </div>
    <!-- /.row -->
 
    <!-- Main row -->
    <div class="row">
-      <!-- Left col -->
-      <!-- <section class="col-lg-12 connectedSortable"> -->
-      <!-- Custom tabs (Charts with tabs)-->
       <div class="col-md-12">
+
+
          <!-- GRAFIK -->
          <div class="card card-success">
             <div class="card-header">
@@ -80,9 +87,8 @@
       </div>
       <!-- </section> -->
    </div>
-   <!-- /.Left col -->
-   <!-- right col (We are only adding the ID to make the widgets sortable)-->
-   <!-- <section class="col-lg-5 connectedSortable"> -->
+
+
       
    <!-- Tabel Data Panen Petani -->
          <div class="row">
@@ -92,44 +98,48 @@
                      <h3 class="card-title">Data Panen Kelompok</h3>
                   </div>
                   <!-- /.card-header -->
-                  <div class="card-body">
-                <table id="example2" class="table table-bordered table-striped">
-                  <thead>
-                           <tr>
-                              <th>Kelompok</th>
-                              <th>Alamat</th>
-                              <th>Tanggal Panen</th>
-                              <th>Jumlah Panen</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($panens as $data)
-                           <tr>
-                           <td> 
-                              {{$data->lahan->kelompok->nama}}
-                           </td>
-                           <td> 
-                              {{$data->lahan->kelompok->alamat?:$empty}}
-                           </td>
-                           <td> 
-                              {{$data->tanggal}}
-                           </td>
-                           <!-- panen diperbaiki -->
-                           <td> 
-                              {{$data->panen_katak}} kg
-                           </td>
-                           
-                           </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
-                           <tr>
-                              <th>Kelompok</th>
-                              <th>Alamat</th>
-                              <th>Tanggal Panen</th>
-                              <th>Jumlah Panen</th>
-                           </tr>
-                        </tfoot>
+                   <div class="card-body">
+                        <table id="example2" class="table table-bordered table-striped">
+                           <thead>
+                              <tr>
+                                 <th>Kelompok</th>
+                                 <th>Alamat</th>
+                                 <th>Tanggal Panen</th>
+                                 <th>Jumlah Panen Katak</th>
+                                 <th>Jumlah Panen Umbi</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           @foreach($panens as $data)
+                              <tr>
+                              <td> 
+                                 {{$data->lahan->kelompok->nama}}
+                              </td>
+                              <td> 
+                                 {{$data->lahan->kelompok->alamat?:$empty}}
+                              </td>
+                              <td> 
+                                 {{$data->tanggal}}
+                              </td>
+                              <!-- panen diperbaiki -->
+                              <td> 
+                                 {{$data->panen_katak}} kg
+                              </td>
+                              <td> 
+                                 {{$data->panen_umbi}} kg
+                              </td>
+                              
+                              </tr>
+                           @endforeach
+                           </tbody>
+                           <tfoot>
+                              <tr>
+                                 <th>Kelompok</th>
+                                 <th>Alamat</th>
+                                 <th>Tanggal Panen</th>
+                                 <th>Jumlah Panen</th>
+                              </tr>
+                           </tfoot>
                      </table>
                   </div>
                   <!-- /.card-body -->
@@ -141,6 +151,8 @@
          <!-- /.row -->
 </section>
 <!-- /.content -->
+
+
 <!-- jQuery -->
 <script src="{{asset('public/asset/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
@@ -160,9 +172,6 @@
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <script src="{{asset('public/asset/dist/js/adminlte.min.js')}}"></script>
 <script src="{{asset('public/asset/dist/js/demo.js')}}"></script>
-
-
-
 
 
 <!-- js dari data table -->
@@ -199,13 +208,13 @@
    yAxis: {
        min: 0,
        title: {
-           text: 'Hasil Panen Porang (Ton)'
+           text: 'Hasil Panen Porang (Kilo Gram)'
        }
    },
    tooltip: {
        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-           '<td style="padding:0"><b>{point.y:.1f} Ton</b></td></tr>',
+           '<td style="padding:0"><b>{point.y:.1f} KG</b></td></tr>',
        footerFormat: '</table>',
        shared: true,
        useHTML: true

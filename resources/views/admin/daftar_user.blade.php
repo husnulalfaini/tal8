@@ -5,7 +5,6 @@ Data User
 @endsection 
 
 
-
 @section('content') 
 <section class="content">
    <div class="container-fluid">
@@ -29,7 +28,6 @@ Data User
 
                <div class="card-body">
                   <div class="tab-content p-0">
-                     <!-- Morris chart - Sales -->
 
                      <!-- Seluruh User -->
                      <div class="chart tab-pane success" id="user" style="position: relative;">
@@ -43,11 +41,9 @@ Data User
                                  <th></th>
                               </tr>
                            </thead>
-
                            @php 
                            $no=1; 
                            @endphp
-
                            <tbody> 
                               @foreach ($user as $item) 
                               <tr>
@@ -173,6 +169,7 @@ Data User
                         </table>
                      </div>
                      <!-- END Seluruh Kelompok -->
+
                   </div>
                </div>
                <!-- /.card-body -->
@@ -187,6 +184,8 @@ Data User
    <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+
+
 <!-- jQuery -->
 <script src="{{asset('public/asset/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
@@ -204,6 +203,8 @@ Data User
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
+
 <!-- js dari data table -->
 <script>
    $('#example1').DataTable({

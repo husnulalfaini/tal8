@@ -1,16 +1,18 @@
 @extends('layout.master')
 
+@section('header_kanan') 
+<a class="btn btn-success btn-md float-right"  href="{{route('daftar_kelompok')}}" role="button">Kembali</a>
+@endsection 
+
 @section('content')
 <!-- konten utama -->
 <section class="content">
   <div class="container-fluid">
     <!-- /.row -->
 
-    <!-- Main row -->
+    <!-- detail kelompok -->
     <div class="row">
-      <!-- Left col -->
       <div class="col-md-6">
-        <!-- GRAFIK -->
         <div class="card card-success">
           <div class="card-header">
             <h3 class="card-title">Detail Kelompok</h3>
@@ -25,6 +27,7 @@
           </div>
           <div class="card-body">
             <div class="chart">
+
               <div class="info-box mb-3 bg-white">
                 <span class="info-box-icon">
                   <i class="fa fa-users"></i>
@@ -33,9 +36,9 @@
                   <span class="info-box-text">Kelompok</span>
                   <span class="info-box-number">{{$kelompok->nama}}</span>
                 </div>
-                <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box -->
+
+              <!-- ketua -->
               <div class="info-box mb-3 bg-white">
                 <span class="info-box-icon">
                   <i class="fa fa-user"></i>
@@ -45,10 +48,10 @@
                   <span class="info-box-text">Ketua</span>
                   <span class="info-box-number">{{$ket->name ?:$empty}}</span>
                 </div>
-                <!-- /.info-box-content -->
                 @endforeach
               </div>
-              <!-- /.info-box -->
+
+              <!-- anggota tani-->
               <div class="info-box mb-3 bg-white">
                 <span class="info-box-icon">
                   <i class="fas fa-tree"></i>
@@ -57,9 +60,10 @@
                   <span class="info-box-text">Anggota Tani</span>
                   <span class="info-box-number">{{$anggota}} orang</span>
                 </div>
-                <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box -->
+
+
+              <!-- jumlah lahan -->
               <div class="info-box mb-3 bg-white">
                 <span class="info-box-icon">
                   <i class="fas fa-tree"></i>
@@ -68,9 +72,10 @@
                   <span class="info-box-text">Jumlah Lahan</span>
                   <span class="info-box-number">{{$jumlah_lahan}}</span>
                 </div>
-                <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box -->
+
+
+              <!-- hasil panen -->
               <div class="info-box mb-3 bg-white">
                 <span class="info-box-icon">
                   <i class="fas fa-archive"></i>
@@ -79,8 +84,9 @@
                   <span class="info-box-text">Hasil Panen</span>
                   <span class="info-box-number">{{$hasil}} Ton</span>
                 </div>
-                <!-- /.info-box-content -->
               </div>
+
+
             </div>
           </div>
           <!-- /.card-body -->
@@ -88,8 +94,10 @@
         <!-- /.card -->
       </div>
 
+
+
+      <!-- Lokasi Maps -->
       <div class="col-md-6">
-        <!-- PIE GRAFIK -->
         <div class="card card-success">
           <div class="card-header">
             <h3 class="card-title">Lokasi Kelompok</h3>
@@ -145,9 +153,10 @@
         <!-- /.card-body -->
       </div>
     </div>
-    <!-- </section> -->
   </div>
-  <!-- /.Left col -->
+  <!-- end Lokasi Maps -->
+
+
 
   <!-- Tabel Data Panen Petani -->
   <div class="row">
@@ -156,7 +165,8 @@
         <div class="card-header">
           <h3 class="card-title">Data Panen Anggota Tani</h3>
         </div>
-        <!-- /.card-header -->
+
+        <!-- card-body -->
         <div class="card-body">
           <table id="example2" class="table table-bordered table-hover">
             <thead>
@@ -204,6 +214,9 @@
     </div>
     <!-- /.col -->
   </div>
+  <!-- end Tabel Data Panen Petani -->
+
+  
   <!-- /.row -->
 </section>
 <!-- /.content -->

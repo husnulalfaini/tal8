@@ -85,24 +85,32 @@ class DaftarPetaniController extends Controller
         // menampilkan data sensor sesuai lahan petani
         $monitoring_lahan = PengolahanSensor::where('lahan_id', $id)->get();
 
-        //grafik kelembapan
-        $data_kelembapan = PengolahanSensor::whereDate('created_at', Carbon::today())->get();
-
-        //grafik kelembapan
-        // $data_PH = PengolahanSensor::whereDate('created_at', Carbon::today())->get();
-        $data_PH = PengolahanSensor::where('lahan_id',$id)->whereDate('created_at', Carbon::today())->take(30)->get()->sortBy('id');
-        $labels = $data_PH->pluck('created_at');
-        $data_PH = $data_PH->pluck('ph');
-        // dd($labels);
         // menampilkan data panen sesuai lahan petani
         $panen_petani = Panen::where('lahan_id', $id)->get();
 
         // menampilkan data Tanam sesuai lahan petani
         // $tanam_petani = Tanam::where('lahan_id', $id)->get();
 
+        // grafik panen
+        $sensor = PengolahanSensor::select(DB::raw('pengolahan_sensors.kelembapan as kelembapan'),DB::raw('pengolahan_sensors.ph as ph'), DB::raw('TIME(pengolahan_sensors.created_at) as tanggal'))
+        ->join('lahans','lahans.id','=','pengolahan_sensors.lahan_id')
+        ->join('petanis','petanis.id','=','lahans.petani_id')
+        ->where('lahans.id', $id)
+        ->groupBy('pengolahan_sensors.id')
+        ->get();       
+
+        $tgl_sensor = [];
+        $data_kelembapan = [];
+        $data_ph = [];
+        foreach ($sensor as $kel){
+            $tgl_sensor[]= $kel->tanggal;
+            $data_kelembapan[]= (float)$kel->kelembapan;
+            $data_ph[]= (float)$kel->ph;
+        }
+
         $empty ='-- Data Tidak Tersedia --';
 
-        return view('ketua.monitoring_lahan', compact('monitoring_lahan','panen_petani','data_PH','labels','data_kelembapan','empty'));
+        return view('ketua.monitoring_lahan', compact('monitoring_lahan','panen_petani','tgl_sensor','data_kelembapan','data_ph','empty'));
 
     }
 
@@ -141,5 +149,31 @@ class DaftarPetaniController extends Controller
         $pdf = \PDF::loadView('ketua.petani_pdf',$data);
         
         return $pdf->stream('Rekap_Petani.pdf');
+    }
+
+
+    public function tidakAktif(Type $var = null)
+    {
+        $id = Auth::user()->kelompok_id;
+        
+        // menampilkan seluruh data petani
+        $daftar_petani= Petani::all()
+            ->where('status',3)
+            ->where('kelompok_id',$id);
+
+        $empty ='-- Data Tidak Tersedia --';
+
+        return view('ketua.petani_tidakAktif', compact('daftar_petani','empty'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        // menerima data petani daftar
+        $update= Petani::findOrFail($id);
+        $update->status= 3;
+        $update->update();
+
+        return redirect('/daftar_petani')->with('success', 'Petani Berhasil Dihapus');   
     }
 }

@@ -1,7 +1,8 @@
 @extends('layout.master') 
 
-@section('header') 
-Monitoring Petani 
+@section('header_kanan')
+
+<a class="btn btn-success btn-md float-right"  href="{{route('ketua.daftar_petani')}}" role="button">Kembali </a>
 @endsection 
 
 @section('content')
@@ -22,11 +23,12 @@ Monitoring Petani
 			</div>
 		</div>
 		<div class="col-md-12">
-			<!-- Widget: user widget style 1 -->
 			<div class="card card-widget widget-user">
-				<!-- Add the bg color to the header using any of the bg-* classes -->
 				<div class="card-footer">
 					<div class="row">
+
+
+						<!-- kelompok -->
 						<div class="col-sm-2 border-right">
 							<div class="description-block">
 								<h5 class="description-header">Kelompok Tani</h5>
@@ -34,7 +36,11 @@ Monitoring Petani
 							</div>
 							<!-- /.description-block -->
 						</div>
-						<!-- /.col -->
+						<!-- kelompok -->
+
+
+
+						<!-- alamat -->
 						<div class="col-sm-2 border-right">
 							<div class="description-block">
 								<h5 class="description-header">Alamat</h5>
@@ -42,7 +48,10 @@ Monitoring Petani
 							</div>
 							<!-- /.description-block -->
 						</div>
-						<!-- /.col -->
+						<!-- alamat -->
+
+
+						<!-- nama -->
 						<div class="col-sm-4">
 							<div class="description-block">
 								<h5 class="description-header">Nama</h5>
@@ -50,7 +59,10 @@ Monitoring Petani
 							</div>
 							<!-- /.description-block -->
 						</div>
-						<!-- /.col -->
+						<!-- end nama -->
+
+
+						<!-- email -->
 						<div class="col-sm-2 border-left">
 							<div class="description-block">
 								<h5 class="description-header">Email</h5>
@@ -58,7 +70,10 @@ Monitoring Petani
 							</div>
 							<!-- /.description-block -->
 						</div>
-						<!-- /.col -->
+						<!-- email -->
+
+
+						<!-- telepon -->
 						<div class="col-sm-2 border-left">
 							<div class="description-block">
 								<h5 class="description-header">Telepon</h5>
@@ -66,15 +81,17 @@ Monitoring Petani
 							</div>
 							<!-- /.description-block -->
 						</div>
+
+						<!-- end telepon -->
 					</div>
-					<!-- /.row -->
 				</div>
 			</div>
-			<!-- /.widget-user -->
 		</div>
 		<!-- /.content -->
 		<!-- end informasi petani -->
 
+
+		
 		<!-- informasi lahan -->
 		<div class="col-md-12">
 			<div class="card">
@@ -84,6 +101,9 @@ Monitoring Petani
 				<!-- /.card-header -->
 				<div class="card-body">
 					<div class="row">
+
+
+						<!-- luas lahan-->
 						<div class="col-sm-4 border-right">
 							<div class="description-block">
 								<h5 class="description-header">Luas Lahan</h5>
@@ -91,7 +111,10 @@ Monitoring Petani
 							</div>
 							<!-- /.description-block -->
 						</div>
-						<!-- /.col -->
+						<!-- end luas lahan -->
+
+
+						<!-- jumlah lahan -->
 						<div class="col-sm-4 border-right">
 							<div class="description-block">
 								<h5 class="description-header">Jumlah Lahan</h5>
@@ -99,7 +122,10 @@ Monitoring Petani
 							</div>
 							<!-- /.description-block -->
 						</div>
-						<!-- /.col -->
+						<!-- end jumlah lahan -->
+
+
+						<!-- total panen -->
 						<div class="col-sm-4 ">
 							<div class="description-block">
 								<h5 class="description-header">Total Panen</h5>
@@ -107,6 +133,8 @@ Monitoring Petani
 							</div>
 							<!-- /.description-block -->
 						</div>
+						<!-- end total panen -->
+
 					</div>
 					<!-- /.row -->
 				</div>
@@ -121,15 +149,11 @@ Monitoring Petani
 			<div class="row">
 				<div class="col-md-6">
 				<div class="card">
-						<div class="card-header">
-							<h3 class="card-title">Panen</h3>
-						</div>
-               <!-- /.card-header -->
-
+					<div class="card-header">
+						<h3 class="card-title">Panen</h3>
+					</div>
                <div class="card-body">
                   <div class="tab-content p-0">
-                     <!-- Morris chart - Sales -->
-
                      <!-- Seluruh User -->
                         <table id="example1" class="table table-bordered table-hover">
 							<thead>
@@ -141,7 +165,7 @@ Monitoring Petani
 								</thead>
 								<tbody>@foreach ($panen_petani as $item)
 									<tr>
-										<td>{{$item->tanggal}}</td>
+										<td>{{\Carbon\Carbon::parse($item->tanggal)->isoFormat('d-M-Y')}}</td>
 										<td>{{$item->panen_katak}} kg</td>
 										<td>{{$item->panen_umbi}} kg</td>
 									</tr>
@@ -166,7 +190,7 @@ Monitoring Petani
 
          <!-- end riwayat panen -->
 
-            <!-- info lahan -->
+        <!-- info lahan -->
 				<div class="col-md-6">
 					<div class="card">
 						<div class="card-header">

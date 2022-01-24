@@ -1,5 +1,9 @@
 @extends('layout.master') 
 
+@section('header_kanan') 
+<a class="btn btn-success btn-md float-right"  href="{{route('daftar_kelompok')}}" role="button">Kembali</a>
+@endsection 
+
 @section('content') 
 <section class="content">
   <div class="container-fluid">
@@ -12,142 +16,184 @@
           <form action="{{route('update.kelompok',$kelompok->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
             {{ csrf_field() }}
             <div class="card-body">
-					<div class="row">
-						<div class="col-md-6">
+            	<div class="row">
+            		<div class="col-md-6">
 
-							<!-- Nama -->
-						<div class="form-group">
-							<div class="input-group">
-								<div class="input-group-prepend"> <span class="input-group-text "><i class="far fa-user"></i></span>
-								</div>
-								<input type="Text" class="form-control" id="text-input" name="nama" value="{{ $kelompok->nama }}">
-							</div>
-							<!-- /.input group -->
-						</div>
-						<!-- /.form group -->
-						<!-- IP mask -->
-						<div class="form-group">
-							<div class="input-group">
-								<div class="input-group-prepend"> <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-								</div>
-								<input type="Text" class="form-control" id="text-input" name="alamat" value="{{ $kelompok->alamat }}">
-								<!-- /.input group -->
-							</div>
-						</div>
-						<!-- /.form group -->
-						<!-- IP mask -->
-						<div class="form-group">
-							<div class="input-group">
-								<div class="input-group-prepend"> <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-								</div>
-								<input type="Text" class="form-control" id="text-input" name="kecamatan" value="{{ $kelompok->kecamatan }}">
-								<!-- /.input group -->
-							</div>
-						</div>
-						<!-- /.form group -->
 
-						<div class="row">
-      						<div class="col-md-7">
-								<div class="card">
-										<div id='map' style='height: 250px;'></div>
-								</div>
-							</div>
-							<div class="col-md-5">
-								<!--Longitude-->
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-prepend"> <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-										</div>
-										<input type="Text" class="form-control" id="longitude" name="longitude" value="{{ $kelompok->longitude }}">
-									</div>
-								</div>
-								<!-- /.Longitude -->
-								<!-- /.Latitude -->
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-prepend"> <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-										</div>
-										<input type="Text" class="form-control" id="latitude" name="latitude" value="{{ $kelompok->latitude }}">
-								
-									</div>
-								</div>
-								<!-- /.Latitude -->
-							</div>
-						</div>
+            			<!-- Nama Kelompok-->
+            			<div class="form-group">
+            				<div class="input-group">
+            					<div class="input-group-prepend">
+            						<span class="input-group-text ">
+            							<i class="far fa-user"></i>
+            						</span>
+            					</div>
+            					<input type="Text" class="form-control" id="text-input" name="nama" value="{{ $kelompok->nama }}">
+            				</div>
+            				<!-- /.input group -->
+            			</div>
+            			<!-- end Nama Kelompok-->
 
-						</div>
-						@foreach ($ketua as $ket)
-						<div class="col-md-6">
-								<!-- Nama -->
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-prepend">
-										<span class="input-group-text "><i class="far fa-user"></i></span>
-										</div>
-										<input type="text" class="form-control" id="text-input" name="name" placeholder="nama" value="{{ $ket->name }}">
-									</div>
-									<!-- /.input group -->
-								</div>
-								<!-- /.form group -->
-								<!-- email -->
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-prepend">
-										<span class="input-group-text"><i class="fas fa-envelope"></i></span>
-										</div>
-										<input type="email" class="form-control" id="text-input" name="email" value="{{ $ket->email }}">
-										<!-- /.input group -->
-									</div>
-								</div>
-								<!-- /.form group -->
-								<!-- password -->
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-prepend">
-										<span class="input-group-text"><i class="fas fa-lock"></i></span>
-										</div>
-										<input type="password" class="form-control" id="password" name="password" value="{{ $ket->password }}">
-										<!-- /.input group -->
-									</div>
-								</div>
-								<!-- /.form group -->
 
-								<!-- password -->
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-prepend">
-										<span class="input-group-text"><i class="fas fa-phone"></i></span>
-										</div>
-										<input type="text" class="form-control" id="telepon" name="telepon" value="{{ $ket->telepon }}">
-										<!-- /.input group -->
-									</div>
-								</div>
-								<!-- /.form group -->
-								<!-- password -->
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-prepend">
-										<span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-										</div>
-										<input type="text" class="form-control" id="alamat" name="alamat" value="{{ $ket->alamat }}">
-										<!-- /.input group -->
-									</div>
-								</div>
-								@endforeach
-								<div class="col-md-4 mx-auto text-center">
-									<!-- small box -->
-									<button type="submit" class="btn btn-success btn-block"> Tambah</button>
-							</div>
-						<!-- /.form group -->
-						</div>
-					</div>
-				<!-- /.card-body -->
-				</div>
+            			<!-- alamat Kelompok-->
+            			<div class="form-group">
+            				<div class="input-group">
+            					<div class="input-group-prepend">
+            						<span class="input-group-text">
+            							<i class="fas fa-map-marker-alt"></i>
+            						</span>
+            					</div>
+            					<input type="Text" class="form-control" id="text-input" name="alamat" value="{{ $kelompok->alamat }}">
+            					<!-- /.input group -->
+            				</div>
+            			</div>
+            			<!-- end alamat Kelompok-->
+
+
+            			<!-- kecamatan -->
+            			<div class="form-group">
+            				<div class="input-group">
+            					<div class="input-group-prepend">
+            						<span class="input-group-text">
+            							<i class="fas fa-map-marker-alt"></i>
+            						</span>
+            					</div>
+            					<input type="Text" class="form-control" id="text-input" name="kecamatan" value="{{ $kelompok->kecamatan }}">
+            					<!-- /.input group -->
+            				</div>
+            			</div>
+						<!-- end kecamatan -->
+
+            			<!-- lokasi -->
+            			<div class="row">
+            				<div class="col-md-7">
+            					<div class="card">
+            						<div id='map' style='height: 250px;'></div>
+            					</div>
+            				</div>
+            				<div class="col-md-5">
+            					<!--Longitude-->
+            					<div class="form-group">
+            						<div class="input-group">
+            							<div class="input-group-prepend">
+            								<span class="input-group-text">
+            									<i class="fas fa-map-marker-alt"></i>
+            								</span>
+            							</div>
+            							<input type="Text" class="form-control" id="longitude" name="longitude" value="{{ $kelompok->longitude }}">
+            						</div>
+            					</div>
+            					<!-- /.Longitude -->
+            					<!-- /.Latitude -->
+            					<div class="form-group">
+            						<div class="input-group">
+            							<div class="input-group-prepend">
+            								<span class="input-group-text">
+            									<i class="fas fa-map-marker-alt"></i>
+            								</span>
+            							</div>
+            							<input type="Text" class="form-control" id="latitude" name="latitude" value="{{ $kelompok->latitude }}">
+            						</div>
+            					</div>
+            					<!-- /.Latitude -->
+            				</div>
+            			</div>
+						<!-- end lokasi -->
+
+            		</div> @foreach ($ketua as $ket) <div class="col-md-6">
+            			<!-- Nama ketua-->
+            			<div class="form-group">
+            				<div class="input-group">
+            					<div class="input-group-prepend">
+            						<span class="input-group-text ">
+            							<i class="far fa-user"></i>
+            						</span>
+            					</div>
+            					<input type="text" class="form-control" id="text-input" name="name" placeholder="nama" value="{{ $ket->name }}">
+            				</div>
+            				<!-- /.input group -->
+            			</div>
+            			<!-- end Nama ketua-->
+
+
+            			<!-- email ketua -->
+            			<div class="form-group">
+            				<div class="input-group">
+            					<div class="input-group-prepend">
+            						<span class="input-group-text">
+            							<i class="fas fa-envelope"></i>
+            						</span>
+            					</div>
+            					<input type="email" class="form-control" id="text-input" name="email" value="{{ $ket->email }}">
+            					<!-- /.input group -->
+            				</div>
+            			</div>
+            			<!-- end email ketua -->
+
+
+
+            			<!-- password ketua-->
+            			<div class="form-group">
+            				<div class="input-group">
+            					<div class="input-group-prepend">
+            						<span class="input-group-text">
+            							<i class="fas fa-lock"></i>
+            						</span>
+            					</div>
+            					<input type="password" class="form-control" id="password" name="password" value="{{ $ket->password }}">
+            					<!-- /.input group -->
+            				</div>
+            			</div>
+            			<!-- end password ketua-->
+
+
+            			<!-- telepon ketua -->
+            			<div class="form-group">
+            				<div class="input-group">
+            					<div class="input-group-prepend">
+            						<span class="input-group-text">
+            							<i class="fas fa-phone"></i>
+            						</span>
+            					</div>
+            					<input type="text" class="form-control" id="telepon" name="telepon" value="{{ $ket->telepon }}">
+            					<!-- /.input group -->
+            				</div>
+            			</div>
+            			<!--end telepon ketua -->
+
+
+            			<!-- alamat ketua-->
+            			<div class="form-group">
+            				<div class="input-group">
+            					<div class="input-group-prepend">
+            						<span class="input-group-text">
+            							<i class="fas fa-map-marker-alt"></i>
+            						</span>
+            					</div>
+            					<input type="text" class="form-control" id="alamat" name="alamat" value="{{ $ket->alamat }}">
+            					<!-- /.input group -->
+            				</div>
+            			</div> 
+						<!-- end alamat ketua-->
+						@endforeach
+
+
+						 <div class="col-md-4 mx-auto text-center">
+            				<!-- small box -->
+            				<button type="submit" class="btn btn-success btn-block"> Tambah</button>
+            			</div>
+            			<!-- /.form group -->
+            		</div>
+            	</div>
+            	<!-- /.card-body -->
+            </div>
             <!-- /.card -->
         </form>
       </div>
     </div>
   </div>
+
+
 </section>
 <!-- /.content -->
 <!-- jQuery -->

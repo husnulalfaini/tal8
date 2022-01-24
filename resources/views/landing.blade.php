@@ -27,18 +27,19 @@
 	  
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html"><span>Porasity.</span></a>
+	      <a class="navbar-brand" href="index.html"><span>PT API.</span></a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="home"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="about"><span>Login</span></a></li>
+	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="home"><span>Login</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="projects"><span>Informasi</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="maps"><span>Maps</span></a></li>
 	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="team"><span>Team</span></a></li>
+	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="galeri"><span>Galeri</span></a></li>
+	          <li class="nav-item"><a href="#" class="nav-link" data-nav-section="contact"><span>contact</span></a></li>
 
 	        </ul>
 	      </div>
@@ -51,12 +52,9 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-8 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
           	<p class="d-flex align-items-center" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-							<a href="https://youtu.be/SJ6KRDq1vOg" class="icon-video popup-vimeo d-flex justify-content-center align-items-center mr-3">
-    						<span class="ion-ios-play play mr-2"></span>
-    						<span class="watch">Watch Video</span>
-    					</a>
+            <p class="mb-0"><a href="{{asset('login')}}" class="btn btn-lg btn-secondary">Login <span class="ion-ios-arrow-round-forward"></span></a></p>
 						</p>
-            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style= 'color:success;'>Komunitas Porang Kabupaten Banyuwangi</h1>
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style= 'color:success;'>Asosiasi Petani Porang Kabupaten Banyuwangi</h1>
             <p class="mb-4 " data-scrollax="properties: { translateY: '30%', opacity: 1.6, }" >website manajemen petani dan lahan porang</p>
           </div>
         </div>
@@ -97,15 +95,6 @@
       </div>
     </section>
 
-		<section class="container-fluid p-0" data-section="about">
-				<div class="row no-gutters justify-content-center pb-5">
-			<div class="col-md-12 heading-section text-center ftco-animate">
-				<span class="subheading">Are you users?</span>
-				<a href="{{url('/login')}}" class="btn btn-success">login</a>
-				<p>anda dapat melakukan login jika anda admin, pimpinan atau ketua kelompok</p>
-			</div>
-			</section>
-
     <section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb" id="section-counter" data-section="projects">
     	<div class="container">
     		<div class="row d-flex">
@@ -120,9 +109,10 @@
 		          <div class="col-md-12 heading-section ftco-animate">
 		          	<span class="subheading">Sejarah</span>
 		            <h2 class="mb-4">Paguyuban Petani Porang Banyuwangi</h2>
-		            <p>Paguyuban Petani Porang berdiri pada tahun 2018, diawali dengan kejadian pada tahun 2008 dimana Bapak Miran mencari bibit tanaman porang, namun bibit tersebut berhasil ditemukan di tahun 2015. </p>
-		            <p>Setelah itu, beliau mencoba melakukan penanaman porang. Setelah mengetahui tanaman porang berhasil tumbuh dengan kondisi yang baik,</p>
-		            <p>Beliau mengajak masyarakat sekitar untuk melakukan pembudidayaan porang, namun masih banyak petani yang tidak tahu menahu menegenai manfaat juga kegunaan porang, Padahal porang sendiri memiliki manfaat yang sangat banyak dan dapat digunakan pada jangka waktu panjang. </p>
+		            <p>Asosiasi Petani Porang Banyuwangi merupakan badan yang dibentuk untuk menaungi dan mengarahkan para Petani Porang di Kabupaten Banyuwangi. Asosiasi ini dibawah kelembagaan PT Anugerah Porangkaya Indonesia.</p>
+		            <p>"PT. Anugerah Porangkaya Indonesia yaitu Perusahaan Agro Industri pertama yang mengelola Komoditas Porang dari hulu sampai hilir, dari pembibitan sampai pengolahan hasil panen dengan sitem kemitraan dan keberlanjutan"</p>
+		            <p>PT. APi terletak di Sumbergondo, Kecamatan Glenmore, Kabupaten Banyuwangi, Jawa Timur. juga bekerjasama dengan Dinas Pertanian banyuwangi dan juga Badan Pusat Pertanian di tiap kecamatan. </p>
+		            <p>Saat ini, terdapat 12 kecamatan yang sudah tergabung dengan asosiasi ini yakni Kecamatan Wongsorejo, Sempu, Siliragung, Kalipuro, Gelnmore, Glagah, Licin, Kalibaru, Kabat, Songgon	, Pesanggaran dan Tegaldlimo. </p>
 		          </div>
 		        </div>
 		    		<div class="row">
@@ -237,7 +227,6 @@
     </section>
 
 
-
     <section class="ftco-section ftco-project bg-light" data-section="team">
     	<div class="container-fluid px-md-5">
     		<div class="row justify-content-center pb-5">
@@ -271,9 +260,75 @@
     		</div>
     	</div>
 
+    <section class="ftco-section bg-light" data-section="galeri">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <span class="subheading">Galeri</span>
+            <h2 class="mb-4">Dokumentasi Asosiasi</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="#" class="block-20" style="background-image: url('public/asset/dist/img/home-landing.jpeg');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="#" style="color:white;">Umbi Porang fbfbfbbbbdbdbdbddbdbbd</a></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="#" class="block-20" style="background-image: url('public/storage/landing/landing-2.jpg');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="#" style="color:white;">Umbi Porang fbfbfbbbbdbdbdbddbdbbd</a></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="#" class="block-20" style="background-image: url('public/storage/landing/landing-3.jpg');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="#" style="color:white;">Umbi Porang fbfbfbbbbdbdbdbddbdbbd</a></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="#" class="block-20" style="background-image: url('public/storage/landing/landing-4.jpg');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="#" style="color:white;">Umbi Porang fbfbfbbbbdbdbdbddbdbbd</a></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="#" class="block-20" style="background-image: url('public/storage/landing/landing-5.jpeg');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="#" style="color:white;">Umbi Porang fbfbfbbbbdbdbdbddbdbbd</a></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="#" class="block-20" style="background-image: url('public/storage/landing/landing-6.jpeg');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="#l" style="color:white;">Umbi Porang fbfbfbbbbdbdbdbddbdbbd</a></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
-    <section class="ftco-section contact-section">
+    <section class="ftco-section contact-section" data-section="contact">
       <div class="container">
         <div class="row d-flex contact-info">
           <div class="col-md-6 col-lg-3 d-flex">
@@ -322,49 +377,11 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Square</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
               </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">Links</h2>
-              <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Services</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Projects</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Services</h2>
-              <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Architectural Design</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Interior Design</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Exterior Design</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Lighting Design</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>AutoCAD Service</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
             </div>
           </div>
         </div>

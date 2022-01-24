@@ -1,10 +1,14 @@
 @extends('layout.master') 
+
+@section('header_kanan') 
+<a class="btn btn-success btn-md float-right"  href="{{route('daftar_user')}}" role="button">Kembali</a>
+@endsection 
+
 @section('content')
  <section class="content">
    <div class="container-fluid">
       <div class="row">
          <div class="col-md-4">
-            <!-- Profile Image -->
             <div class="card card-yellow card-outline">
                <div class="card-body box-profile">
                   <div class="text-center">
@@ -69,15 +73,17 @@
                               </thead>
                               <tbody> 
 
-								  @foreach ($panen_petani as $item) <tr>
-                                    <td>{{$item->nama}}</td>
-                                    <td>{{$item->alamat?:$empty}}</td>
-                                    <td>{{$item->tanggal}}</td>
-                                    <td>{{$item->panen_katak?:$empty}} kilo</td>
-                                    <td>{{$item->panen_umbi?:$empty}} kilo</td>
-                                 </tr> 
+                              @foreach ($panen_petani as $item)
+                               <tr>
+                                 <td>{{$item->nama}}</td>
+                                 <td>{{$item->alamat?:$empty}}</td>
+                                 <td>{{$item->tanggal}}</td>
+                                 <td>{{$item->panen_katak?:$empty}} kilo</td>
+                                 <td>{{$item->panen_umbi?:$empty}} kilo</td>
+                              </tr> 
 
-								 @endforeach </tbody>
+                              @endforeach 
+                              </tbody>
                            </table>
                         </div>
                         <!-- /.row -->
@@ -90,6 +96,8 @@
             <!-- /.card -->
          </div>
       </div>
+
+      
 </section>
 <script src="{{asset('public/asset/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->

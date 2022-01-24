@@ -33,6 +33,8 @@ Route::get('/GetKelompok', [CRUDPetaniController::class, 'GetKelompok']);
 Route::get('/GetLahan/{id}', [CRUDPetaniController::class, 'GetLahan']);
 Route::get('/GetTanam/{id}', [CRUDPetaniController::class, 'GetTanam']);
 Route::get('/GetPanen/{id}', [CRUDPetaniController::class, 'GetPanen']);
+Route::get('/GetSensor/{id}', [CRUDPetaniController::class, 'GetSensor']);
+Route::get('/GetPesanan/{id}', [CRUDPetaniController::class, 'GetPesanan']);
 Route::post('/UpdateLahan', [CRUDPetaniController::class, 'UpdateLahan']);
 Route::post('/UpdateTanam', [CRUDPetaniController::class, 'UpdateTanam']);
 Route::post('/UpdatePanen', [CRUDPetaniController::class, 'UpdatePanen']);
@@ -40,4 +42,4 @@ Route::post('/UpdatePanen', [CRUDPetaniController::class, 'UpdatePanen']);
 Route::post('/terimaSensor', [SensorController::class, 'terimaSensor']);
 
 Route::get('/chartKelembapan', [SensorController::class, 'chartKelembapan'])->name('chartKelembapan');
-Route::get('/chartPH', [SensorController::class, 'chartPH'])->name('chartPH');
+Route::get('/chartPH/{id}', [SensorController::class, 'chartPH'])->name('chartPH');

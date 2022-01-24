@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Panen extends Model
 {
@@ -14,5 +15,11 @@ class Panen extends Model
     public function lahan()
     {
         return $this->belongsTo(Lahan::class);
+    }
+
+    
+    public function getCreatedAtAttribute($value){
+        $date = Carbon::parse($value);
+        return $date->format('d-M-Y');
     }
 }

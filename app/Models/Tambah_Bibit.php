@@ -28,6 +28,6 @@ class Tambah_Bibit extends Model
 
     public function getCreatedAtAttribute($value){
         $date = Carbon::parse($value);
-        return $date->format('D:M:Y');
+        return $date->format('d:M:Y');
     }
 }

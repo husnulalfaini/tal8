@@ -14,63 +14,30 @@ use Illuminate\Support\Str;
 
 class TambahKelompokController extends Controller
 {
-    
-    // public function tambahKelompok(Request $request)
-    // {
-    //     $ketua= User::where('level','ketua')->get();
-    //     // melalukan validasi
 
-    //     // validasi register
-    //     $validator = Validator::make($request->all(), [
-    //         'nama'=>'required',
-    //         'alamat'=> 'required',
-    //         'kecamatan'=> 'required|unique:kelompoks',
-    //     ]);
-
-    //     // pengondisian error
-    //     if ($validator->fails()) {
-    //        return redirect('/daftar_kelompok')->with('error', 'kelompok sudah ada!');               
-    //     }
-
-    //     //mengisi data baru 
-    //     $tambah_kelompok= new Kelompok([
-    //         'nama'=> $request->get('nama'),
-    //         'alamat'=> $request->get('alamat'),
-    //         'kecamatan'=> $request->get('kecamatan'),
-    //         'longitude'=> $request->get('longitude'),
-    //         'latitude'=> $request->get('latitude'),
-    //     ]);
-        
-    //     // menyimpan data isian
-    //     $tambah_kelompok->save();
-
-    //     return redirect('/daftar_kelompok')->with('success', 'kelompok baru berhasil ditambahkan!');
-    // }
-
-    public function tampilKetua()
+    public function tampilKelompok()
     {
         // $kelompok= Kelompok::first();
-        return view('pimpinan.tambah_ketua');
+        return view('pimpinan.tambah_kelompok');
     }
 
 
-    public function tambahKetua(Request $request)
+    public function tambahKelompok(Request $request)
     {
         $image   = $request->file('foto')->getClientOriginalName();
                    $request->file('foto')->move('public/storage', $image);
 
         // validasi register
         $validator = Validator::make($request->all(), [
-            'kelompok_id'   =>'required|unique:users',
-            'nama'          =>'required',
+            'email'         =>'required|unique:users',
             'alamat'        => 'required',
             'kecamatan'     => 'required|unique:kelompoks'
         ]);
 
         //pengondisian error
-        // if ($validator->fails()) {
-        //     return redirect('/tambah_ketua')->with('error', 'kelompok sudah ada, pilih kelompok lain!');               
-        // }
+        if ($validator->fails()) {
+            return redirect('/tambah_ketua')->with('error', 'kelompok sudah ada, pilih kelompok lain!');               
+        }
 
         //mengisi data baru 
         $tambah_kelompok= Kelompok::create([
@@ -92,35 +59,7 @@ class TambahKelompokController extends Controller
             'kelompok_id'       => $tambah_kelompok->id,
             'foto'              => $image,
         ]);
-        // $input1           = new Kelompok();
-        // $input2           = new User();
 
-        // $input1['nama']              = $request->nama;
-        // $input1['alamat']            = $request->alamat;
-        // $input1['kecamatan']         = $request->kecamatan;
-        // $input1['longitude']         = $request->longitude;
-        // $input1['latitude']          = $request->latitude;
-        // $input2['name']              = $request->name;
-        // $input2['email']             = $request->email;
-        // $input2['password']          = Hash::make($request->password);
-        // $input2['level']             = 'ketua';
-        // $input2['remember_token']    = Str::random(60);
-        // $input2['alamat']            = $request->alamat;
-        // $input2['telepon']           = $request->telepon;
-        // $input2['kelompok_id']       = $input1['id'];
-        // $image                      = $request->file('foto')->getClientOriginalName();
-        //                               $request->file('foto')->move('public/storage', $image);
-        // $input2['foto']              = $image;
-        // if($image){
-        //             Storage::delete('public/storage'. $input2->foto);
-        //             }
-        // $tambah_kelompok->save();
-        // $tambah_ketua->save();
-
-        // if (!!$tambah_ketua && !!$tambah_kelompok) {
-        //     return redirect('/daftar_kelompok', compact('kelompok','ketua'))->with('error', 'ketua baru Gagal ditambahkan!');
-
-        // }
             return redirect('/daftar_kelompok')->with('success', 'Kelompok baru berhasil ditambahkan!');
     }
 
