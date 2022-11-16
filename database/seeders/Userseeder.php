@@ -14,7 +14,7 @@ class Userseeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
+        // User::truncate();
         User::create([
             'name' =>'husnul',
             'level' =>'admin',
