@@ -20,6 +20,7 @@ class PetaniSeeder extends Seeder
             'password' =>bcrypt('petani'),
             'kelompok_id' =>'1',
             'foto' =>'foto.jpg',
+            'status' =>'1',
         ]);
     }
 }
